@@ -15,6 +15,12 @@ import {
   collections as guestCollections,
 } from "../data.js";
 import { usePageReveal } from "../hooks/usePageReveal.js";
+import airbnbLogo from "../assets/logos/airbnb.svg";
+import bookingLogo from "../assets/logos/bookingdotcom.svg";
+import airdnaLogo from "../assets/logos/airdna.svg";
+import smoobuLogo from "../assets/logos/smoobu.svg";
+import airbticsLogo from "../assets/logos/airbtics.webp";
+
 function SparkleIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
