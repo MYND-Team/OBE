@@ -1,0 +1,24 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "C:\\Users\\youssef\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "runtimeArgs": ["scripts/dev-server.mjs"],
+      "port": 5173,
+      "autoPort": true
+    },
+    {
+      "name": "flutter-web",
+      "runtimeExecutable": "C:\\Windows\\System32\\cmd.exe",
+      "runtimeArgs": ["/c", "cd /d C:\\Users\\youssef\\Desktop\\fit && C:\\src\\flutter\\bin\\flutter.bat run -d web-server --web-port 5757"],
+      "port": 5757
+    },
+    {
+      "name": "eltahi-static",
+      "runtimeExecutable": "C:\\Users\\youssef\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "runtimeArgs": ["C:\\Users\\youssef\\AppData\\Local\\Temp\\claude\\C--Users-youssef-Desktop-furniture\\7332eca6-41a1-4ec9-8725-451ecc167f73\\scratchpad\\eltahi-static-server.cjs"],
+      "port": 5501
+    }
+  ]
+}

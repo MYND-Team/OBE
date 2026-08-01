@@ -1,0 +1,223 @@
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { X } from "lucide-react";
+import urbanImg from "../assets/urban-hero.png";
+import shoreImg from "../assets/shore-living-1.png";
+
+const stageOptions = [
+  "Finished, furnished",
+  "Finished, unfurnished",
+  "Semi finished",
+  "Unfinished"
+];
+
+const timelineOptions = [
+  "As soon as possible",
+  "Within a month",
+  "1 to 3 months",
+  "Just exploring"
+];
+
+export function RequestPackageModal({ open, onClose, collectionName, collectionImage }) {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!open) {
+      setVisible(false);
+      return undefined;
+    }
+
+    // Tiny delay so CSS animation triggers
+    const t = setTimeout(() => setVisible(true), 10);
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      clearTimeout(t);
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    const form = event.target;
+    const data = new FormData(form);
+
+    try {
+      await fetch("https://formsubmit.co/ajax/contact@obespaces.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data
+      });
+    } catch (_) {
+      // best-effort
+    } finally {
+      setLoading(false);
+      setSubmitted(true);
+    }
+  };
+
+  const handleClose = () => {
+    setVisible(false);
+    setTimeout(() => {
+      onClose();
+      setSubmitted(false);
+    }, 280);
+  };
+
+  const getImage = () => {
+    if (collectionImage) return collectionImage;
+    if (collectionName?.toLowerCase() === "shore") return shoreImg;
+    return urbanImg;
+  };
+
+  const modal = (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 99999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1rem"
+      }}
+    >
+      {/* Backdrop */}
+      <div
+        onClick={handleClose}
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(20,20,12,0.65)",
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 300ms ease",
+          cursor: "pointer"
+        }}
+      />
+
+      {/* Panel */}
+      <div
+        className="pkg-modal__panel"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? "scale(1) translateY(0)" : "scale(0.94) translateY(24px)",
+          transition: "opacity 300ms ease, transform 340ms cubic-bezier(0.16,1,0.3,1)"
+        }}
+      >
+        {/* Left: image */}
+        <div className="pkg-modal__img-side">
+          <img src={getImage()} alt={collectionName} />
+          <div className="pkg-modal__img-overlay">
+            <h3>OBÉ</h3>
+            <p>{collectionName} Collection</p>
+          </div>
+        </div>
+
+        {/* Right: form */}
+        <div className="pkg-modal__form-side" data-lenis-prevent>
+          <button
+            className="pkg-modal__close"
+            type="button"
+            onClick={handleClose}
+            aria-label="Close"
+          >
+            <X size={20} aria-hidden="true" />
+          </button>
+
+          {submitted ? (
+            <div className="pkg-modal__success">
+              <h2>Request received. We are on it.</h2>
+              <p>We are confirming details and will reach out via WhatsApp shortly.</p>
+            </div>
+          ) : (
+            <>
+              <h2 className="pkg-modal__title">Request This Package</h2>
+              {collectionName && (
+                <p className="pkg-modal__tag">{collectionName} Package</p>
+              )}
+
+              <form className="pkg-modal__form" onSubmit={handleSubmit}>
+                <input type="hidden" name="_subject" value={`Package Request — ${collectionName || "Collection"}`} />
+                <input type="hidden" name="_captcha" value="false" />
+                {collectionName && <input type="hidden" name="collection" value={collectionName} />}
+
+                <label className="pkg-modal__field">
+                  <span>Name *</span>
+                  <div className="pkg-modal__row">
+                    <input type="text" name="firstName" placeholder="First Name" required />
+                    <input type="text" name="lastName" placeholder="Last Name" required />
+                  </div>
+                </label>
+
+                <label className="pkg-modal__field">
+                  <span>WhatsApp Number *</span>
+                  <input type="tel" name="whatsapp" placeholder="+20 100 000 0000" required />
+                  <span className="pkg-modal__hint">This is where we will reply</span>
+                </label>
+
+                <label className="pkg-modal__field">
+                  <span>Email *</span>
+                  <input type="email" name="email" placeholder="example@example.com" required />
+                </label>
+
+                <label className="pkg-modal__field">
+                  <span>Where is the property? *</span>
+                  <input type="text" name="property_location" placeholder="Neighborhood is enough" required />
+                </label>
+
+                <label className="pkg-modal__field">
+                  <span>What stage is it at? *</span>
+                  <select name="property_stage" defaultValue="" required>
+                    <option value="" disabled>Select</option>
+                    {stageOptions.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="pkg-modal__field">
+                  <span>When do you want it live? *</span>
+                  <select name="timeline" defaultValue="" required>
+                    <option value="" disabled>Select</option>
+                    {timelineOptions.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="pkg-modal__field">
+                  <span>Anything we should know?</span>
+                  <textarea name="notes" placeholder="A floor plan or a photo is welcome" rows={3} />
+                </label>
+
+                <button className="pkg-modal__submit" type="submit" disabled={loading}>
+                  {loading ? "Sending…" : "Request This Package"}
+                </button>
+
+                <p className="pkg-modal__trust">
+                  No payment now. We confirm the details and reply on WhatsApp within 24 hours.
+                </p>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  return createPortal(modal, document.body);
+}
