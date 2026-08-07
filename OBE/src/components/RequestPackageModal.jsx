@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { LogoMark } from "./LogoMark.jsx";
 import urbanImg from "../assets/urban-hero.png";
 import shoreImg from "../assets/shore-living-1.png";
 import { SHEETS_ENDPOINT } from "../config.js";
@@ -35,7 +36,7 @@ async function postToSheets(payload) {
   return res.json();
 }
 
-export function RequestPackageModal({ open, onClose, collectionName, collectionImage }) {
+export function RequestPackageModal({ open, onClose, collectionName }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -115,7 +116,6 @@ export function RequestPackageModal({ open, onClose, collectionName, collectionI
   };
 
   const getImage = () => {
-    if (collectionImage) return collectionImage;
     if ((collectionName || "").toLowerCase() === "shore") return shoreImg;
     return urbanImg;
   };
@@ -159,9 +159,11 @@ export function RequestPackageModal({ open, onClose, collectionName, collectionI
         {/* Left: image */}
         <div className="pkg-modal__img-side">
           <img src={getImage()} alt={collectionName} />
-          <div className="pkg-modal__img-overlay">
-            <h3>OBÉ</h3>
-            <p>{collectionName} Collection</p>
+          <div className="pkg-modal__img-overlay pkg-modal__img-overlay--top">
+            <LogoMark className="pkg-modal__logo" />
+          </div>
+          <div className="pkg-modal__img-overlay pkg-modal__img-overlay--bottom">
+            <h3>{collectionName}</h3>
           </div>
         </div>
 
@@ -179,42 +181,40 @@ export function RequestPackageModal({ open, onClose, collectionName, collectionI
           {submitted ? (
             <div className="pkg-modal__success">
               <h2>Request received. We are on it.</h2>
-              <p>We are confirming details and will reach out via WhatsApp shortly.</p>
+              <p>We are confirming the {collectionName} collection for your property. You will hear from us on WhatsApp within 24 hours to lock the details and start your 30 days. If we need anything, we will ask first.</p>
             </div>
           ) : (
             <>
-              <h2 className="pkg-modal__title">Request This Package</h2>
-              {collectionName && (
-                <p className="pkg-modal__tag">{collectionName} Package</p>
-              )}
+              <h2 className="pkg-modal__title">Request this Package</h2>
 
               <form className="pkg-modal__form" onSubmit={handleSubmit}>
                 <label className="pkg-modal__field">
-                  <span>Name *</span>
+                  <span>Name</span>
                   <div className="pkg-modal__row">
-                    <input type="text" name="firstName" placeholder="First Name" required />
-                    <input type="text" name="lastName" placeholder="Last Name" required />
+                    <input type="text" name="firstName" placeholder="First name" />
+                    <input type="text" name="lastName" placeholder="Last name" />
                   </div>
                 </label>
 
                 <label className="pkg-modal__field">
-                  <span>WhatsApp Number *</span>
+                  <span>WhatsApp number (required)</span>
                   <input type="tel" name="whatsapp" placeholder="+20 100 000 0000" required />
-                  <span className="pkg-modal__hint">This is where we will reply</span>
+                  <span className="pkg-modal__hint">This is where we will reply.</span>
                 </label>
 
                 <label className="pkg-modal__field">
-                  <span>Email *</span>
+                  <span>Email (required)</span>
                   <input type="email" name="email" placeholder="example@example.com" required />
                 </label>
 
                 <label className="pkg-modal__field">
-                  <span>Where is the property? *</span>
-                  <input type="text" name="property_location" placeholder="Neighborhood is enough" required />
+                  <span>Where is the property? (required)</span>
+                  <input type="text" name="property_location" placeholder="Neighborhood" required />
+                  <span className="pkg-modal__hint">Neighborhood is enough.</span>
                 </label>
 
                 <label className="pkg-modal__field">
-                  <span>What stage is it at? *</span>
+                  <span>What stage is it at? (required)</span>
                   <select name="property_stage" defaultValue="" required>
                     <option value="" disabled>Select</option>
                     {stageOptions.map((option) => (
@@ -224,7 +224,7 @@ export function RequestPackageModal({ open, onClose, collectionName, collectionI
                 </label>
 
                 <label className="pkg-modal__field">
-                  <span>When do you want it live? *</span>
+                  <span>When do you want it live? (required)</span>
                   <select name="timeline" defaultValue="" required>
                     <option value="" disabled>Select</option>
                     {timelineOptions.map((option) => (
@@ -234,8 +234,8 @@ export function RequestPackageModal({ open, onClose, collectionName, collectionI
                 </label>
 
                 <label className="pkg-modal__field">
-                  <span>Anything we should know?</span>
-                  <textarea name="notes" placeholder="A floor plan or a photo is welcome" rows={3} />
+                  <span>Anything we should know? (optional)</span>
+                  <textarea name="notes" placeholder="" rows={3} />
                 </label>
 
                 <button className="pkg-modal__submit" type="submit" disabled={loading}>

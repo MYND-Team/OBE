@@ -14,12 +14,14 @@ import {
   processSteps,
   collections as guestCollections,
 } from "../data.js";
-import { usePageReveal } from "../hooks/usePageReveal.js";
 import airbnbLogo from "../assets/logos/airbnb.svg";
 import bookingLogo from "../assets/logos/bookingdotcom.svg";
 import airdnaLogo from "../assets/logos/airdna.svg";
-import smoobuLogo from "../assets/logos/smoobu.svg";
 import airbticsLogo from "../assets/logos/airbtics.webp";
+import smoobuLogo from "../assets/logos/smoobu.svg";
+import icon4 from "../assets/icon4.png";
+import icon5 from "../assets/icon5.png";
+import { usePageReveal } from "../hooks/usePageReveal.js";
 
 function SparkleIcon() {
   return (
@@ -63,25 +65,21 @@ const costlyMistakes = [
     title: "Guesswork At Every Turn",
     text: "Selecting furniture based on personal taste, not guest data.",
     icon: SparkleIcon,
-    tone: "cream",
   },
   {
     title: "Months Of Chaos",
     text: "Losing 3-6 months of potential revenue while going through the hassle of sourcing and staging.",
     icon: EyeIcon,
-    tone: "cream",
   },
   {
     title: "Poor Reviews",
     text: "Below 4.7 stars, the algorithm buries you. The small things owners skip are the exact things that win five stars or quietly kill the listing.",
     icon: HandsEyeIcon,
-    tone: "cream",
   },
   {
     title: "Lower Nightly Rates",
     text: "The result is a property that earns less than it should.",
     icon: StaggeredBlocksIcon,
-    tone: "cream",
   },
 ];
 
@@ -107,6 +105,7 @@ const backgroundScenes = [
     bg2: "#746f4f",
     accent: "rgba(173, 138, 95, 0.06)",
     line: "rgba(255, 248, 232, 0.02)",
+    fabBg: "#c8c1a8",
   },
   {
     selector: ".intro",
@@ -114,6 +113,7 @@ const backgroundScenes = [
     bg2: "#746f4f",
     accent: "rgba(229, 235, 216, 0.04)",
     line: "rgba(255, 248, 232, 0.02)",
+    fabBg: "#c8c1a8",
   },
   {
     selector: ".mistakes",
@@ -121,6 +121,7 @@ const backgroundScenes = [
     bg2: "#efe5d2",
     accent: "rgba(116, 111, 79, 0.12)",
     line: "rgba(51, 55, 33, 0.1)",
+    fabBg: "#746f4f",
   },
   {
     selector: ".collections",
@@ -128,6 +129,7 @@ const backgroundScenes = [
     bg2: "#eadbc2",
     accent: "rgba(154, 85, 62, 0.1)",
     line: "rgba(51, 55, 33, 0.08)",
+    fabBg: "#746f4f",
   },
   {
     selector: ".strategy",
@@ -135,6 +137,7 @@ const backgroundScenes = [
     bg2: "#f8f1df",
     accent: "rgba(116, 111, 79, 0.13)",
     line: "rgba(51, 55, 33, 0.1)",
+    fabBg: "#746f4f",
   },
   {
     selector: ".craft",
@@ -142,6 +145,7 @@ const backgroundScenes = [
     bg2: "#ead8c3",
     accent: "rgba(173, 138, 95, 0.16)",
     line: "rgba(51, 55, 33, 0.08)",
+    fabBg: "#746f4f",
   },
 ];
 
@@ -187,6 +191,12 @@ export function Home() {
           ease: "power2.out",
           overwrite: "auto",
         });
+        gsap.to(document.documentElement, {
+          "--fab-bg": scene.fabBg || "#746f4f",
+          duration: immediate ? 0 : 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
       };
       setBackground(backgroundScenes[0], true);
 
@@ -222,14 +232,14 @@ export function Home() {
         scale: 0.85,
       });
       gsap.set(metricsTitle, { display: "none", autoAlpha: 0 });
-      gsap.set(heroActions, { autoAlpha: 0, y: 60, pointerEvents: "none" });
+      gsap.set(heroActions, { autoAlpha: 0, y: 15, pointerEvents: "none" });
 
       const revealTitle = () => {
         gsap.set(metricsTitle, { display: "grid", autoAlpha: 1 });
         if (metricsLines.length > 0) {
           gsap.fromTo(
             metricsLines,
-            { autoAlpha: 0, y: 60 },
+            { autoAlpha: 0, y: 15 },
             {
               autoAlpha: 1,
               y: 0,
@@ -412,7 +422,10 @@ export function Home() {
       }
     }, pageRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      document.documentElement.style.setProperty("--fab-bg", "#746f4f");
+    };
   }, [pageRef]);
 
   return (
@@ -439,12 +452,13 @@ export function Home() {
               <span className="hero__switch-earn">Earn.</span>
             </span>
           </p>
+
           <h1 className="hero__title hero__title--metrics">
             <span>
               More
               <img
                 className="hero__title-icon hero__title-icon--more"
-                src={heroIconMore}
+                src={icon4}
                 alt=""
                 aria-hidden="true"
               />
@@ -455,7 +469,7 @@ export function Home() {
               Zero
               <img
                 className="hero__title-icon hero__title-icon--zero"
-                src={heroIconZero}
+                src={icon5}
                 alt=""
                 aria-hidden="true"
               />
@@ -463,7 +477,7 @@ export function Home() {
             </span>
           </h1>
           <div className="hero__actions">
-            <Button to="/collections">View collections</Button>
+            <Button to="/collections">View collection</Button>
           </div>
         </div>
         <a
@@ -556,12 +570,12 @@ export function Home() {
             const IconComp = item.icon;
             return (
               <article
-                className={`mistake-card mistake-card--${item.tone}`}
+                className="mistake-card"
                 key={item.title}
                 data-cursor="Avoid"
               >
                 <div className="mistake-card__icon" aria-hidden="true">
-                  <IconComp />
+                  {IconComp && <IconComp />}
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -607,13 +621,10 @@ export function Home() {
                   aria-hidden="true"
                 />
                 <span className="collection-choice__index">0{index + 1}</span>
-                <span className="collection-choice__arrow" aria-hidden="true">
-                  <ArrowUpRight size={22} />
-                </span>
+
                 <div className="collection-choice__body">
                   <p>{collection.tagline}</p>
                   <h3>{collection.name}</h3>
-                  <span>{collection.text}</span>
                 </div>
               </Link>
             );
@@ -640,12 +651,6 @@ export function Home() {
         </div>
       </section>
       <section className="strategy section">
-        <span
-          className="section-word section-word--strategy"
-          aria-hidden="true"
-        >
-          Strategy
-        </span>
         <div className="strategy__heading" data-reveal>
           <p className="section-label">THE OBÉ DIFFERENCE</p>
           <h2>A short term rental engineered to earn at its full potential.</h2>
@@ -688,6 +693,12 @@ export function Home() {
             </aside>
           </div>
         </div>
+        <span
+          className="section-word section-word--strategy"
+          aria-hidden="true"
+        >
+          Strategy
+        </span>
       </section>
       <section className="craft section" id="craft">
         <div className="craft__sticky" data-reveal>

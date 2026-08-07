@@ -28,6 +28,8 @@ const furnitureBenefits = [
   }
 ];
 
+const featuredSlugs = ["urban", "shore"];
+
 export function CollectionDetail() {
   const { slug } = useParams();
   const collection = collections.find((item) => item.slug === slug);
@@ -42,6 +44,7 @@ export function CollectionDetail() {
     return <Navigate to="/" replace />;
   }
 
+  const isFeatured = featuredSlugs.includes(slug);
   const pkg = collection.packages[activePackage];
   const roomPackages = collection.rooms || [];
   const room = roomPackages[activeRoom] || roomPackages[0];
@@ -52,10 +55,44 @@ export function CollectionDetail() {
     setActiveRoomImage((current) => (current + direction + roomImages.length) % roomImages.length);
   };
 
+  const packageSelector = (
+    <div className="collection-detail__package-inner">
+      <label className="collection-detail__select collection-detail__select--compact">
+        <select defaultValue={collection.bedroomOptions[0]}>
+          {collection.bedroomOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="collection-detail__select">
+        <select defaultValue="">
+          <option value="" disabled>
+            Optional Upgrades
+          </option>
+          {collection.addOns.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <p className="collection-detail__price">{pkg.price}</p>
+
+      <button type="button" className="collection-detail__cta" onClick={() => setRequestOpen(true)}>
+        <span>Request This Package</span>
+        <ArrowUpRight size={18} aria-hidden="true" />
+      </button>
+    </div>
+  );
+
   return (
-    <main className="page collection-page" ref={pageRef}>
+    <main className={`page collection-page${isFeatured ? " collection-page--featured" : ""}`} ref={pageRef}>
       {/* 1. Hero image + title block */}
-      <section className="collection-detail">
+      <section className={`collection-detail${isFeatured ? " collection-detail--featured" : ""}`}>
         <figure className="collection-detail__media" data-image-reveal>
           <img src={collection.image} alt={`${collection.name} furnished living room`} />
         </figure>
@@ -69,6 +106,8 @@ export function CollectionDetail() {
           <p className="section-label">{collection.tagline}</p>
           <h1>{collection.name}</h1>
           <p className="collection-detail__desc">{collection.text}</p>
+
+          {isFeatured && packageSelector}
         </div>
       </section>
 
@@ -127,6 +166,10 @@ export function CollectionDetail() {
                 className={`room-detail-box ${index === activeRoom ? "room-detail-box--active" : ""}`}
                 key={option.id}
                 data-reveal
+                onClick={() => {
+                  setActiveRoom(index);
+                  setActiveRoomImage(0);
+                }}
               >
                 <span className="room-detail-box__num">{String(index + 1).padStart(2, "0")}</span>
                 <h3>{option.label}</h3>
@@ -142,62 +185,17 @@ export function CollectionDetail() {
         </section>
       )}
 
-      {/* 4. Package selector + CTA — now LAST */}
-      <section className="collection-detail__package-selector">
-        <div className="collection-detail__package-inner">
-          <h2 className="collection-detail__choose">Choose your package</h2>
-          <div className="package-tabs" role="tablist" aria-label="Package tier">
-            {collection.packages.map((option, index) => (
-              <button
-                key={option.id}
-                type="button"
-                role="tab"
-                aria-selected={index === activePackage}
-                className={`package-tab ${index === activePackage ? "package-tab--active" : ""}`}
-                onClick={() => setActivePackage(index)}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-
-          <label className="collection-detail__select">
-            <select defaultValue={collection.bedroomOptions[0]}>
-              {collection.bedroomOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="collection-detail__select">
-            <select defaultValue="">
-              <option value="" disabled>
-                Optional Upgrades
-              </option>
-              {collection.addOns.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <p className="collection-detail__price">{pkg.price}</p>
-
-          <button type="button" className="collection-detail__cta" onClick={() => setRequestOpen(true)}>
-            <span>Request This Package</span>
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </button>
-        </div>
-      </section>
+      {/* 4. Package selector + CTA — below room packages for non-featured collections */}
+      {!isFeatured && (
+        <section className="collection-detail__package-selector">
+          {packageSelector}
+        </section>
+      )}
 
       <RequestPackageModal
         open={requestOpen}
         onClose={() => setRequestOpen(false)}
         collectionName={collection.name}
-        collectionImage={collection.image}
       />
     </main>
   );

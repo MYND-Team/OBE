@@ -152,7 +152,7 @@ export const processSteps = [
 const urbanRooms = [
   {
     id: "living-dining",
-    label: "Living & Dining",
+    label: "Living & Dining Room",
     images: [urbanLiving1, urbanLiving2],
     description: "An open lounge and dining setup built for comfort, good light, and a strong first photo, with a compact work corner for the guest mixing a trip with a little work.",
     details: [
@@ -175,8 +175,8 @@ const urbanRooms = [
     ]
   },
   {
-    id: "second-bedroom",
-    label: "Second Bedroom",
+    id: "guest-bedroom",
+    label: "Guest Bedroom",
     images: [urbanBedroom2a],
     description: "A flexible second room for a friend, a partner, or a solo guest.",
     details: [
@@ -189,7 +189,7 @@ const urbanRooms = [
 const shoreRooms = [
   {
     id: "living-dining",
-    label: "Living & Dining",
+    label: "Living & Dining Room",
     images: [shoreLiving1, shoreLiving2],
     description: "A relaxed, open living and dining area that feels like a holiday the moment you walk in — built for groups, couples, and families.",
     details: [
@@ -211,8 +211,8 @@ const shoreRooms = [
     ]
   },
   {
-    id: "second-bedroom",
-    label: "Second Bedroom",
+    id: "guest-bedroom",
+    label: "Guest Bedroom",
     images: [shoreBedroom2],
     description: "A flexible additional room that handles friends, couples, or kids without feeling secondary.",
     details: [
@@ -248,7 +248,11 @@ const genericRooms = [
 
 const packageTiers = (base) => [
   { id: "standard", label: "Standard", price: `EGP ${Math.round(base * 0.66).toLocaleString()}` },
-  { id: "tech", label: "Tech-enabled", price: `EGP ${Math.round(base * 1.15).toLocaleString()}` }
+  { id: "tech", label: "Tech", price: `EGP ${Math.round(base * 1.15).toLocaleString()}` }
+];
+
+const packageTiersNoTech = (base) => [
+  { id: "standard", label: "Standard", price: `EGP ${Math.round(base * 0.66).toLocaleString()}` }
 ];
 
 const sharedAddOns = [
@@ -269,7 +273,7 @@ export const collections = [
     tagline: "FOR THE CITY EXPLORER",
     text: "For the international traveler here to see the city, dropping their bags between the sights, the museums, and a night out. Set up for apartments in the neighborhoods guests actually want to book.",
     image: urbanLiving1,
-    packages: packageTiers(424621),
+    packages: packageTiersNoTech(424621),
     styles: [],
     bedroomOptions: ["Studio / 1 Bedroom", "2 Bedroom", "3 Bedroom"],
     addOns: sharedAddOns,
@@ -281,7 +285,7 @@ export const collections = [
     tagline: "FOR THE GETAWAY GUEST",
     text: "For families, couples, and friend groups on an escape to the coast, who want it to feel like a holiday the second they walk in. Set up for chalets, apartments, and villas by the sea.",
     image: shoreLiving1,
-    packages: packageTiers(398500),
+    packages: packageTiersNoTech(398500),
     styles: [],
     bedroomOptions: ["1 Bedroom", "2 Bedroom", "3 Bedroom", "4+ Bedroom"],
     addOns: sharedAddOns,

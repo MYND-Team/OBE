@@ -4,7 +4,8 @@ import { SHEETS_ENDPOINT } from "../config.js";
 
 const bedroomOptions = ["Studio", "1", "2", "3", "4 or more"];
 const stageOptions = ["Unfinished", "Semi finished", "Finished, unfurnished", "Finished, furnished"];
-const earningOptions = ["Empty, not listed", "Listed but underperforming"];
+const earningOptions = ["Empty, not listed", "Listed but underperforming", "Preparing it now", "I own several"];
+const referralOptions = ["Instagram", "Google", "A friend", "Other"];
 
 async function postToSheets(payload) {
   const res = await fetch(SHEETS_ENDPOINT, {
@@ -93,14 +94,14 @@ export function EstimateModal({ open, onClose }) {
 
         {submitted ? (
           <div className="contact-modal__success">
-            <h2>Request received. We are on it.</h2>
-            <p>We are confirming details and will reach out via WhatsApp within 24 hours.</p>
+            <h2>Got it. Your estimate is on the way.</h2>
+            <p>Our team is putting together a revenue projection for your property. It reaches you on WhatsApp within 24 hours. If anything is unclear, we will ask before we send.</p>
           </div>
         ) : (
           <>
             <h2>Get Your Free Estimate</h2>
             <p className="contact-modal__intro">
-              A few quick details about you and your property. We send back a real revenue projection within 24 hours, on WhatsApp.
+              Four quick details about your property. We send back a real revenue projection: what listings like yours earn now, and what the top ten percent earn. Within 24 hours, on WhatsApp.
             </p>
             <p className="contact-modal__takes">Takes about a minute.</p>
             <p className="contact-modal__contact-line">
@@ -118,8 +119,9 @@ export function EstimateModal({ open, onClose }) {
               </label>
 
               <label className="contact-modal__field">
-                <span>WhatsApp / Phone *</span>
-                <input type="tel" name="phone" placeholder="+20 100 000 0000" required />
+                <span>WhatsApp number *</span>
+                <input type="tel" name="phone" placeholder="(000) 000 0000" required />
+                <span className="contact-modal__hint">This is where your estimate arrives.</span>
               </label>
 
               <label className="contact-modal__field">
@@ -168,9 +170,21 @@ export function EstimateModal({ open, onClose }) {
                 </select>
               </label>
 
+              <label className="contact-modal__field">
+                <span>How did you hear about us?</span>
+                <select name="referral" defaultValue="">
+                  <option value="">Select (optional)</option>
+                  {referralOptions.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </label>
+
               <button className="contact-modal__submit" type="submit" disabled={loading}>
                 {loading ? "Sending…" : "Get My Free Estimate"}
               </button>
+              <p className="contact-modal__secondary">Prefer to talk first? Book a call.</p>
+              <p className="contact-modal__trust">No cost. No obligation. A real projection, not a sales call.</p>
             </form>
           </>
         )}

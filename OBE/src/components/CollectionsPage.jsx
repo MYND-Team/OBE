@@ -24,7 +24,6 @@ export function CollectionsPage() {
           <span className="cl-hero__gold">Higher rates, better reviews.</span>
         </h1>
         <p className="cl-hero__sub">Every collection is furnished for exactly who your property should win.</p>
-        <p className="cl-hero__desc">Pick the guest your property should win — we furnish the rest.</p>
       </section>
 
       <section className="cl-bands" aria-label="Collections">
@@ -37,9 +36,7 @@ export function CollectionsPage() {
             <div className="cl-band__info">
               <span className="cl-band__tag">{collection.tagline}</span>
               <h2>{collection.name}</h2>
-              <p className="cl-band__meta">
-                {collection.bedroomOptions[0]} – {collection.bedroomOptions[collection.bedroomOptions.length - 1]} · {collection.packages.length} tiers
-              </p>
+              <p className="cl-band__desc">{collection.text}</p>
               <Link className="cl-band__cta" to={`/collections/${collection.slug}`}>
                 Explore collection <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
@@ -52,7 +49,7 @@ export function CollectionsPage() {
         <div className="cl-why__head" data-reveal>
           <p className="section-label">The OBÉ Difference</p>
           <h2>Why Choose Us</h2>
-          <p className="cl-why__lead">A furnishing standard built to remove the expensive parts of guessing, waiting, coordinating, and managing.</p>
+          <p className="cl-why__lead">Shell furnishing. A standard built to remove the expensive parts of guessing, waiting, coordinating, and managing.</p>
         </div>
         <div className="cl-why__row" data-reveal>
           {reasons.map(({ icon: Icon, title, eyebrow, text }) => (
