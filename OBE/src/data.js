@@ -154,34 +154,33 @@ const urbanRooms = [
     id: "living-dining",
     label: "Living & Dining Room",
     images: [urbanLiving1, urbanLiving2],
-    description: "An open lounge and dining setup built for comfort, good light, and a strong first photo, with a compact work corner for the guest mixing a trip with a little work.",
+    description: "A guest-ready lounge and dining setup built around comfort, flow, and five-star first impressions.",
     details: [
-      "Three-seater sofa, armchair, pouf, coffee table",
-      "TV unit with a Netflix-ready smart TV",
-      "Compact desk and chair",
-      "Layered floor & pendant lighting, plants, art",
-      "Blackout-lined curtains"
+      "Sofa and accent seating",
+      "Dining table and chairs",
+      "Coffee tables, lighting, and decor"
     ]
   },
   {
     id: "master-bedroom",
     label: "Master Bedroom",
     images: [urbanBedroom1, urbanBedroom2],
-    description: "A calm primary room built around the things guests judge first: sleep and finish.",
+    description: "A calmer primary suite with the essentials guests notice first: sleep quality, storage, and finish.",
     details: [
-      "160cm bed frame with hotel-grade mattress and layered hotel linens",
-      "Bedside tables, lamps, wardrobe, dresser with mirror",
-      "Area rug, blackout curtains, and soft styling"
+      "Bed frame, mattress, and linens",
+      "Nightstands and layered lighting",
+      "Wardrobe accents and soft styling"
     ]
   },
   {
     id: "guest-bedroom",
     label: "Guest Bedroom",
     images: [urbanBedroom2a],
-    description: "A flexible second room for a friend, a partner, or a solo guest.",
+    description: "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
     details: [
-      "Bed frame with quality mattress and full linens",
-      "Storage, side tables, and soft styling"
+      "Guest bed configuration",
+      "Compact storage and side tables",
+      "Durable textiles and finishing pieces"
     ]
   }
 ];
@@ -191,33 +190,33 @@ const shoreRooms = [
     id: "living-dining",
     label: "Living & Dining Room",
     images: [shoreLiving1, shoreLiving2],
-    description: "A relaxed, open living and dining area that feels like a holiday the moment you walk in — built for groups, couples, and families.",
+    description: "A guest-ready lounge and dining setup built around comfort, flow, and five-star first impressions.",
     details: [
-      "Lounge seating, dining table and chairs",
-      "Coffee table, smart TV unit",
-      "Coastal-inspired lighting, art, and styling",
-      "Blackout curtains"
+      "Sofa and accent seating",
+      "Dining table and chairs",
+      "Coffee tables, lighting, and decor"
     ]
   },
   {
     id: "master-bedroom",
     label: "Master Bedroom",
     images: [shoreBedroom1],
-    description: "A restful primary suite with a coastal finish, layered linens, and everything guests expect at a high-performing getaway property.",
+    description: "A calmer primary suite with the essentials guests notice first: sleep quality, storage, and finish.",
     details: [
-      "King bed frame with hotel-grade mattress and linens",
-      "Bedside tables, lamps, wardrobe",
-      "Area rug, blackout curtains, soft styling"
+      "Bed frame, mattress, and linens",
+      "Nightstands and layered lighting",
+      "Wardrobe accents and soft styling"
     ]
   },
   {
     id: "guest-bedroom",
     label: "Guest Bedroom",
     images: [shoreBedroom2],
-    description: "A flexible additional room that handles friends, couples, or kids without feeling secondary.",
+    description: "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
     details: [
-      "Bed frame with quality mattress and full linens",
-      "Storage, side tables, and soft styling"
+      "Guest bed configuration",
+      "Compact storage and side tables",
+      "Durable textiles and finishing pieces"
     ]
   }
 ];
