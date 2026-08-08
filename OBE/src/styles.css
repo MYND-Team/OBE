@@ -4098,9 +4098,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: clamp(72px, 6vw, 96px);
-  height: clamp(72px, 6vw, 96px);
-  margin-bottom: 1rem;
+  width: clamp(130px, 11vw, 180px);
+  height: clamp(130px, 11vw, 180px);
+  margin-bottom: 1.5rem;
   color: #fff9ee;
 }
 
@@ -4383,8 +4383,8 @@ body {
 }
 
 .mistake-card__icon {
-  width: clamp(7.4rem, 9vw, 9.8rem);
-  height: clamp(7.4rem, 9vw, 9.8rem);
+  width: clamp(9.5rem, 12vw, 13rem);
+  height: clamp(9.5rem, 12vw, 13rem);
 }
 
 .header-cta.button--consult {
@@ -6169,8 +6169,8 @@ p {
 }
 
 .mistake-card__icon {
-  width: clamp(52px, 4.8vw, 74px);
-  height: clamp(52px, 4.8vw, 74px);
+  width: clamp(90px, 8vw, 130px);
+  height: clamp(90px, 8vw, 130px);
   margin: 0 0 clamp(0.8rem, 1.3vw, 1.1rem);
 }
 
@@ -11931,8 +11931,8 @@ p {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  width: 58px !important;
-  height: 58px !important;
+  width: 100px !important;
+  height: 100px !important;
   margin: 0 0 1.4rem 0 !important;
   padding: 0 !important;
   background: none !important;
