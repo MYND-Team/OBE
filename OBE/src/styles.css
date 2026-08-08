@@ -7590,6 +7590,8 @@ p {
   inset: 0;
   margin: 0;
   background: transparent;
+  border-radius: 24px !important;
+  overflow: hidden !important;
 }
 
 .room-package__image img {
@@ -7597,6 +7599,7 @@ p {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  border-radius: 24px !important;
 }
 
 .room-package::after {
@@ -9797,7 +9800,8 @@ p {
   position: relative;
   flex: 1.08;
   aspect-ratio: 5 / 4;
-  overflow: hidden;
+  overflow: hidden !important;
+  border-radius: 24px !important;
 }
 
 .cl-band__media img {
@@ -9807,6 +9811,7 @@ p {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  border-radius: 24px !important;
   /* Unify mismatched source photos into one cohesive set */
   filter: saturate(0.9) contrast(1.03) brightness(0.98);
   transition: transform 1000ms var(--ease);
@@ -12862,15 +12867,20 @@ p {
   letter-spacing: -0.01em;
 }
 
-/* Item #6 — Ensure featured collection room package is also frameless */
+/* Item #6 — Ensure featured collection room package is also rounded */
 .collection-page--featured .room-package.room-package--image-only {
-  border-radius: 0 !important;
-  overflow: visible !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
   background: transparent !important;
 }
 
 .collection-page--featured .room-package--image-only .room-package__image {
-  border-radius: 0 !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.collection-page--featured .room-package--image-only .room-package__image img {
+  border-radius: 24px !important;
 }
 
 /* Costly Mistakes section — exact styling matching client spec screenshot */
