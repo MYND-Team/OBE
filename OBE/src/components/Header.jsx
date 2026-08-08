@@ -59,6 +59,18 @@ export function Header() {
     return () => window.removeEventListener("obe:open-contact", onOpenContact);
   }, []);
 
+  const handleInvestorClick = (e) => {
+    setInvestorOpen(false);
+    close();
+    if (window.location.pathname === "/") {
+      const el = document.getElementById("mistakes");
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <header className={`site-header ${scrolled || forceSolid ? "site-header--scrolled" : ""} ${forceSolid ? "site-header--collections" : ""}`}>
       <Link className="brand" to="/" onClick={close} data-cursor="Home" aria-label="Home">
@@ -89,11 +101,9 @@ export function Header() {
             <ChevronDown size={15} aria-hidden="true" />
           </button>
           <div className="investor-menu__panel">
-            {investorTypes.map((item) => (
-              <a key={item} href="/#mistakes" onClick={() => setInvestorOpen(false)}>
-                {item}
-              </a>
-            ))}
+            <a href="/#mistakes" onClick={handleInvestorClick}>First Timer</a>
+            <a href="/#mistakes" onClick={handleInvestorClick}>STR Owners</a>
+            <a href="/#mistakes" onClick={handleInvestorClick}>Portfolio Scalers</a>
           </div>
         </div>
       </nav>
