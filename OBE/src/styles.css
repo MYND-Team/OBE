@@ -7592,6 +7592,8 @@ p {
   background: transparent;
   border-radius: 24px !important;
   overflow: hidden !important;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .room-package__image img {
@@ -7600,6 +7602,7 @@ p {
   object-fit: contain;
   object-position: center;
   border-radius: 24px !important;
+  pointer-events: none;
 }
 
 .room-package::after {
@@ -8947,11 +8950,12 @@ p {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 10;
   max-width: none;
   margin: 0;
   padding: clamp(0.9rem, 1.6vw, 1.5rem);
   gap: clamp(0.55rem, 1.1vw, 1rem);
+  pointer-events: auto;
 }
 
 .room-package .room-tab {
@@ -8971,6 +8975,10 @@ p {
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .room-package .room-tab:hover {
@@ -10898,6 +10906,8 @@ p {
   margin: 0;
   border-radius: 26px;
   overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .room-package--image-only .room-package__image img {

@@ -141,7 +141,9 @@ export function CollectionDetail() {
                   role="tab"
                   aria-selected={index === activeRoom}
                   className={`room-tab ${index === activeRoom ? "room-tab--active" : ""}`}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     setActiveRoom(index);
                     setActiveRoomImage(0);
                   }}
