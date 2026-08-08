@@ -17,6 +17,8 @@ import {
 import airbnbLogo from "../assets/logos/airbnb.svg";
 import bookingLogo from "../assets/logos/bookingdotcom.svg";
 import airdnaLogo from "../assets/logos/airdna.svg";
+import airbticsLogo from "../assets/logos/airbtics.webp";
+import smoobuLogo from "../assets/logos/smoobu.svg";
 import guessworkIcon from "../assets/guesswork-icon.png";
 import icon2 from "../assets/icon2.png";
 import icon3 from "../assets/icon3.png";
