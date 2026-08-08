@@ -401,23 +401,40 @@ button {
 
 .investor-menu__panel {
   position: absolute;
-  top: calc(100% + 0.55rem);
-  left: 0;
+  top: calc(100% + 0.65rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
   display: grid;
-  min-width: 218px;
-  gap: 0.15rem;
-  padding: 1.05rem 0;
+  min-width: 240px;
+  gap: 0;
+  padding: 0.6rem;
   color: var(--chalk);
-  border: 1px solid rgba(255, 248, 232, 0.16);
-  border-radius: 12px;
-  background: rgba(51, 55, 33, 0.98);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(14, 38, 44, 0.92);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.32),
+    0 2px 0 rgba(255, 255, 255, 0.06) inset;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-6px);
   transition:
-    opacity 220ms var(--ease),
-    transform 220ms var(--ease);
+    opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Small caret arrow above panel */
+.investor-menu__panel::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 7px;
+  background: rgba(14, 38, 44, 0.92);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 .investor-menu:hover .investor-menu__panel,
@@ -425,25 +442,48 @@ button {
 .investor-menu--open .investor-menu__panel {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .investor-menu__panel a {
-  display: block;
-  padding: 0.72rem 1.45rem;
-  font-size: 0.98rem;
-  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.82rem 1.1rem;
+  border-radius: 12px;
+  font-size: 0.94rem;
+  font-weight: 700;
   line-height: 1.2;
+  color: rgba(255, 248, 232, 0.86);
   transition:
-    background 220ms var(--ease),
-    padding 220ms var(--ease);
+    background 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+/* Dot indicator */
+.investor-menu__panel a::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(173, 138, 95, 0.55);
+  transition: background 200ms ease, transform 200ms ease;
 }
 
 .investor-menu__panel a:hover,
 .investor-menu__panel a:focus-visible {
-  padding-left: 1.75rem;
-  background: rgba(173, 138, 95, 0.18);
+  background: rgba(173, 138, 95, 0.16);
+  color: var(--chalk);
+  transform: translateX(3px);
   outline: none;
+}
+
+.investor-menu__panel a:hover::before,
+.investor-menu__panel a:focus-visible::before {
+  background: #ad8a5f;
+  transform: scale(1.4);
 }
 
 .bag-link {
@@ -12711,7 +12751,7 @@ p {
   justify-content: flex-end;
   width: 100% !important;
   max-width: none !important;
-  min-height: clamp(820px, calc(100svh - 72px), 1100px) !important;
+  min-height: clamp(920px, 100svh, 1200px) !important;
   margin: 0 !important;
   margin-top: 0 !important;
   padding: clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 4vw, 5rem);
