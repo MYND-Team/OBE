@@ -20,16 +20,21 @@ export function Header() {
   const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
 
-  // The collection list and detail pages have a light background, so the header
-  // must always show its solid colour there rather than the transparent top state.
-  const forceSolid = location.pathname.startsWith("/collections");
+  // Featured collection detail pages (urban, shore) get the home-page transparent
+  // treatment so the header blends with the full-bleed hero image.
+  // All other /collections/* paths (list page, etc.) stay solid immediately.
+  const featuredSlugs = ["/collections/urban", "/collections/shore"];
+  const isFeaturedCollection = featuredSlugs.some(slug => location.pathname === slug || location.pathname.startsWith(slug + "/"));
+  const forceSolid = location.pathname.startsWith("/collections") && !isFeaturedCollection;
 
   useEffect(() => {
+    setScrolled(false);
     const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    // Re-evaluate immediately (user may have arrived mid-scroll via back/forward)
+    requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
@@ -59,20 +64,13 @@ export function Header() {
     return () => window.removeEventListener("obe:open-contact", onOpenContact);
   }, []);
 
-  const handleInvestorClick = (e) => {
-    setInvestorOpen(false);
-    close();
-    if (window.location.pathname === "/") {
-      const el = document.getElementById("mistakes");
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
   return (
-    <header className={`site-header ${scrolled || forceSolid ? "site-header--scrolled" : ""} ${forceSolid ? "site-header--collections" : ""}`}>
+    <header className={[
+      "site-header",
+      scrolled || forceSolid ? "site-header--scrolled" : "",
+      forceSolid ? "site-header--collections" : "",
+      isFeaturedCollection && !scrolled ? "site-header--featured" : "",
+    ].filter(Boolean).join(" ")}>
       <Link className="brand" to="/" onClick={close} data-cursor="Home" aria-label="Home">
         <LogoMark />
       </Link>
@@ -101,9 +99,11 @@ export function Header() {
             <ChevronDown size={15} aria-hidden="true" />
           </button>
           <div className="investor-menu__panel">
-            <a href="/#mistakes" onClick={handleInvestorClick}>First Timer</a>
-            <a href="/#mistakes" onClick={handleInvestorClick}>STR Owners</a>
-            <a href="/#mistakes" onClick={handleInvestorClick}>Portfolio Scalers</a>
+            {investorTypes.map((item) => (
+              <a key={item} href="/#mistakes" onClick={() => setInvestorOpen(false)}>
+                {item}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
