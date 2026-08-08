@@ -366,75 +366,68 @@ button {
 
 .investor-menu__button {
   display: inline-flex;
-  min-height: 38px;
+  min-height: 40px;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
-  padding: 0.45rem 1.15rem;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 0.5rem 1.25rem;
+  color: #333721;
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  font-size: 0.92rem;
-  font-weight: 700;
+  background: #e2e8d5;
+  font-size: 0.95rem;
+  font-weight: 800;
   white-space: nowrap;
-  transition:
-    background 260ms var(--ease),
-    transform 260ms var(--ease);
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
 }
 
 .investor-menu:hover .investor-menu__button,
 .investor-menu:focus-within .investor-menu__button,
 .investor-menu--open .investor-menu__button {
-  background: rgba(255, 255, 255, 0.22);
-  transform: translateY(-1px);
+  background: #e2e8d5;
+  color: #333721;
+  transform: none;
 }
 
 .investor-menu__button svg {
+  color: #333721;
+  stroke: #333721;
   transition: transform 260ms var(--ease);
 }
 
 .investor-menu:hover .investor-menu__button svg,
 .investor-menu:focus-within .investor-menu__button svg,
 .investor-menu--open .investor-menu__button svg {
-  transform: rotate(180deg);
+  transform: none;
 }
 
 .investor-menu__panel {
   position: absolute;
-  top: calc(100% + 0.65rem);
-  left: 50%;
-  transform: translateX(-50%) translateY(-8px);
-  display: grid;
-  min-width: 240px;
+  top: calc(100% + 6px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 215px;
+  width: max-content;
+  max-width: 260px;
   gap: 0;
-  padding: 0.6rem;
-  color: var(--chalk);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  background: rgba(14, 38, 44, 0.92);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.32),
-    0 2px 0 rgba(255, 255, 255, 0.06) inset;
+  padding: 0;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: #454b34;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
   opacity: 0;
   pointer-events: none;
-  transition:
-    opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  z-index: 100;
+  transform: translateY(-6px);
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 
-/* Small caret arrow above panel */
 .investor-menu__panel::before {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 7px;
-  background: rgba(14, 38, 44, 0.92);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  display: none;
 }
 
 .investor-menu:hover .investor-menu__panel,
@@ -442,48 +435,33 @@ button {
 .investor-menu--open .investor-menu__panel {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
 
 .investor-menu__panel a {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.82rem 1.1rem;
-  border-radius: 12px;
-  font-size: 0.94rem;
-  font-weight: 700;
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border-radius: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
   line-height: 1.2;
-  color: rgba(255, 248, 232, 0.86);
-  transition:
-    background 200ms ease,
-    color 200ms ease,
-    transform 200ms ease;
+  color: #ffffff;
+  background: transparent;
+  text-decoration: none;
+  transition: background 180ms ease, color 180ms ease;
 }
 
-/* Dot indicator */
 .investor-menu__panel a::before {
-  content: "";
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(173, 138, 95, 0.55);
-  transition: background 200ms ease, transform 200ms ease;
+  display: none;
 }
 
 .investor-menu__panel a:hover,
 .investor-menu__panel a:focus-visible {
-  background: rgba(173, 138, 95, 0.16);
-  color: var(--chalk);
-  transform: translateX(3px);
+  background: #e2e8d5;
+  color: #333721;
+  transform: none;
   outline: none;
-}
-
-.investor-menu__panel a:hover::before,
-.investor-menu__panel a:focus-visible::before {
-  background: #ad8a5f;
-  transform: scale(1.4);
 }
 
 .bag-link {
@@ -2834,38 +2812,42 @@ body {
 }
 
 .investor-menu__button {
-  min-height: 42px;
-  padding: 0 1rem 0 1.2rem;
-  color: var(--chalk);
-  border-color: rgba(255, 248, 232, 0.14);
-  background: rgba(76, 77, 53, 0.86);
-  font-size: 1rem;
+  min-height: 40px;
+  padding: 0.5rem 1.25rem;
+  color: #333721;
+  border-color: transparent;
+  background: #e2e8d5;
+  font-size: 0.95rem;
+  font-weight: 800;
 }
 
 .investor-menu:hover .investor-menu__button,
 .investor-menu:focus-within .investor-menu__button,
 .investor-menu--open .investor-menu__button {
-  color: var(--sage-deep);
-  background: var(--sage-pale);
+  color: #333721;
+  background: #e2e8d5;
 }
 
 .investor-menu__panel {
-  min-width: 220px;
-  padding: 0.7rem 0;
-  border-color: rgba(255, 248, 232, 0.16);
-  border-radius: 8px;
-  background: rgba(76, 77, 53, 0.98);
+  min-width: 215px;
+  padding: 0;
+  border-color: rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: #454b34;
+  overflow: hidden;
 }
 
 .investor-menu__panel a {
-  padding: 0.8rem 1.3rem;
-  font-size: 0.96rem;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .investor-menu__panel a:hover,
 .investor-menu__panel a:focus-visible {
-  color: var(--sage-deep);
-  background: var(--sage-pale);
+  color: #333721;
+  background: #e2e8d5;
 }
 
 .button--consult,
@@ -13019,4 +13001,119 @@ p {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ==========================================================================
+   Investor Type Header Button & Dropdown Menu (Exact match to requested design)
+   ========================================================================== */
+.nav .investor-menu__button,
+.investor-menu__button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.45rem !important;
+  min-height: 40px !important;
+  padding: 0.5rem 1.25rem !important;
+  background: #e2e8d5 !important;
+  color: #333721 !important;
+  border: 1px solid transparent !important;
+  border-radius: 9999px !important;
+  font-family: var(--sans) !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  transition: background 200ms ease, color 200ms ease !important;
+  box-shadow: none !important;
+}
+
+.investor-menu:hover .investor-menu__button,
+.investor-menu:focus-within .investor-menu__button,
+.investor-menu--open .investor-menu__button {
+  background: #e2e8d5 !important;
+  color: #333721 !important;
+  transform: none !important;
+}
+
+.investor-menu__button svg,
+.investor-menu:hover .investor-menu__button svg,
+.investor-menu:focus-within .investor-menu__button svg,
+.investor-menu--open .investor-menu__button svg {
+  color: #333721 !important;
+  stroke: #333721 !important;
+  transform: none !important;
+  margin-left: 2px !important;
+}
+
+.investor-menu__panel {
+  position: absolute !important;
+  top: calc(100% + 6px) !important;
+  left: 0 !important;
+  right: auto !important;
+  transform: translateY(-6px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 215px !important;
+  width: max-content !important;
+  max-width: 260px !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  background: #454b34 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  overflow: hidden !important;
+  z-index: 100 !important;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease !important;
+}
+
+.investor-menu__panel::before {
+  display: none !important;
+}
+
+.investor-menu:hover .investor-menu__panel,
+.investor-menu:focus-within .investor-menu__panel,
+.investor-menu--open .investor-menu__panel {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.investor-menu__panel a {
+  display: block !important;
+  width: 100% !important;
+  padding: 0.85rem 1.25rem !important;
+  border-radius: 0 !important;
+  font-family: var(--sans) !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  text-align: left !important;
+  transition: background 180ms ease, color 180ms ease !important;
+  transform: none !important;
+}
+
+.investor-menu__panel a::before {
+  display: none !important;
+}
+
+.investor-menu__panel a:hover,
+.investor-menu__panel a:focus-visible {
+  background: #e2e8d5 !important;
+  color: #333721 !important;
+  transform: none !important;
+  outline: none !important;
+}
+
+.investor-menu__panel a:hover::before,
+.investor-menu__panel a:focus-visible::before {
+  display: none !important;
+}
+
 
