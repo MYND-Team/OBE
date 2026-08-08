@@ -1,0 +1,14 @@
+{
+  "name": "obe-furniture-root",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run --prefix OBE dev",
+    "build": "npm run --prefix OBE build",
+    "preview": "npm run --prefix OBE preview"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
