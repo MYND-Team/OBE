@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigate, Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, BadgeCheck, CalendarDays, ChevronLeft, ChevronRight, Headphones, Truck } from "lucide-react";
 import { collections } from "../data.js";
@@ -40,6 +40,19 @@ export function CollectionDetail() {
   const [activeRoomImage, setActiveRoomImage] = useState(0);
   const [requestOpen, setRequestOpen] = useState(false);
 
+  useEffect(() => {
+    if (collection?.rooms) {
+      collection.rooms.forEach((r) => {
+        if (r.images) {
+          r.images.forEach((imgUrl) => {
+            const img = new Image();
+            img.src = imgUrl;
+          });
+        }
+      });
+    }
+  }, [collection]);
+
   if (!collection) {
     return <Navigate to="/" replace />;
   }
@@ -49,7 +62,6 @@ export function CollectionDetail() {
   const roomPackages = collection.rooms || [];
   const room = roomPackages[activeRoom] || roomPackages[0];
   const roomImages = room?.images?.length ? room.images : [collection.image];
-  const roomImage = roomImages[activeRoomImage % roomImages.length];
 
   const changeRoomImage = (direction) => {
     setActiveRoomImage((current) => (current + direction + roomImages.length) % roomImages.length);
@@ -149,10 +161,35 @@ export function CollectionDetail() {
             ))}
           </div>
 
-          {/* Image viewer — figure only, no tabs inside */}
+          {/* Image viewer — pre-rendered image stack for instant 0ms switching */}
           <div className="room-package room-package--image-only">
             <figure className="room-package__image">
-              <img src={roomImage} alt={`${room?.label} package preview`} loading="lazy" />
+              {roomPackages.flatMap((r, rIdx) => {
+                const imgs = r.images?.length ? r.images : [collection.image];
+                return imgs.map((imgSrc, imgIdx) => {
+                  const isActive = rIdx === activeRoom && imgIdx === (activeRoomImage % imgs.length);
+                  return (
+                    <img
+                      key={`${r.id}-${imgIdx}`}
+                      src={imgSrc}
+                      alt={`${r.label} package preview`}
+                      decoding="async"
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center",
+                        opacity: isActive ? 1 : 0,
+                        visibility: isActive ? "visible" : "hidden",
+                        transition: "opacity 240ms cubic-bezier(0.22, 1, 0.36, 1)",
+                        pointerEvents: "none"
+                      }}
+                    />
+                  );
+                });
+              })}
             </figure>
             <div className="room-package__arrows" aria-label={`${room?.label} images`}>
               <button type="button" className="room-package__arrow room-package__arrow--prev" onClick={() => changeRoomImage(-1)} aria-label="Previous image">
