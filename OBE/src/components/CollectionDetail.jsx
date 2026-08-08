@@ -126,32 +126,34 @@ export function CollectionDetail() {
         </div>
       </section>
 
-      {/* 3. Room packages (image + description cards) — now ABOVE the package selector */}
+      {/* 3. Room packages — tabs above image, arrows inside image */}
       {roomPackages.length > 0 && (
         <section className="room-tabs-section room-package-section">
+
+          {/* Tab buttons — outside the image container, no z-index conflict */}
+          <div className="room-tabs" role="tablist" aria-label="Rooms">
+            {roomPackages.map((option, index) => (
+              <button
+                key={option.id}
+                type="button"
+                role="tab"
+                aria-selected={index === activeRoom}
+                className={`room-tab ${index === activeRoom ? "room-tab--active" : ""}`}
+                onClick={() => {
+                  setActiveRoom(index);
+                  setActiveRoomImage(0);
+                }}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Image viewer — figure only, no tabs inside */}
           <div className="room-package room-package--image-only">
-            <figure className="room-package__image" data-image-reveal>
+            <figure className="room-package__image">
               <img src={roomImage} alt={`${room?.label} package preview`} loading="lazy" />
             </figure>
-            <div className="room-tabs" role="tablist" aria-label="Rooms">
-              {roomPackages.map((option, index) => (
-                <button
-                  key={option.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={index === activeRoom}
-                  className={`room-tab ${index === activeRoom ? "room-tab--active" : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setActiveRoom(index);
-                    setActiveRoomImage(0);
-                  }}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
             <div className="room-package__arrows" aria-label={`${room?.label} images`}>
               <button type="button" className="room-package__arrow room-package__arrow--prev" onClick={() => changeRoomImage(-1)} aria-label="Previous image">
                 <ChevronLeft size={28} aria-hidden="true" />
@@ -186,6 +188,7 @@ export function CollectionDetail() {
           </div>
         </section>
       )}
+
 
       {/* 4. Package selector + CTA — below room packages for non-featured collections */}
       {!isFeatured && (

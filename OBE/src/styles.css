@@ -7538,6 +7538,9 @@ p {
 
 /* Collection detail room package tabs. */
 .room-package-section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1.8vw, 1.6rem);
   padding: clamp(1.4rem, 2.5vw, 2.4rem) var(--page-gutter) clamp(4rem, 6vw, 6rem);
 }
 
@@ -7545,8 +7548,9 @@ p {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 1.4vw, 1.2rem);
-  max-width: 1180px;
-  margin: 0 auto clamp(1.4rem, 2.4vw, 2.2rem);
+  max-width: 1420px;
+  width: 100%;
+  margin: 0 auto;
   padding: 0;
   border: 0;
   background: transparent;
@@ -8944,18 +8948,9 @@ p {
   }
 }
 
-/* Room-package tabs overlaid on the image */
+/* Room-package tabs — now live ABOVE the image, no longer overlaid */
 .room-package .room-tabs {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  max-width: none;
-  margin: 0;
-  padding: clamp(0.9rem, 1.6vw, 1.5rem);
-  gap: clamp(0.55rem, 1.1vw, 1rem);
-  pointer-events: auto;
+  display: none; /* tabs are moved outside the room-package in the new layout */
 }
 
 .room-package .room-tab {
