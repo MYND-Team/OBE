@@ -1,7 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "buildCommand": "npm run build",
+  "installCommand": "npm install --prefix OBE",
+  "buildCommand": "npm run --prefix OBE build",
   "outputDirectory": "OBE/dist",
   "framework": null,
   "rewrites": [

@@ -3,12 +3,25 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "workspaces": [
+    "OBE"
+  ],
   "scripts": {
     "dev": "npm run --prefix OBE dev",
     "build": "npm run --prefix OBE build",
-    "preview": "npm run --prefix OBE preview"
+    "preview": "npm run --prefix OBE preview",
+    "postinstall": "npm install --prefix OBE"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.12",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18"
   }
 }
