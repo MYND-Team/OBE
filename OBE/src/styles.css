@@ -39,7 +39,7 @@
   --font-display: var(--font-agrandir);
   --sans: "Manrope", "Instrument Sans", Arial, sans-serif;
   --serif: var(--font-display);
-  --header-height: 76px;
+  --header-height: 72px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -8862,12 +8862,12 @@ p {
 }
 
 .collection-page .collection-detail {
-  margin-top: clamp(0.9rem, 1.6vw, 1.7rem);
+  margin-top: 0 !important;
 }
 
 @media (max-width: 900px) {
   .collection-page .collection-detail {
-    margin-top: clamp(0.7rem, 2vw, 1.1rem);
+    margin-top: 0 !important;
   }
 }
 
@@ -12686,8 +12686,9 @@ p {
   justify-content: flex-end;
   width: 100% !important;
   max-width: none !important;
-  min-height: clamp(820px, calc(100svh - 88px), 1100px) !important;
+  min-height: clamp(820px, calc(100svh - 72px), 1100px) !important;
   margin: 0 !important;
+  margin-top: 0 !important;
   padding: clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 4vw, 5rem);
   border-radius: 0 !important;
   overflow: hidden;
