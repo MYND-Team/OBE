@@ -17,12 +17,9 @@ import {
 import airbnbLogo from "../assets/logos/airbnb.svg";
 import bookingLogo from "../assets/logos/bookingdotcom.svg";
 import airdnaLogo from "../assets/logos/airdna.svg";
-import airbticsLogo from "../assets/logos/airbtics.webp";
-import smoobuLogo from "../assets/logos/smoobu.svg";
-import costlyIcon1 from "../assets/costly-icon-1.png";
-import costlyIcon2 from "../assets/costly-icon-2.png";
-import costlyIcon3 from "../assets/costly-icon-3.png";
-import heroIcon5 from "../assets/hero-icon-5-OBCVCZRG.png";
+import guessworkIcon from "../assets/guesswork-icon.png";
+import icon2 from "../assets/icon2.png";
+import icon3 from "../assets/icon3.png";
 import icon4 from "../assets/icon4.png";
 import icon5 from "../assets/icon5.png";
 import { usePageReveal } from "../hooks/usePageReveal.js";
@@ -31,25 +28,25 @@ const costlyMistakes = [
   {
     title: "Guesswork At Every Turn",
     text: "Selecting furniture based on personal taste, not guest data.",
-    icon: costlyIcon1,
+    icon: guessworkIcon,
     variant: "cream",
   },
   {
     title: "Months Of Chaos",
     text: "Losing 3-6 months of potential revenue while going through the hassle of sourcing and staging.",
-    icon: costlyIcon2,
+    icon: icon2,
     variant: "sage",
   },
   {
     title: "Poor Reviews",
     text: "Below 4.7 stars, the algorithm buries you. The small things owners skip are the exact things that win five stars or quietly kill the listing.",
-    icon: costlyIcon3,
+    icon: icon3,
     variant: "oat",
   },
   {
     title: "Lower Nightly Rates",
     text: "The result is a property that earns less than it should.",
-    icon: heroIcon5,
+    icon: icon5,
     variant: "butter",
   },
 ];
