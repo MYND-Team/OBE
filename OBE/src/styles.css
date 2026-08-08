@@ -10880,7 +10880,7 @@ p {
    Room package — contained rounded card; image fills inside (cover).
    ============================================================ */
 .room-package-section {
-  padding: clamp(1.4rem, 2.5vw, 2.4rem) var(--page-gutter) clamp(4rem, 6vw, 6rem) !important;
+  padding: clamp(0.5rem, 1vw, 1rem) var(--page-gutter) clamp(3rem, 5vw, 5rem) !important;
   width: 100% !important;
   max-width: none !important;
 }
@@ -11643,7 +11643,7 @@ p {
 /* Collection detail: move furniture benefits out of the side panel. */
 .collection-detail-benefits {
   width: min(100% - clamp(2rem, 8vw, 12rem), 1500px);
-  margin: clamp(1.25rem, 2vw, 2.5rem) auto 0;
+  margin: clamp(0.4rem, 1vw, 0.8rem) auto 0 !important;
 }
 
 .collection-detail-benefits .furniture-benefits {
