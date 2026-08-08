@@ -21,6 +21,9 @@ import airbticsLogo from "../assets/logos/airbtics.webp";
 import smoobuLogo from "../assets/logos/smoobu.svg";
 import icon4 from "../assets/icon4.png";
 import icon5 from "../assets/icon5.png";
+import guessworkIcon from "../assets/guesswork-icon.png";
+import icon2 from "../assets/icon2.png";
+import icon3 from "../assets/icon3.png";
 import { usePageReveal } from "../hooks/usePageReveal.js";
 
 function SparkleIcon() {
@@ -64,22 +67,22 @@ const costlyMistakes = [
   {
     title: "Guesswork At Every Turn",
     text: "Selecting furniture based on personal taste, not guest data.",
-    icon: SparkleIcon,
+    icon: guessworkIcon,
   },
   {
     title: "Months Of Chaos",
     text: "Losing 3-6 months of potential revenue while going through the hassle of sourcing and staging.",
-    icon: EyeIcon,
+    icon: icon2,
   },
   {
     title: "Poor Reviews",
     text: "Below 4.7 stars, the algorithm buries you. The small things owners skip are the exact things that win five stars or quietly kill the listing.",
-    icon: HandsEyeIcon,
+    icon: icon3,
   },
   {
     title: "Lower Nightly Rates",
     text: "The result is a property that earns less than it should.",
-    icon: StaggeredBlocksIcon,
+    icon: icon5,
   },
 ];
 
@@ -566,22 +569,19 @@ export function Home() {
           <h2>Costly Mistakes</h2>
         </div>
         <div className="mistakes__grid">
-          {costlyMistakes.map((item) => {
-            const IconComp = item.icon;
-            return (
-              <article
-                className="mistake-card"
-                key={item.title}
-                data-cursor="Avoid"
-              >
-                <div className="mistake-card__icon" aria-hidden="true">
-                  {IconComp && <IconComp />}
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            );
-          })}
+          {costlyMistakes.map((item) => (
+            <article
+              className="mistake-card"
+              key={item.title}
+              data-cursor="Avoid"
+            >
+              <div className="mistake-card__icon" aria-hidden="true">
+                <img src={item.icon} alt="" />
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
       </section>
       <section className="collections section" id="collections">

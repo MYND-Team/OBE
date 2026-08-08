@@ -12872,3 +12872,75 @@ p {
 .collection-page--featured .room-package--image-only .room-package__image {
   border-radius: 0 !important;
 }
+
+/* Costly Mistakes section — exact styling matching client spec screenshot */
+.mistakes__grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: clamp(1rem, 1.4vw, 1.4rem) !important;
+  max-width: 100% !important;
+}
+
+.mistake-card {
+  background: #6e6a4b !important;
+  border-radius: 18px !important;
+  padding: clamp(1.8rem, 2.2vw, 2.4rem) clamp(1.5rem, 1.8vw, 2rem) !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  min-height: clamp(340px, 28vw, 420px) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mistake-card__icon {
+  width: clamp(48px, 4vw, 64px) !important;
+  height: clamp(48px, 4vw, 64px) !important;
+  margin: 0 0 clamp(1.8rem, 2.5vw, 2.8rem) 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+.mistake-card__icon img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  filter: brightness(0) invert(1) !important;
+  mix-blend-mode: normal !important;
+}
+
+.mistake-card h3 {
+  font-family: var(--font-agrandir) !important;
+  font-size: clamp(1.35rem, 1.6vw, 1.7rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  color: #ffffff !important;
+  margin: 0 0 clamp(0.75rem, 1vw, 1rem) 0 !important;
+  max-width: 100% !important;
+  letter-spacing: -0.01em !important;
+}
+
+.mistake-card p {
+  font-family: var(--sans) !important;
+  font-size: clamp(0.95rem, 1.05vw, 1.08rem) !important;
+  line-height: 1.48 !important;
+  color: rgba(255, 253, 246, 0.84) !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 1024px) {
+  .mistakes__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .mistakes__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
