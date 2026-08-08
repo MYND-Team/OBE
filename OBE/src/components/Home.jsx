@@ -19,70 +19,38 @@ import bookingLogo from "../assets/logos/bookingdotcom.svg";
 import airdnaLogo from "../assets/logos/airdna.svg";
 import airbticsLogo from "../assets/logos/airbtics.webp";
 import smoobuLogo from "../assets/logos/smoobu.svg";
+import costlyIcon1 from "../assets/costly-icon-1.png";
+import costlyIcon2 from "../assets/costly-icon-2.png";
+import costlyIcon3 from "../assets/costly-icon-3.png";
+import heroIcon5 from "../assets/hero-icon-5-OBCVCZRG.png";
 import icon4 from "../assets/icon4.png";
 import icon5 from "../assets/icon5.png";
-import guessworkIcon from "../assets/guesswork-icon.png";
-import icon2 from "../assets/icon2.png";
-import icon3 from "../assets/icon3.png";
 import { usePageReveal } from "../hooks/usePageReveal.js";
-
-function SparkleIcon() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 2C16 9.732 21.268 15 29 15C21.268 15 16 20.268 16 28C16 20.268 10.732 15 3 15C10.732 15 16 9.732 16 2Z" fill="currentColor" />
-      <path d="M29 24C29 27.314 31.686 30 35 30C31.686 30 29 32.686 29 36C29 32.686 26.314 30 23 30C26.314 30 29 27.314 29 24Z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function EyeIcon() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" clipRule="evenodd" d="M20 10C11.5 10 4.5 15 1.5 20C4.5 25 11.5 30 20 30C28.5 30 35.5 25 38.5 20C35.5 15 28.5 10 20 10ZM20 26C16.686 26 14 23.314 14 20C14 16.686 16.686 14 20 14C23.314 14 26 16.686 26 20C26 23.314 23.314 26 20 26ZM20 23.5C21.933 23.5 23.5 21.933 23.5 20C23.5 18.067 21.933 16.5 20 16.5C18.067 16.5 16.5 18.067 16.5 20C16.5 21.933 18.067 23.5 20 23.5Z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function HandsEyeIcon() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 16.5C7 16.5 12.5 11.5 20 11.5C25.5 11.5 30 13.5 33 16C33.8 16.7 34.8 15.5 34 14.7C30.5 11.5 25.5 9 20 9C11.5 9 6 15.5 6 15.5C5.2 16.3 6 17.5 7 16.5Z" fill="currentColor" />
-      <path d="M20 14.5C16.962 14.5 14.5 16.962 14.5 20C14.5 23.038 16.962 25.5 20 25.5C23.038 25.5 25.5 23.038 25.5 20C25.5 16.962 23.038 14.5 20 14.5ZM20 23C18.343 23 17 21.657 17 20C17 18.343 18.343 17 20 17C21.657 17 23 18.343 23 20C23 21.657 21.657 23 20 23Z" fill="currentColor" />
-      <path d="M33 23.5C33 23.5 27.5 28.5 20 28.5C14.5 28.5 10 26.5 7 24C6.2 23.3 5.2 24.5 6 25.3C9.5 28.5 14.5 31 20 31C28.5 31 34 24.5 34 24.5C34.8 23.7 34 22.5 33 23.5Z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function StaggeredBlocksIcon() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="15" width="8" height="18" rx="1.5" fill="currentColor" />
-      <rect x="16" y="7" width="8" height="26" rx="1.5" fill="currentColor" />
-      <rect x="27" y="19" width="8" height="14" rx="1.5" fill="currentColor" />
-    </svg>
-  );
-}
 
 const costlyMistakes = [
   {
     title: "Guesswork At Every Turn",
     text: "Selecting furniture based on personal taste, not guest data.",
-    icon: guessworkIcon,
+    icon: costlyIcon1,
+    variant: "cream",
   },
   {
     title: "Months Of Chaos",
     text: "Losing 3-6 months of potential revenue while going through the hassle of sourcing and staging.",
-    icon: icon2,
+    icon: costlyIcon2,
+    variant: "sage",
   },
   {
     title: "Poor Reviews",
     text: "Below 4.7 stars, the algorithm buries you. The small things owners skip are the exact things that win five stars or quietly kill the listing.",
-    icon: icon3,
+    icon: costlyIcon3,
+    variant: "oat",
   },
   {
     title: "Lower Nightly Rates",
     text: "The result is a property that earns less than it should.",
-    icon: icon5,
+    icon: heroIcon5,
+    variant: "butter",
   },
 ];
 
@@ -565,13 +533,12 @@ export function Home() {
       </section>
       <section className="mistakes section" id="mistakes">
         <div className="mistakes__heading" data-reveal>
-          <p className="section-label">PERFORMANCE GAPS</p>
           <h2>Costly Mistakes</h2>
         </div>
         <div className="mistakes__grid">
           {costlyMistakes.map((item) => (
             <article
-              className="mistake-card"
+              className={`mistake-card mistake-card--${item.variant}`}
               key={item.title}
               data-cursor="Avoid"
             >
