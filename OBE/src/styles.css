@@ -202,7 +202,7 @@ button {
   height: var(--header-height);
   padding: 0 2rem;
   color: var(--chalk);
-  background: #746f4f;
+  background: #807b58;
   border-color: rgba(255, 248, 232, 0.12);
   transition:
     background 420ms var(--ease),
@@ -217,7 +217,7 @@ button {
   height: 66px;
   color: var(--chalk);
   border-color: rgba(255, 248, 232, 0.16);
-  background: rgba(76, 77, 53, 0.94);
+  background: rgba(128, 123, 88, 0.96);
   backdrop-filter: blur(18px);
 }
 
@@ -13010,9 +13010,9 @@ p {
   gap: 0.45rem !important;
   min-height: 40px !important;
   padding: 0.5rem 1.25rem !important;
-  background: #e2e8d5 !important;
-  color: #333721 !important;
-  border: 1px solid transparent !important;
+  background: rgba(51, 55, 33, 0.72) !important;
+  color: var(--chalk) !important;
+  border: 1px solid rgba(255, 248, 232, 0.22) !important;
   border-radius: 9999px !important;
   font-family: var(--sans) !important;
   font-size: 0.95rem !important;
@@ -13026,8 +13026,8 @@ p {
 .investor-menu:hover .investor-menu__button,
 .investor-menu:focus-within .investor-menu__button,
 .investor-menu--open .investor-menu__button {
-  background: #e2e8d5 !important;
-  color: #333721 !important;
+  background: rgba(51, 55, 33, 0.98) !important;
+  color: var(--chalk) !important;
   transform: none !important;
 }
 
@@ -13035,8 +13035,8 @@ p {
 .investor-menu:hover .investor-menu__button svg,
 .investor-menu:focus-within .investor-menu__button svg,
 .investor-menu--open .investor-menu__button svg {
-  color: #333721 !important;
-  stroke: #333721 !important;
+  color: var(--chalk) !important;
+  stroke: var(--chalk) !important;
   transform: none !important;
   margin-left: 2px !important;
 }
