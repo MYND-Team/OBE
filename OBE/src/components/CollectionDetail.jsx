@@ -41,6 +41,15 @@ export function CollectionDetail() {
   const [requestOpen, setRequestOpen] = useState(false);
 
   useEffect(() => {
+    if (slug) {
+      document.body.setAttribute("data-page-handle", slug);
+    }
+    return () => {
+      document.body.removeAttribute("data-page-handle");
+    };
+  }, [slug]);
+
+  useEffect(() => {
     if (collection?.rooms) {
       collection.rooms.forEach((r) => {
         if (r.images) {

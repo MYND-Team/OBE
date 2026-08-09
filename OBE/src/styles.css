@@ -222,11 +222,15 @@ button {
 }
 
 /* Hardcoded header background color for target pages: collections/urban and collections/shore */
+body[data-page-handle="urban"] header,
+body[data-page-handle="shore"] header,
+body[data-page-handle="urban"] .site-header,
+body[data-page-handle="shore"] .site-header,
+body[data-page-handle="urban"] .site-header--scrolled,
+body[data-page-handle="shore"] .site-header--scrolled,
 .site-header--featured,
 .site-header[data-page-handle="urban"],
-.site-header[data-page-handle="shore"],
-body[data-page-handle="urban"] header,
-body[data-page-handle="shore"] header {
+.site-header[data-page-handle="shore"] {
   background: rgb(116, 111, 79) !important;
   background-color: rgb(116, 111, 79) !important;
   border-bottom-color: transparent !important;
@@ -236,6 +240,8 @@ body[data-page-handle="shore"] header {
   transition: none !important;
 }
 
+body[data-page-handle="urban"] header::before,
+body[data-page-handle="shore"] header::before,
 .site-header--featured::before,
 .site-header[data-page-handle="urban"]::before,
 .site-header[data-page-handle="shore"]::before {
