@@ -67,9 +67,9 @@ export function Header() {
   return (
     <header className={[
       "site-header",
-      scrolled || forceSolid ? "site-header--scrolled" : "",
+      !isFeaturedCollection && (scrolled || forceSolid) ? "site-header--scrolled" : "",
       forceSolid ? "site-header--collections" : "",
-      isFeaturedCollection && !scrolled ? "site-header--featured" : "",
+      isFeaturedCollection ? "site-header--featured" : "",
     ].filter(Boolean).join(" ")}>
       <Link className="brand" to="/" onClick={close} data-cursor="Home" aria-label="Home">
         <LogoMark />
