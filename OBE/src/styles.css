@@ -199,43 +199,39 @@ button {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 72px;
-  padding: 0 2.5rem;
-  color: #ffffff;
-  background: #143d47;
+  height: var(--header-height);
+  padding: 0 2rem;
+  color: var(--chalk);
+  background: #746f4f;
+  border-color: rgba(255, 248, 232, 0.12);
   transition:
     background 420ms var(--ease),
     color 420ms var(--ease),
     border-color 420ms var(--ease),
     height 420ms var(--ease);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: none;
 }
 
 .site-header--scrolled {
   height: 66px;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(16, 52, 60, 0.94);
+  color: var(--chalk);
+  border-color: rgba(255, 248, 232, 0.16);
+  background: rgba(76, 77, 53, 0.94);
   backdrop-filter: blur(18px);
 }
 
-/* Featured collection pages (Urban, Shore): transparent at top, solid on scroll */
+/* Featured collection pages (Urban, Shore): same solid sage style — no transparent */
 .site-header--featured {
-  background: transparent !important;
+  background: #746f4f !important;
   border-bottom-color: transparent !important;
   box-shadow: none !important;
-  color: #ffffff;
+  color: var(--chalk) !important;
   backdrop-filter: none !important;
 }
 
-/* Subtle gradient scrim so logo + nav stay legible over any hero image */
 .site-header--featured::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(180deg, rgba(10, 30, 35, 0.55) 0%, transparent 100%);
-  pointer-events: none;
+  display: none;
 }
 
 
@@ -13116,52 +13112,4 @@ p {
   display: none !important;
 }
 
-/* ==========================================================================
-   Featured pages (Urban / Shore) — revert Investor Type button to original
-   dark-olive / chalk style when the header is transparent over the hero image
-   ========================================================================== */
-.site-header--featured .investor-menu__button,
-.site-header--featured .nav .investor-menu__button {
-  background: rgba(76, 77, 53, 0.94) !important;
-  color: var(--chalk) !important;
-  border: 1px solid rgba(255, 248, 232, 0.16) !important;
-}
 
-.site-header--featured .investor-menu:hover .investor-menu__button,
-.site-header--featured .investor-menu:focus-within .investor-menu__button,
-.site-header--featured .investor-menu--open .investor-menu__button {
-  background: rgba(51, 55, 33, 0.98) !important;
-  color: var(--chalk) !important;
-  transform: translateY(-1px) !important;
-}
-
-.site-header--featured .investor-menu__button svg,
-.site-header--featured .investor-menu:hover .investor-menu__button svg,
-.site-header--featured .investor-menu:focus-within .investor-menu__button svg,
-.site-header--featured .investor-menu--open .investor-menu__button svg {
-  color: var(--chalk) !important;
-  stroke: var(--chalk) !important;
-}
-
-.site-header--featured .investor-menu--open .investor-menu__button svg,
-.site-header--featured .investor-menu:hover .investor-menu__button svg,
-.site-header--featured .investor-menu:focus-within .investor-menu__button svg {
-  transform: rotate(180deg) !important;
-}
-
-.site-header--featured .investor-menu__panel {
-  background: rgba(51, 55, 33, 0.98) !important;
-  border-color: rgba(255, 248, 232, 0.16) !important;
-}
-
-.site-header--featured .investor-menu__panel a {
-  color: var(--chalk) !important;
-  background: transparent !important;
-}
-
-.site-header--featured .investor-menu__panel a:hover,
-.site-header--featured .investor-menu__panel a:focus-visible {
-  background: rgba(173, 138, 95, 0.18) !important;
-  color: var(--chalk) !important;
-  padding-left: 1.75rem !important;
-}
