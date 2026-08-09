@@ -13116,4 +13116,52 @@ p {
   display: none !important;
 }
 
+/* ==========================================================================
+   Featured pages (Urban / Shore) — revert Investor Type button to original
+   dark-olive / chalk style when the header is transparent over the hero image
+   ========================================================================== */
+.site-header--featured .investor-menu__button,
+.site-header--featured .nav .investor-menu__button {
+  background: rgba(76, 77, 53, 0.94) !important;
+  color: var(--chalk) !important;
+  border: 1px solid rgba(255, 248, 232, 0.16) !important;
+}
 
+.site-header--featured .investor-menu:hover .investor-menu__button,
+.site-header--featured .investor-menu:focus-within .investor-menu__button,
+.site-header--featured .investor-menu--open .investor-menu__button {
+  background: rgba(51, 55, 33, 0.98) !important;
+  color: var(--chalk) !important;
+  transform: translateY(-1px) !important;
+}
+
+.site-header--featured .investor-menu__button svg,
+.site-header--featured .investor-menu:hover .investor-menu__button svg,
+.site-header--featured .investor-menu:focus-within .investor-menu__button svg,
+.site-header--featured .investor-menu--open .investor-menu__button svg {
+  color: var(--chalk) !important;
+  stroke: var(--chalk) !important;
+}
+
+.site-header--featured .investor-menu--open .investor-menu__button svg,
+.site-header--featured .investor-menu:hover .investor-menu__button svg,
+.site-header--featured .investor-menu:focus-within .investor-menu__button svg {
+  transform: rotate(180deg) !important;
+}
+
+.site-header--featured .investor-menu__panel {
+  background: rgba(51, 55, 33, 0.98) !important;
+  border-color: rgba(255, 248, 232, 0.16) !important;
+}
+
+.site-header--featured .investor-menu__panel a {
+  color: var(--chalk) !important;
+  background: transparent !important;
+}
+
+.site-header--featured .investor-menu__panel a:hover,
+.site-header--featured .investor-menu__panel a:focus-visible {
+  background: rgba(173, 138, 95, 0.18) !important;
+  color: var(--chalk) !important;
+  padding-left: 1.75rem !important;
+}
