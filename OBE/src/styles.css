@@ -12736,17 +12736,24 @@ p {
 /* ============================================================
    Urban & Shore — large frameless hero, package request inline
    ============================================================ */
+
+/* Remove the header-height offset so the hero image goes edge-to-edge */
+.collection-page--featured {
+  padding-top: 0 !important;
+}
+
 .collection-page--featured .collection-detail--featured {
   position: relative;
   display: flex !important;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-end;
   width: 100% !important;
   max-width: none !important;
-  min-height: clamp(920px, 100svh, 1200px) !important;
+  min-height: 100svh !important;
   margin: 0 !important;
   margin-top: 0 !important;
   padding: clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 4vw, 5rem);
+  padding-top: calc(var(--header-height) + clamp(1.6rem, 3vw, 3.2rem)) !important;
   border-radius: 0 !important;
   overflow: hidden;
   grid-template-columns: unset !important;
