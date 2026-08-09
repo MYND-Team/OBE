@@ -221,13 +221,14 @@ button {
   backdrop-filter: blur(18px);
 }
 
-/* Featured collection pages (Urban, Shore): same solid sage style — no transparent */
+/* Featured collection pages (Urban, Shore): always solid #807b58, no dynamic scroll change */
 .site-header--featured {
-  background: #746f4f !important;
+  background: #807b58 !important;
   border-bottom-color: transparent !important;
   box-shadow: none !important;
   color: var(--chalk) !important;
   backdrop-filter: none !important;
+  transition: none !important;
 }
 
 .site-header--featured::before {
