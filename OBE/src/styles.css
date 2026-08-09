@@ -221,18 +221,23 @@ button {
   backdrop-filter: blur(18px);
 }
 
-/* Featured collection pages (Urban, Shore): always solid #807b58, no dynamic scroll change */
+/* Featured collection pages (Urban, Shore): transparent at top, solid on scroll */
 .site-header--featured {
-  background: #807b58 !important;
+  background: transparent !important;
   border-bottom-color: transparent !important;
   box-shadow: none !important;
-  color: var(--chalk) !important;
+  color: #ffffff;
   backdrop-filter: none !important;
-  transition: none !important;
 }
 
+/* Subtle gradient scrim so logo + nav stay legible over any hero image */
 .site-header--featured::before {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(10, 30, 35, 0.55) 0%, transparent 100%);
+  pointer-events: none;
 }
 
 
