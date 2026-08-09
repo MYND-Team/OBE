@@ -64,13 +64,18 @@ export function Header() {
     return () => window.removeEventListener("obe:open-contact", onOpenContact);
   }, []);
 
+  const pageHandle = location.pathname.includes("/urban") ? "urban" : location.pathname.includes("/shore") ? "shore" : undefined;
+
   return (
-    <header className={[
-      "site-header",
-      !isFeaturedCollection && (scrolled || forceSolid) ? "site-header--scrolled" : "",
-      forceSolid ? "site-header--collections" : "",
-      isFeaturedCollection ? "site-header--featured" : "",
-    ].filter(Boolean).join(" ")}>
+    <header
+      data-page-handle={pageHandle}
+      className={[
+        "site-header",
+        !isFeaturedCollection && (scrolled || forceSolid) ? "site-header--scrolled" : "",
+        forceSolid ? "site-header--collections" : "",
+        isFeaturedCollection ? "site-header--featured" : "",
+      ].filter(Boolean).join(" ")}
+    >
       <Link className="brand" to="/" onClick={close} data-cursor="Home" aria-label="Home">
         <LogoMark />
       </Link>

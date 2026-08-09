@@ -221,9 +221,14 @@ button {
   backdrop-filter: blur(18px);
 }
 
-/* Featured collection pages (Urban, Shore): always solid #746f4f, no dynamic scroll change */
-.site-header--featured {
-  background: #746f4f !important;
+/* Hardcoded header background color for target pages: collections/urban and collections/shore */
+.site-header--featured,
+.site-header[data-page-handle="urban"],
+.site-header[data-page-handle="shore"],
+body[data-page-handle="urban"] header,
+body[data-page-handle="shore"] header {
+  background: rgb(116, 111, 79) !important;
+  background-color: rgb(116, 111, 79) !important;
   border-bottom-color: transparent !important;
   box-shadow: none !important;
   color: var(--chalk) !important;
@@ -231,8 +236,10 @@ button {
   transition: none !important;
 }
 
-.site-header--featured::before {
-  display: none;
+.site-header--featured::before,
+.site-header[data-page-handle="urban"]::before,
+.site-header[data-page-handle="shore"]::before {
+  display: none !important;
 }
 
 
