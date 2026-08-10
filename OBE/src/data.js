@@ -152,29 +152,29 @@ export const processSteps = [
 const urbanRooms = [
   {
     id: "living-dining",
-    label: "Living & Dining Room",
+    label: "Living and Dining",
     images: [urbanLiving1, urbanLiving2],
-    description: "A guest-ready lounge and dining setup built around comfort, flow, and five-star first impressions.",
+    description: "An open lounge and dining setup built for comfort, good light, and a strong first photo, with a compact work corner for the guest mixing a trip with a little work.",
     details: [
-      "Sofa and accent seating",
-      "Dining table and chairs",
-      "Coffee tables, lighting, and decor"
+      "Three seater sofa, armchair, pouf, and coffee table",
+      "TV unit with a Netflix ready smart TV, plus a compact desk and chair",
+      "Layered floor and pendant lighting, plants, art, and blackout lined curtains"
     ]
   },
   {
     id: "master-bedroom",
     label: "Master Bedroom",
     images: [urbanBedroom1, urbanBedroom2],
-    description: "A calmer primary suite with the essentials guests notice first: sleep quality, storage, and finish.",
+    description: "A calm primary room built around the things guests judge first, sleep and finish.",
     details: [
-      "Bed frame, mattress, and linens",
-      "Nightstands and layered lighting",
-      "Wardrobe accents and soft styling"
+      "160cm bed frame with a hotel grade mattress and layered hotel linens",
+      "Bedside tables and lamps, a wardrobe, and a dresser with mirror",
+      "Area rug, blackout curtains, and soft styling"
     ]
   },
   {
     id: "guest-bedroom",
-    label: "Guest Bedroom",
+    label: "Second Bedroom",
     images: [urbanBedroom2a],
     description: "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
     details: [
@@ -255,14 +255,14 @@ const packageTiersNoTech = (base) => [
 ];
 
 const sharedAddOns = [
-  "Appliances — for units that don't already have them",
-  "Smart door lock — self check-in, no key handover",
-  "Coffee machine — a touch that shows in five-star reviews",
-  "Outdoor setup — turns a balcony or garden into a bookable feature",
-  "Extra sleeping capacity — unlocks larger groups and higher nightly rate",
-  "Smart TV upgrade — larger screen with streaming, out of the box",
-  "Faster WiFi — strong signal in every room",
-  "Premium styling layer — the detail that makes the hero photo stop the scroll"
+  "Appliances — for units that don't already have them, so owners pay only for what's missing",
+  "Smart door lock — self check-in, so guests arrive on their own time and you never hand over a key",
+  "Coffee machine — a small touch that shows up again and again in five star reviews",
+  "Outdoor setup — turns an unused balcony, roof, or garden into a photographed, bookable feature",
+  "Extra sleeping capacity — a sofa bed or added bed unlocks larger groups and a higher nightly rate",
+  "Smart TV upgrade — a larger screen with the streaming guests expect, straight out of the box",
+  "Faster WiFi — strong signal in every room, the one thing a remote worker checks before booking",
+  "Premium styling layer — the extra art, texture, and detail that make the hero photo stop the scroll"
 ];
 
 export const collections = [
