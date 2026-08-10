@@ -2271,7 +2271,7 @@ body[data-page-handle="shore"] header::before,
   .nav,
   .investor-menu,
   .header-cta {
-    display: none;
+    display: none !important;
   }
 
   .menu-toggle {
@@ -9864,7 +9864,7 @@ p {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   border-radius: 24px !important;
   /* Unify mismatched source photos into one cohesive set */
@@ -10584,23 +10584,17 @@ p {
   left: clamp(1.4rem, 6vw, 5rem) !important;
 }
 
-/* Remove the extra vertical gap between the strategy headline and intro paragraph. */
 .page--home .strategy__heading {
   min-height: clamp(170px, 17vw, 230px) !important;
-  margin-bottom: 0 !important;
+  margin-bottom: clamp(1.4rem, 2.6vw, 2.6rem) !important;
 }
 
 .page--home .strategy__body {
-  margin-top: 0 !important;
   gap: clamp(1.4rem, 2.6vw, 2.6rem) !important;
 }
 
-.page--home .strategy__body>p {
-  margin-top: 0 !important;
-}
-
 .page--home .strategy__heading .pill--four {
-  top: clamp(8.2rem, 10vw, 10.8rem) !important;
+  top: clamp(9.9rem, 12.3vw, 12.5rem) !important;
 }
 
 /* STRATEGY word — standalone block below strategy content */
@@ -11318,22 +11312,30 @@ p {
 }
 
 .page--home .collections__slider .collection-choice[data-position="active"] {
-  left: 0 !important;
-  width: 66.5% !important;
   z-index: 4;
   opacity: 1 !important;
   transform: none !important;
 }
 
 .page--home .collections__slider .collection-choice[data-position="next"] {
-  left: 64.5% !important;
   right: auto !important;
-  width: 35.5% !important;
   z-index: 2;
   opacity: 0.38 !important;
   filter: saturate(0.78) contrast(0.92) brightness(1.08) !important;
   transform: none !important;
   transform-origin: left center;
+}
+
+@media (min-width: 861px) {
+  .page--home .collections__slider .collection-choice[data-position="active"] {
+    left: 0 !important;
+    width: 66.5% !important;
+  }
+
+  .page--home .collections__slider .collection-choice[data-position="next"] {
+    left: 64.5% !important;
+    width: 35.5% !important;
+  }
 }
 
 .page--home .collections__slider .collection-choice[data-position="active"]::after {
@@ -11345,7 +11347,7 @@ p {
 }
 
 .page--home .collections__slider .collection-choice__image {
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
   background: #F1EFE7;
 }
@@ -11406,32 +11408,34 @@ p {
 }
 
 /* Put the collections carousel exactly inside the highlighted content rail. */
-.page--home .collections__slider {
-  width: 100% !important;
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  overflow: hidden !important;
-}
+@media (min-width: 861px) {
+  .page--home .collections__slider {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: hidden !important;
+  }
 
-.page--home .collections__slider .collection-choice[data-position="active"] {
-  left: 0 !important;
-  width: 66.5% !important;
-}
+  .page--home .collections__slider .collection-choice[data-position="active"] {
+    left: 0 !important;
+    width: 66.5% !important;
+  }
 
-.page--home .collections__slider .collection-choice[data-position="next"] {
-  left: 64.5% !important;
-  width: 35.5% !important;
-}
+  .page--home .collections__slider .collection-choice[data-position="next"] {
+    left: 64.5% !important;
+    width: 35.5% !important;
+  }
 
-.page--home .collections__slider-controls button:first-child {
-  left: clamp(1.6rem, 3vw, 3.2rem) !important;
-  right: auto !important;
-}
+  .page--home .collections__slider-controls button:first-child {
+    left: clamp(1.6rem, 3vw, 3.2rem) !important;
+    right: auto !important;
+  }
 
-.page--home .collections__slider-controls button:last-child {
-  left: auto !important;
-  right: clamp(1.6rem, 3vw, 3.2rem) !important;
+  .page--home .collections__slider-controls button:last-child {
+    left: auto !important;
+    right: clamp(1.6rem, 3vw, 3.2rem) !important;
+  }
 }
 
 /* Final footer logo placement: span copyright-to-email, remove upper divider, center vertically. */
@@ -11678,7 +11682,7 @@ p {
 .footer__social {
   align-self: center !important;
   margin-top: 0 !important;
-  transform: translateY(0) !important;
+  transform: translateY(28px) !important;
 }
 
 .footer__grid>.footer__brand {
@@ -11810,8 +11814,8 @@ p {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: var(--fab-bg, #746f4f);
-  color: #fff;
+  background: #fff;
+  color: var(--sage-deep);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11942,10 +11946,9 @@ p {
   border-color: var(--sage);
 }
 
-/* Nav size reduction */
 .nav a,
 .nav .investor-menu__button {
-  font-size: 0.82rem !important;
+  font-size: clamp(0.95rem, 0.98vw, 1.12rem) !important;
 }
 
 /* Investor dropdown — center text in button */
@@ -12661,6 +12664,17 @@ p {
   color: rgba(32, 33, 21, 0.52);
 }
 
+.contact-modal__error {
+  margin: 0.2rem 0 0;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(178, 58, 46, 0.1);
+  border: 1px solid rgba(178, 58, 46, 0.3);
+  color: #8a2e22;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 /* Hero Title & Inline Logos - Exact match to reference image */
 .hero__title--metrics {
   display: flex !important;
@@ -12718,15 +12732,15 @@ p {
 }
 
 .hero__title-icon--more {
-  width: clamp(100px, 11vw, 207px) !important;
-  height: clamp(62px, 6.8vw, 129px) !important;
+  width: clamp(80px, 9vw, 168px) !important;
+  height: clamp(80px, 9vw, 168px) !important;
   margin: 0 -0.02em !important;
   transform: translateY(-0.05em) !important;
 }
 
 .hero__title-icon--zero {
   width: clamp(80px, 9vw, 168px) !important;
-  height: clamp(77px, 8.6vw, 162px) !important;
+  height: clamp(80px, 9vw, 168px) !important;
   margin: 0 -0.02em !important;
   transform: translateY(-0.04em) !important;
 }
@@ -12751,40 +12765,45 @@ p {
   max-width: none !important;
   min-height: 100svh !important;
   margin: 0 !important;
-  margin-top: 0 !important;
+  margin-top: 98px !important;
   padding: clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 4vw, 5rem);
   padding-top: calc(var(--header-height) + clamp(1.6rem, 3vw, 3.2rem)) !important;
   border-radius: 0 !important;
-  overflow: hidden;
+  overflow: visible;
   grid-template-columns: unset !important;
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__media {
   position: absolute !important;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: calc(var(--header-height) + clamp(1.4rem, 2.6vw, 2.2rem)) !important;
+  right: var(--page-gutter) !important;
+  bottom: clamp(1rem, 2vw, 1.75rem) !important;
+  left: var(--page-gutter) !important;
+  width: auto !important;
+  height: auto !important;
   min-height: 0;
   margin: 0;
-  border-radius: 0 !important;
+  border-radius: 24px !important;
   aspect-ratio: auto;
   background: var(--paper-oat);
+  overflow: hidden;
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__media img {
   width: 100%;
   height: 100%;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center !important;
   background: var(--paper-oat);
 }
 
 .collection-page--featured .collection-detail--featured::after {
-  content: "";
+  content: none;
+  display: none;
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(23, 20, 16, 0.38) 0%, rgba(23, 20, 16, 0.06) 38%, rgba(23, 20, 16, 0) 58%);
+  background: none;
   pointer-events: none;
 }
 
@@ -12924,13 +12943,6 @@ p {
   min-height: auto;
 }
 
-/* Item #7 — Match collection name font in dropdown to page heading typography */
-.collection-page--featured .collection-detail--featured .collection-detail__select select,
-.collection-page--featured .collection-detail--featured .collection-detail__select select option {
-  font-family: var(--font-agrandir);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
 
 /* Item #6 — Ensure featured collection room package is also rounded */
 .collection-page--featured .room-package.room-package--image-only {
@@ -13035,7 +13047,7 @@ p {
   border: 1px solid rgba(255, 248, 232, 0.22) !important;
   border-radius: 9999px !important;
   font-family: var(--sans) !important;
-  font-size: 0.95rem !important;
+  font-size: clamp(0.95rem, 0.98vw, 1.12rem) !important;
   font-weight: 800 !important;
   white-space: nowrap !important;
   cursor: pointer !important;
