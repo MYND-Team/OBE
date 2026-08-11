@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { LogoMark } from "./LogoMark.jsx";
-import urbanImg from "../assets/urban-hero.png";
-import shoreImg from "../assets/shore-living-1.png";
+import urbanImg from "../assets/urban-hero.jpg";
+import shoreImg from "../assets/shore-living-1.jpg";
 import { SHEETS_ENDPOINT } from "../config.js";
 
 const stageOptions = [

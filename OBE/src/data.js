@@ -1,16 +1,16 @@
 import collectionUrbanLiving from "./assets/collection-urban-living.jpeg";
 import madeToPerform1 from "./assets/made-to-perform-1.jpeg";
 import madeToPerform2 from "./assets/made-to-perform-2.jpeg";
-import urbanHero from "./assets/urban-hero.png";
-import urbanLiving1 from "./assets/urban-living-1.png";
-import urbanLiving2 from "./assets/urban-living-2.png";
-import urbanBedroom1 from "./assets/urban-bedroom-1.png";
-import urbanBedroom2 from "./assets/urban-bedroom-2.png";
-import urbanBedroom2a from "./assets/urban-bedroom2-1.png";
-import shoreLiving1 from "./assets/shore-living-1.png";
-import shoreLiving2 from "./assets/shore-living-2.png";
-import shoreBedroom1 from "./assets/shore-bedroom-1.png";
-import shoreBedroom2 from "./assets/shore-bedroom2-1.png";
+import urbanHero from "./assets/urban-hero.jpg";
+import urbanLiving1 from "./assets/urban-living-1.jpg";
+import urbanLiving2 from "./assets/urban-living-2.jpg";
+import urbanBedroom1 from "./assets/urban-bedroom-1.jpg";
+import urbanBedroom2 from "./assets/urban-bedroom-2.jpg";
+import urbanBedroom2a from "./assets/urban-bedroom2-1.jpg";
+import shoreLiving1 from "./assets/shore-living-1.jpg";
+import shoreLiving2 from "./assets/shore-living-2.jpg";
+import shoreBedroom1 from "./assets/shore-bedroom-1.jpg";
+import shoreBedroom2 from "./assets/shore-bedroom2-1.jpg";
 
 export const images = {
   hero: urbanHero,

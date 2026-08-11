@@ -18,6 +18,7 @@ export function useLenis() {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    window.__lenis = lenis;
 
     let frame;
     const raf = (time) => {
@@ -33,6 +34,7 @@ export function useLenis() {
     return () => {
       cancelAnimationFrame(frame);
       lenis.destroy();
+      if (window.__lenis === lenis) window.__lenis = undefined;
     };
   }, []);
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navigate, Link, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, BadgeCheck, CalendarDays, ChevronLeft, ChevronRight, Headphones, Truck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BadgeCheck, CalendarDays, ChevronLeft, ChevronRight, Headphones, Info, Truck } from "lucide-react";
 import { collections } from "../data.js";
 import { usePageReveal } from "../hooks/usePageReveal.js";
 import { RequestPackageModal } from "./RequestPackageModal.jsx";
@@ -78,6 +78,8 @@ export function CollectionDetail() {
 
   const packageSelector = (
     <div className="collection-detail__package-inner">
+      <p className="collection-detail__price">{pkg.price}</p>
+
       <label className="collection-detail__select collection-detail__select--compact">
         <select defaultValue={collection.bedroomOptions[0]}>
           {collection.bedroomOptions.map((option) => (
@@ -101,12 +103,15 @@ export function CollectionDetail() {
         </select>
       </label>
 
-      <p className="collection-detail__price">{pkg.price}</p>
-
       <button type="button" className="collection-detail__cta" onClick={() => setRequestOpen(true)}>
         <span>Request This Package</span>
         <ArrowUpRight size={18} aria-hidden="true" />
       </button>
+
+      <p className="collection-detail__notice">
+        <Info size={16} aria-hidden="true" />
+        Available items and prices may vary
+      </p>
     </div>
   );
 
