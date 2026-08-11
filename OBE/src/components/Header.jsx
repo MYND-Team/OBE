@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { LogoMark } from "./LogoMark.jsx";
 import { Button } from "./Button.jsx";
 import { EstimateModal } from "./EstimateModal.jsx";
@@ -11,12 +11,9 @@ const navItems = [
   { label: "Contact Us", href: "/#contact" }
 ];
 
-const investorTypes = ["First Timer", "STR Owners", "Portfolio Scalers"];
-
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [investorOpen, setInvestorOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
 
@@ -43,7 +40,6 @@ export function Header() {
 
   const close = () => {
     setOpen(false);
-    setInvestorOpen(false);
   };
 
   const handleNavClick = (item) => (event) => {
@@ -92,25 +88,6 @@ export function Header() {
             </Link>
           )
         ))}
-        <div className={`investor-menu ${investorOpen ? "investor-menu--open" : ""}`}>
-          <button
-            className="investor-menu__button"
-            type="button"
-            aria-haspopup="true"
-            aria-expanded={investorOpen}
-            onClick={() => setInvestorOpen((value) => !value)}
-          >
-            Investor Type
-            <ChevronDown size={15} aria-hidden="true" />
-          </button>
-          <div className="investor-menu__panel">
-            {investorTypes.map((item) => (
-              <a key={item} href="/#mistakes" onClick={() => setInvestorOpen(false)}>
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
       </nav>
 
       <div className="header-actions">
@@ -141,14 +118,6 @@ export function Header() {
               </Link>
             )
           ))}
-          <div className="mobile-menu__group">
-            <span>Investor Type</span>
-            {investorTypes.map((item) => (
-              <a key={item} href="/#mistakes" onClick={close}>
-                {item}
-              </a>
-            ))}
-          </div>
           <a
             href="#"
             onClick={(event) => {

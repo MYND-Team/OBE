@@ -16,9 +16,20 @@ async function postToSheets(payload) {
   return res.json();
 }
 
+const requiredFieldLabels = {
+  property_location: "Where is the property?",
+  bedrooms: "How many bedrooms?",
+  property_stage: "What stage is it at?",
+  earning_status: "Is it earning yet?",
+  firstName: "Name",
+  lastName: "Name",
+  email: "Email",
+};
+
 export function EstimateModal({ open, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!open) return undefined;
@@ -40,9 +51,28 @@ export function EstimateModal({ open, onClose }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
+    setError("");
 
     const form = event.target;
+    const phone = form.phone.value.trim();
+    const digits = phone.replace(/\D/g, "");
+
+    if (!phone) {
+      setError("We need a WhatsApp number to send your estimate. Could you add it?");
+      return;
+    }
+    if (digits.length < 7) {
+      setError("That number looks incomplete. Could you check it?");
+      return;
+    }
+    for (const name of Object.keys(requiredFieldLabels)) {
+      if (!form[name].value.trim()) {
+        setError("Just this one to go, then you are done.");
+        return;
+      }
+    }
+
+    setLoading(true);
     const timestamp = new Date().toLocaleString("en-GB", { timeZone: "Africa/Cairo" });
 
     try {
@@ -71,17 +101,18 @@ export function EstimateModal({ open, onClose }) {
           form.earning_status.value,
         ],
       });
+      setSubmitted(true);
     } catch (_) {
-      // best-effort
+      setError("Something went wrong on our side, not yours. Please try once more, or message us at contact@obespaces.com");
     } finally {
       setLoading(false);
-      setSubmitted(true);
     }
   };
 
   const handleClose = () => {
     onClose();
     setSubmitted(false);
+    setError("");
   };
 
   return (
@@ -109,26 +140,6 @@ export function EstimateModal({ open, onClose }) {
             </p>
 
             <form className="contact-modal__form" onSubmit={handleSubmit}>
-              {/* Contact info */}
-              <label className="contact-modal__field">
-                <span>Name *</span>
-                <div className="contact-modal__row">
-                  <input type="text" name="firstName" placeholder="First Name" required />
-                  <input type="text" name="lastName" placeholder="Last Name" required />
-                </div>
-              </label>
-
-              <label className="contact-modal__field">
-                <span>WhatsApp number *</span>
-                <input type="tel" name="phone" placeholder="(000) 000 0000" required />
-                <span className="contact-modal__hint">This is where your estimate arrives.</span>
-              </label>
-
-              <label className="contact-modal__field">
-                <span>Email *</span>
-                <input type="email" name="email" placeholder="example@example.com" required />
-              </label>
-
               {/* Property info */}
               <label className="contact-modal__field">
                 <span>Where is the property? *</span>
@@ -170,6 +181,26 @@ export function EstimateModal({ open, onClose }) {
                 </select>
               </label>
 
+              {/* Contact info */}
+              <label className="contact-modal__field">
+                <span>Name *</span>
+                <div className="contact-modal__row">
+                  <input type="text" name="firstName" placeholder="First Name" required />
+                  <input type="text" name="lastName" placeholder="Last Name" required />
+                </div>
+              </label>
+
+              <label className="contact-modal__field">
+                <span>WhatsApp number *</span>
+                <input type="tel" name="phone" placeholder="(000) 000 0000" required />
+                <span className="contact-modal__hint">This is where your estimate arrives.</span>
+              </label>
+
+              <label className="contact-modal__field">
+                <span>Email *</span>
+                <input type="email" name="email" placeholder="example@example.com" required />
+              </label>
+
               <label className="contact-modal__field">
                 <span>How did you hear about us?</span>
                 <select name="referral" defaultValue="">
@@ -179,6 +210,8 @@ export function EstimateModal({ open, onClose }) {
                   ))}
                 </select>
               </label>
+
+              {error ? <p className="contact-modal__error" role="alert">{error}</p> : null}
 
               <button className="contact-modal__submit" type="submit" disabled={loading}>
                 {loading ? "Sending…" : "Get My Free Estimate"}

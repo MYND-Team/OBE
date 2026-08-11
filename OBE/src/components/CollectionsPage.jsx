@@ -49,7 +49,7 @@ export function CollectionsPage() {
         <div className="cl-why__head" data-reveal>
           <p className="section-label">The OBÉ Difference</p>
           <h2>Why Choose Us</h2>
-          <p className="cl-why__lead">Shell furnishing. A standard built to remove the expensive parts of guessing, waiting, coordinating, and managing.</p>
+          <p className="cl-why__lead">A standard built to remove the expensive parts of guessing, waiting, coordinating, and managing.</p>
         </div>
         <div className="cl-why__row" data-reveal>
           {reasons.map(({ icon: Icon, title, eyebrow, text }) => (

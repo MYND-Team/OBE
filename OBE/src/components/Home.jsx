@@ -654,8 +654,8 @@ export function Home() {
               </p>
             </div>
             <aside>
-              <span>Average Revenue Increase of</span>
-              <strong>+30-50%</strong>
+              <span>From empty to live in</span>
+              <strong>30 days</strong>
             </aside>
           </div>
         </div>
@@ -670,7 +670,7 @@ export function Home() {
         <div className="craft__sticky" data-reveal>
           <p className="section-label">The Path to Revenue</p>
           <h2>From Empty To Booked</h2>
-          <p>A seamless process built around taking it as it is.</p>
+          <p>You hand it over once. We take it from empty to earning.</p>
           <Button href="/#contact" variant="light">
             Get Your Free Estimate
           </Button>
