@@ -14,7 +14,7 @@ export function useLenis() {
       smoothWheel: true,
       wheelMultiplier: 0.86,
       touchMultiplier: 1.2,
-      prevent: (node) => node.hasAttribute("data-lenis-prevent")
+      prevent: (node) => node.closest?.("[data-lenis-prevent]") != null
     });
 
     lenis.on("scroll", ScrollTrigger.update);

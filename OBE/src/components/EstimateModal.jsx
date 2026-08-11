@@ -38,11 +38,19 @@ export function EstimateModal({ open, onClose }) {
       if (event.key === "Escape") onClose();
     };
 
+    const scrollY = window.scrollY;
     document.body.classList.add("menu-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.classList.remove("menu-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [open, onClose]);
@@ -118,7 +126,7 @@ export function EstimateModal({ open, onClose }) {
   return (
     <div className="contact-modal" role="dialog" aria-modal="true" aria-label="Get Your Free Estimate">
       <div className="contact-modal__backdrop" onClick={handleClose} />
-      <div className="contact-modal__panel">
+      <div className="contact-modal__panel" data-lenis-prevent>
         <button className="contact-modal__close" type="button" onClick={handleClose} aria-label="Close">
           <X size={20} aria-hidden="true" />
         </button>
