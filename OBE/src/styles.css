@@ -5992,6 +5992,7 @@ p {
   .intro__text h2 {
     font-size: clamp(3.25rem, 15vw, 4.6rem);
   }
+
 }
 
 /* Final proportion pass: align the performance section to the navbar rail. */
@@ -6420,10 +6421,16 @@ p {
 
   .intro__copy p {
     max-width: 460px;
+    transform: none;
   }
 
   .intro .section-word {
-    font-size: clamp(3.6rem, 15.4vw, 6.3rem);
+    font-size: clamp(2.8rem, 12.5vw, 5.2rem);
+  }
+
+  .intro__media--float {
+    transform: rotate(6deg);
+    transform-origin: center;
   }
 }
 
@@ -9798,9 +9805,10 @@ p {
    feature strip. Appended last; new class names win the cascade.
    ============================================================ */
 .cl-hero {
-  max-width: 1530px;
+  width: min(1530px, calc(100vw - (var(--page-gutter) * 2)));
+  max-width: none;
   margin: 0 auto;
-  padding: clamp(7rem, 11vw, 10.5rem) var(--page-gutter) clamp(2rem, 3.4vw, 3.4rem);
+  padding: clamp(7rem, 11vw, 10.5rem) 0 clamp(2rem, 3.4vw, 3.4rem);
 }
 
 .cl-hero .section-label {
@@ -10458,7 +10466,8 @@ p {
 
 /* Align collections heading with the two-card grid and make key section labels black. */
 .page--home .collections__editorial {
-  max-width: min(1380px, calc(100vw - 2 * var(--page-gutter))) !important;
+  width: calc(100vw - (var(--page-gutter) * 2)) !important;
+  max-width: 1530px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   padding-left: 0 !important;
@@ -10933,7 +10942,7 @@ p {
   position: relative;
   width: 100% !important;
   max-width: 1420px !important;
-  height: clamp(460px, 62vh, 820px);
+  height: clamp(460px, 87vh, 820px);
   min-height: 0;
   margin: 0 auto !important;
   border-radius: 22px !important;
@@ -12718,6 +12727,10 @@ p {
 @media (max-width: 760px) {
   .hero__title--metrics > span {
     white-space: normal !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    row-gap: 0.1em !important;
   }
 }
 
@@ -12745,6 +12758,32 @@ p {
   transform: translateY(-0.04em) !important;
 }
 
+@media (max-width: 760px) {
+  .hero__title-icon--more,
+  .hero__title-icon--zero {
+    width: clamp(40px, 11vw, 80px) !important;
+    height: clamp(40px, 11vw, 80px) !important;
+  }
+}
+
+/* Decorative giant background watermark word: contained, centered block below the images on mobile. */
+@media (max-width: 760px) {
+  .intro .section-word {
+    display: block !important;
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin-top: 1.5rem !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .hero__scroll {
+    display: none !important;
+  }
+}
+
 
 
 /* ============================================================
@@ -12762,10 +12801,10 @@ p {
   align-items: center;
   justify-content: flex-end;
   width: 100% !important;
-  max-width: none !important;
+  max-width: calc(1420px + 2 * var(--page-gutter)) !important;
+  margin-inline: auto !important;
   min-height: 100svh !important;
-  margin: 0 !important;
-  margin-top: 98px !important;
+  margin-top: 0px !important;
   padding: clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 4vw, 5rem);
   padding-top: calc(var(--header-height) + clamp(1.6rem, 3vw, 3.2rem)) !important;
   border-radius: 0 !important;
@@ -12777,10 +12816,10 @@ p {
   position: absolute !important;
   top: calc(var(--header-height) + clamp(1.4rem, 2.6vw, 2.2rem)) !important;
   right: var(--page-gutter) !important;
-  bottom: clamp(1rem, 2vw, 1.75rem) !important;
   left: var(--page-gutter) !important;
+  bottom: auto !important;
   width: auto !important;
-  height: auto !important;
+  height: calc(100vh - var(--header-height) - clamp(1.4rem, 2.6vw, 2.2rem) - clamp(1rem, 2vw, 1.75rem)) !important;
   min-height: 0;
   margin: 0;
   border-radius: 24px !important;
@@ -12792,7 +12831,7 @@ p {
 .collection-page--featured .collection-detail--featured .collection-detail__media img {
   width: 100%;
   height: 100%;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
   background: var(--paper-oat);
 }
@@ -12815,47 +12854,49 @@ p {
   align-self: center;
   width: min(540px, 100%);
   max-width: 540px;
-  margin: clamp(1rem, 2vw, 2rem) 0;
-  padding: clamp(2rem, 2.6vw, 3rem);
+  max-height: calc(100vh - var(--header-height) - clamp(1.4rem, 2.6vw, 2.2rem) - clamp(1rem, 2vw, 1.75rem) - (2 * clamp(1rem, 2vw, 2rem)));
+  overflow-y: auto;
+  overflow-x: visible;
+  margin: clamp(1rem, 2vw, 2rem) var(--page-gutter) clamp(1rem, 2vw, 2rem) 0;
+  padding: clamp(0.7rem, min(2.6vw, 2.4vh), 3rem);
   border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 24px;
   background: rgba(250, 245, 234, 0.92);
   backdrop-filter: blur(22px) saturate(1.15);
   -webkit-backdrop-filter: blur(22px) saturate(1.15);
   box-shadow: 0 34px 80px rgba(23, 20, 16, 0.34);
-  overflow: visible;
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__content .back-link {
-  margin: 0 0 clamp(1.2rem, 2vw, 1.8rem);
+  margin: 0 0 clamp(0.4rem, min(2vw, 1.6vh), 1.8rem);
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__content .section-label {
-  margin: 0 0 0.75rem;
+  margin: 0 0 clamp(0.2rem, 1.2vh, 0.75rem);
   color: var(--oxide);
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__content h1 {
   max-width: none;
-  margin: 0 0 clamp(1rem, 1.6vw, 1.4rem);
-  font-size: clamp(2.4rem, 3vw, 3.2rem);
+  margin: 0 0 clamp(0.3rem, min(1.6vw, 1.6vh), 1.4rem);
+  font-size: clamp(1.3rem, min(3vw, 3.8vh), 3.2rem);
   line-height: 0.98;
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__desc {
   max-width: none;
-  margin: 0 0 clamp(1.6rem, 2.4vw, 2.2rem);
-  font-size: clamp(1.02rem, 1.35vw, 1.2rem);
-  line-height: 1.62;
+  margin: 0 0 clamp(0.4rem, min(2.4vw, 2.4vh), 2.2rem);
+  font-size: clamp(0.72rem, min(1.35vw, 1.7vh), 1.2rem);
+  line-height: clamp(1.25, 2.6vh, 1.5);
   opacity: 0.85;
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__package-inner {
   max-width: none;
   margin: 0;
-  padding: clamp(1.4rem, 2vw, 1.8rem) 0 0;
+  padding: clamp(0.25rem, min(2vw, 2.2vh), 1.8rem) 0 0;
   border-top: 1px solid rgba(32, 33, 21, 0.12);
-  gap: 1.1rem;
+  gap: clamp(0.2rem, 1.6vh, 1.1rem);
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__choose {
@@ -12880,12 +12921,20 @@ p {
 .collection-page--featured .collection-detail--featured .collection-detail__price {
   margin: 0;
   font-family: var(--font-agrandir);
-  font-size: clamp(1.6rem, 2vw, 2rem);
+  font-size: clamp(1rem, min(2vw, 2.2vh), 2rem);
   font-weight: 800;
 }
 
 .collection-page--featured .collection-detail--featured .collection-detail__cta {
-  margin-top: 0.4rem;
+  margin-top: 0.15rem;
+  padding: clamp(0.3rem, 1.8vh, 1.1rem) 1.6rem;
+  font-size: clamp(0.78rem, 1.6vh, 1rem);
+}
+
+.collection-page--featured .collection-detail--featured .collection-detail__select select {
+  padding: clamp(0.2rem, 1.4vh, 0.95rem) 1.1rem;
+  min-height: 0;
+  font-size: clamp(0.78rem, 1.6vh, 0.98rem);
 }
 
 /* Room package — rounded card on featured collections too */
@@ -12899,15 +12948,21 @@ p {
 
 @media (max-width: 900px) {
   .collection-page--featured .collection-detail--featured {
-    display: block;
-    min-height: 0;
-    padding: 0;
-    overflow: visible;
+    display: block !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
   }
 
   .collection-page--featured .collection-detail--featured .collection-detail__media {
-    position: relative;
-    height: clamp(340px, 62vw, 520px);
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: clamp(340px, 62vw, 520px) !important;
+    border-radius: 20px !important;
   }
 
   .collection-page--featured .collection-detail--featured::after {
@@ -12949,6 +13004,8 @@ p {
   border-radius: 24px !important;
   overflow: hidden !important;
   background: transparent !important;
+  height: calc(100vh - var(--header-height) - clamp(1.4rem, 2.6vw, 2.2rem) - clamp(1rem, 2vw, 1.75rem)) !important;
+  min-height: 0 !important;
 }
 
 .collection-page--featured .room-package--image-only .room-package__image {
@@ -13027,7 +13084,20 @@ p {
 
 @media (max-width: 640px) {
   .mistakes__grid {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    grid-template-columns: none !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0 calc(-1 * var(--page-gutter)) !important;
+    padding: 0 var(--page-gutter) 0.5rem !important;
+  }
+
+  .mistake-card {
+    flex: 0 0 78% !important;
+    scroll-snap-align: start !important;
+    min-height: clamp(300px, 62vw, 360px) !important;
   }
 }
 

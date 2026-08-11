@@ -447,7 +447,7 @@ export function Home() {
             </span>
           </h1>
           <div className="hero__actions">
-            <Button to="/collections">View collection</Button>
+            <Button to="/collections">View collections</Button>
           </div>
         </div>
         <a
@@ -478,9 +478,6 @@ export function Home() {
         </div>
       </section>
       <section className="intro section" id="intro">
-        <span className="section-word" aria-hidden="true">
-          Purpose
-        </span>
         <div className="intro__story">
           <div className="intro__text" data-reveal>
             <p className="section-label">DATA BEATS TASTE</p>
@@ -522,6 +519,10 @@ export function Home() {
             </figure>
           </div>
         </div>
+
+        <span className="section-word" aria-hidden="true">
+          Purpose
+        </span>
 
         <figure className="intro-photo">
           <img
