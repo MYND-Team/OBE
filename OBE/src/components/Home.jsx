@@ -621,10 +621,6 @@ export function Home() {
         <div className="strategy__heading" data-reveal>
           <p className="section-label">THE OBÉ DIFFERENCE</p>
           <h2>A short term rental engineered to earn at its full potential.</h2>
-          <span className="pill pill--one">Revenue-first</span>
-          <span className="pill pill--two">Performance focused</span>
-          <span className="pill pill--three">STR-calibrated</span>
-          <span className="pill pill--four">Data-backed standards</span>
         </div>
         <div className="strategy__body">
           <p data-reveal>
