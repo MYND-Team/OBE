@@ -24,14 +24,29 @@ function cleanUrl(url) {
   return decodeURIComponent(parsed.pathname);
 }
 
+async function resolveFile(pathname) {
+  if (pathname === "/") return path.join(dist, "index.html");
+
+  const direct = path.normalize(path.join(dist, pathname));
+  if (direct.startsWith(dist) && (await stat(direct).catch(() => null))?.isFile()) {
+    return direct;
+  }
+
+  // Extensionless route (e.g. /collections/urban): prefer its pre-rendered shell.
+  if (!path.extname(pathname)) {
+    const shell = path.normalize(path.join(dist, pathname, "index.html"));
+    if (shell.startsWith(dist) && (await stat(shell).catch(() => null))?.isFile()) {
+      return shell;
+    }
+  }
+
+  return path.join(dist, "index.html");
+}
+
 const server = http.createServer(async (request, response) => {
   try {
     const pathname = cleanUrl(request.url);
-    const requested = pathname === "/" ? "/index.html" : pathname;
-    const file = path.normalize(path.join(dist, requested));
-    const target = file.startsWith(dist) ? file : path.join(dist, "index.html");
-    const exists = await stat(target).catch(() => null);
-    const finalFile = exists?.isFile() ? target : path.join(dist, "index.html");
+    const finalFile = await resolveFile(pathname);
     const ext = path.extname(finalFile);
 
     response.writeHead(200, {
@@ -45,5 +60,5 @@ const server = http.createServer(async (request, response) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`Furniture atelier preview server running at http://127.0.0.1:${port}`);
+  console.log(`OBÉ Spaces preview server running at http://127.0.0.1:${port}`);
 });

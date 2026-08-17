@@ -33,3 +33,8 @@ Thumbs.db
 _orig_restore/
 tmp-*.png
 screenshots/
+
+# Raw, unprocessed render assets (not used by the app, too large for git)
+furniture/
+OBE/src/assets/_backup_originals/
+OBE/src/assets/_backup_icons/

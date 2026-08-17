@@ -405,7 +405,7 @@ export function Home() {
         <div className="hero__image" data-cursor="Strategy">
           <img
             src={images.hero}
-            alt="A sculptural living room furnished with handcrafted timber pieces"
+            alt="A fully furnished short term rental living room, staged and ready for guests"
           />
         </div>
         <div className="hero__content">
@@ -505,7 +505,7 @@ export function Home() {
             >
               <img
                 src={images.madeToPerform1}
-                alt="Layered neutral interior with sculptural furniture"
+                alt="A neutral toned living room set up for short term rental guests"
               />
             </figure>
             <figure
@@ -514,7 +514,7 @@ export function Home() {
             >
               <img
                 src={images.madeToPerform2}
-                alt="Warm handcrafted furniture installed in a finished room"
+                alt="A warm toned bedroom furnished and styled for a short term rental listing"
               />
             </figure>
           </div>
@@ -527,7 +527,7 @@ export function Home() {
         <figure className="intro-photo">
           <img
             src={images.madeToPerform1}
-            alt="A completed handcrafted furniture installation with seating and warm lighting"
+            alt="A completed short term rental furniture setup with seating and warm lighting"
           />
         </figure>
       </section>

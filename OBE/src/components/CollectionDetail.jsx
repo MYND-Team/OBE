@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navigate, Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, BadgeCheck, CalendarDays, ChevronLeft, ChevronRight, Headphones, Info, Truck } from "lucide-react";
 import { collections } from "../data.js";
@@ -30,6 +30,68 @@ const furnitureBenefits = [
 
 const featuredSlugs = ["urban", "shore"];
 
+function parseUpgradePrice(label) {
+  const match = label.match(/,\s*(?:from\s*)?([\d,]+)\s*EGP/i);
+  if (!match) return 0;
+  return parseInt(match[1].replace(/,/g, ""), 10) || 0;
+}
+
+function UpgradesMultiSelect({ options, selected, onChange }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onClickOutside = (event) => {
+      if (rootRef.current && !rootRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [open]);
+
+  const toggleOption = (option) => {
+    onChange(
+      selected.includes(option)
+        ? selected.filter((item) => item !== option)
+        : [...selected, option]
+    );
+  };
+
+  const label = selected.length
+    ? `${selected.length} upgrade${selected.length > 1 ? "s" : ""} selected`
+    : "Optional Upgrades";
+
+  return (
+    <div className="collection-detail__select collection-detail__multiselect" ref={rootRef}>
+      <button
+        type="button"
+        className="collection-detail__multiselect-trigger"
+        onClick={() => setOpen((value) => !value)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span>{label}</span>
+      </button>
+
+      {open && (
+        <div className="collection-detail__multiselect-panel" role="listbox">
+          {options.map((option) => {
+            const checked = selected.includes(option);
+            return (
+              <label className="collection-detail__multiselect-option" key={option}>
+                <input type="checkbox" checked={checked} onChange={() => toggleOption(option)} />
+                <span>{option}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function CollectionDetail() {
   const { slug } = useParams();
   const collection = collections.find((item) => item.slug === slug);
@@ -39,6 +101,10 @@ export function CollectionDetail() {
   const [activeRoom, setActiveRoom] = useState(0);
   const [activeRoomImage, setActiveRoomImage] = useState(0);
   const [requestOpen, setRequestOpen] = useState(false);
+  const [selectedBedroom, setSelectedBedroom] = useState(collection?.bedroomOptions?.[0]);
+  const [selectedUpgrades, setSelectedUpgrades] = useState([]);
+  const mediaRef = useRef(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     if (slug) {
@@ -46,6 +112,34 @@ export function CollectionDetail() {
     }
     return () => {
       document.body.removeAttribute("data-page-handle");
+    };
+  }, [slug]);
+
+  useEffect(() => {
+    setSelectedBedroom(collection?.bedroomOptions?.[0]);
+    setSelectedUpgrades([]);
+  }, [slug]);
+
+  useEffect(() => {
+    if (!featuredSlugs.includes(slug)) return undefined;
+    const mediaEl = mediaRef.current;
+    const contentEl = contentRef.current;
+    if (!mediaEl || !contentEl) return undefined;
+
+    const applyHeight = () => {
+      const gapPx = parseFloat(getComputedStyle(document.documentElement).fontSize) * 1.75;
+      mediaEl.style.height = `${contentEl.offsetHeight + gapPx * 2}px`;
+    };
+
+    applyHeight();
+    const observer = new ResizeObserver(applyHeight);
+    observer.observe(contentEl);
+    window.addEventListener("resize", applyHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", applyHeight);
+      mediaEl.style.height = "";
     };
   }, [slug]);
 
@@ -68,6 +162,14 @@ export function CollectionDetail() {
 
   const isFeatured = featuredSlugs.includes(slug);
   const pkg = collection.packages[activePackage];
+  const bedroomPrice = collection.bedroomPricing?.[selectedBedroom];
+  const upgradesTotal = selectedUpgrades.reduce((sum, option) => sum + parseUpgradePrice(option), 0);
+  const basePriceNumber = collection.bedroomPricing
+    ? bedroomPrice
+    : parseInt((pkg.price || "").replace(/[^\d]/g, ""), 10) || null;
+  const displayedPrice = basePriceNumber
+    ? `EGP ${(basePriceNumber + upgradesTotal).toLocaleString()}`
+    : (collection.bedroomPricing ? "Contact us for pricing" : pkg.price);
   const roomPackages = collection.rooms || [];
   const room = roomPackages[activeRoom] || roomPackages[0];
   const roomImages = room?.images?.length ? room.images : [collection.image];
@@ -78,10 +180,10 @@ export function CollectionDetail() {
 
   const packageSelector = (
     <div className="collection-detail__package-inner">
-      <p className="collection-detail__price">{pkg.price}</p>
+      <p className="collection-detail__price">{displayedPrice}</p>
 
       <label className="collection-detail__select collection-detail__select--compact">
-        <select defaultValue={collection.bedroomOptions[0]}>
+        <select value={selectedBedroom} onChange={(event) => setSelectedBedroom(event.target.value)}>
           {collection.bedroomOptions.map((option) => (
             <option key={option} value={option}>
               {option}
@@ -90,18 +192,11 @@ export function CollectionDetail() {
         </select>
       </label>
 
-      <label className="collection-detail__select">
-        <select defaultValue="">
-          <option value="" disabled>
-            Optional Upgrades
-          </option>
-          {collection.addOns.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
+      <UpgradesMultiSelect
+        options={collection.addOns}
+        selected={selectedUpgrades}
+        onChange={setSelectedUpgrades}
+      />
 
       <button type="button" className="collection-detail__cta" onClick={() => setRequestOpen(true)}>
         <span>Request This Package</span>
@@ -119,11 +214,11 @@ export function CollectionDetail() {
     <main className={`page collection-page${isFeatured ? " collection-page--featured" : ""}`} ref={pageRef}>
       {/* 1. Hero image + title block */}
       <section className={`collection-detail${isFeatured ? " collection-detail--featured" : ""}`}>
-        <figure className="collection-detail__media" data-image-reveal>
+        <figure className="collection-detail__media" data-image-reveal ref={mediaRef}>
           <img src={collection.image} alt={`${collection.name} furnished living room`} />
         </figure>
 
-        <div className="collection-detail__content">
+        <div className="collection-detail__content" ref={contentRef}>
           <Link className="back-link" to="/collections" data-cursor="Back">
             <ArrowLeft size={18} aria-hidden="true" />
             Collections
@@ -252,6 +347,9 @@ export function CollectionDetail() {
         open={requestOpen}
         onClose={() => setRequestOpen(false)}
         collectionName={collection.name}
+        bedroomLabel={selectedBedroom}
+        price={displayedPrice}
+        upgrades={selectedUpgrades}
       />
     </main>
   );

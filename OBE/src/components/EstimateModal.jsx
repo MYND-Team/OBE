@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { SHEETS_ENDPOINT } from "../config.js";
+import { trackLeadConversion } from "../lib/analytics.js";
 
 const bedroomOptions = ["Studio", "1", "2", "3", "4 or more"];
 const stageOptions = ["Unfinished", "Semi finished", "Finished, unfurnished", "Finished, furnished"];
@@ -110,6 +111,7 @@ export function EstimateModal({ open, onClose }) {
         ],
       });
       setSubmitted(true);
+      trackLeadConversion("estimate");
     } catch (_) {
       setError("Something went wrong on our side, not yours. Please try once more, or message us at contact@obespaces.com");
     } finally {

@@ -5,6 +5,7 @@ import { LogoMark } from "./LogoMark.jsx";
 import urbanImg from "../assets/urban-hero.jpg";
 import shoreImg from "../assets/shore-living-1.jpg";
 import { SHEETS_ENDPOINT } from "../config.js";
+import { trackLeadConversion } from "../lib/analytics.js";
 
 const stageOptions = [
   "Finished, furnished",
@@ -36,7 +37,7 @@ async function postToSheets(payload) {
   return res.json();
 }
 
-export function RequestPackageModal({ open, onClose, collectionName }) {
+export function RequestPackageModal({ open, onClose, collectionName, bedroomLabel, price, upgrades = [] }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -86,6 +87,9 @@ export function RequestPackageModal({ open, onClose, collectionName }) {
           "Property Stage",
           "Timeline",
           "Notes",
+          "Bedrooms",
+          "Quoted Price",
+          "Upgrades",
         ],
         row: [
           timestamp,
@@ -97,6 +101,9 @@ export function RequestPackageModal({ open, onClose, collectionName }) {
           form.property_stage.value,
           form.timeline.value,
           form.notes?.value || "",
+          bedroomLabel || "",
+          price || "",
+          upgrades.join(", "),
         ],
       });
     } catch (_) {
@@ -104,6 +111,7 @@ export function RequestPackageModal({ open, onClose, collectionName }) {
     } finally {
       setLoading(false);
       setSubmitted(true);
+      trackLeadConversion("request_package");
     }
   };
 
@@ -232,6 +240,12 @@ export function RequestPackageModal({ open, onClose, collectionName }) {
                     ))}
                   </select>
                 </label>
+
+                {upgrades.length > 0 && (
+                  <p className="pkg-modal__hint" style={{ margin: "-0.4rem 0 0.2rem" }}>
+                    Upgrades: {upgrades.join(", ")}
+                  </p>
+                )}
 
                 <label className="pkg-modal__field">
                   <span>Anything we should know? (optional)</span>

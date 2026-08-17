@@ -5,9 +5,9 @@
   "outputDirectory": "dist",
   "framework": null,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/collections/urban", "destination": "/collections/urban/index.html" },
+    { "source": "/collections/shore", "destination": "/collections/shore/index.html" },
+    { "source": "/collections", "destination": "/collections/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

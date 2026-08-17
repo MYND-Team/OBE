@@ -5,7 +5,6 @@ import { Footer } from "./components/Footer.jsx";
 import { Header } from "./components/Header.jsx";
 import { Home } from "./components/Home.jsx";
 import { Loader } from "./components/Loader.jsx";
-import { ProductPage } from "./components/ProductPage.jsx";
 import { CollectionDetail } from "./components/CollectionDetail.jsx";
 import { CollectionsPage } from "./components/CollectionsPage.jsx";
 import { useLenis } from "./hooks/useLenis.js";
@@ -22,14 +21,13 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product/:slug" element={<ProductPage />} />
         <Route path="/collections" element={<CollectionsPage />} />
         <Route path="/collections/:slug" element={<CollectionDetail />} />
       </Routes>
       <Footer />
       <a
         className="whatsapp-fab"
-        href="https://wa.me/201149498247"
+        href="https://wa.me/201284445546"
         target="_blank"
         rel="noreferrer"
         aria-label="Contact us on WhatsApp"

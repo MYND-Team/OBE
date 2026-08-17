@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild";
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
@@ -7,6 +7,8 @@ const dist = path.join(root, "dist");
 
 await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, "assets"), { recursive: true });
+
+await cp(path.join(root, "public"), dist, { recursive: true });
 
 const result = await esbuild.build({
   entryPoints: [path.join(root, "src", "main.jsx")],
@@ -59,9 +61,66 @@ const tags = [
   .filter(Boolean)
   .join("\n");
 
-const html = template.replace('    <script type="module" src="/src/main.jsx"></script>', tags);
+const baseHtml = template.replace('    <script type="module" src="/src/main.jsx"></script>', tags);
 
-await writeFile(path.join(dist, "index.html"), html);
+// Static per-route metadata. The React app still handles all client-side
+// navigation; these are only pre-rendered <head> shells so crawlers and link
+// previews (WhatsApp, Facebook) see the right title/description in view-source
+// without executing JavaScript.
+const homeTitle = "OBÉ Spaces | Spaces That Earn";
+const homeDescription =
+  "OBÉ Spaces turns your empty property into a fully furnished, guest ready rental in 30 days. Spaces That Earn.";
+
+const routes = [
+  {
+    outFile: "index.html",
+    canonical: "https://obespaces.com/",
+    title: homeTitle,
+    description: homeDescription
+  },
+  {
+    outFile: "collections/index.html",
+    canonical: "https://obespaces.com/collections",
+    title: "Short Term Rental Furnishing Packages | OBÉ Spaces",
+    description:
+      "Browse OBÉ Spaces furnishing packages for short term rental property staging in Cairo, built around the guest your listing should win, delivered in 30 days."
+  },
+  {
+    outFile: "collections/urban/index.html",
+    canonical: "https://obespaces.com/collections/urban",
+    title: "Urban Collection, Short Term Rental Furnishing New Cairo | OBÉ Spaces",
+    description:
+      "The Urban collection furnishes short term rental apartments in New Cairo for the city explorer guest, delivered guest ready in 30 days."
+  },
+  {
+    outFile: "collections/shore/index.html",
+    canonical: "https://obespaces.com/collections/shore",
+    title: "Shore Collection, Furnish Short Term Rental Egypt | OBÉ Spaces",
+    description:
+      "The Shore collection furnishes coastal short term rental chalets and apartments for the getaway guest, delivered guest ready in 30 days."
+  }
+];
+
+for (const route of routes) {
+  let html = baseHtml;
+  if (route.title !== homeTitle) {
+    html = html.replaceAll(`<title>${homeTitle}</title>`, `<title>${route.title}</title>`);
+    html = html.replaceAll(
+      `content="${homeTitle}"`,
+      `content="${route.title}"`
+    );
+  }
+  if (route.description !== homeDescription) {
+    html = html.replaceAll(`content="${homeDescription}"`, `content="${route.description}"`);
+  }
+  html = html.replaceAll('href="https://obespaces.com/"', `href="${route.canonical}"`);
+  html = html.replaceAll('content="https://obespaces.com/"', `content="${route.canonical}"`);
+
+  const outPath = path.join(dist, route.outFile);
+  await mkdir(path.dirname(outPath), { recursive: true });
+  await writeFile(outPath, html);
+}
+
 await writeFile(
   path.join(dist, ".htaccess"),
   [
@@ -75,4 +134,4 @@ await writeFile(
   ].join("\n")
 );
 
-console.log(`Built ${path.relative(root, dist)}`);
+console.log(`Built ${path.relative(root, dist)} (${routes.length} pre-rendered routes)`);

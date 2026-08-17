@@ -33,97 +33,6 @@ export const images = {
     "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1500&q=86"
 };
 
-export const products = [
-  {
-    slug: "elysian-lounge",
-    name: "Elysian Lounge",
-    type: "Low lounge chair",
-    price: "$6,800",
-    hero:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1900&q=88",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1300&q=86",
-    detail:
-      "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1300&q=86",
-    gallery: [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=86"
-    ],
-    material: "Oiled walnut, mohair velvet, hand-tied webbing",
-    dimensions: "32 in W x 34 in D x 28 in H",
-    lead: "A quiet lounge form with generous negative space, sculpted arms, and a low-slung silhouette made for reading rooms and softened architecture.",
-    palette: ["Walnut", "Moss mohair", "Saddle leather"],
-    edition: "Made to order in 10 weeks"
-  },
-  {
-    slug: "monolith-dining-table",
-    name: "Monolith Table",
-    type: "Dining table",
-    price: "$14,200",
-    hero:
-      "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=1900&q=88",
-    image:
-      "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=1300&q=86",
-    detail:
-      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1300&q=86",
-    gallery: [
-      "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=86"
-    ],
-    material: "Smoked oak, bronze keys, matte hardwax finish",
-    dimensions: "108 in W x 42 in D x 29 in H",
-    lead: "A monumental dining plane balanced by softened edges, butterfly joinery, and a bronze shadow line running through the base.",
-    palette: ["Smoked oak", "Bronze", "Natural oil"],
-    edition: "Numbered studio edition"
-  },
-  {
-    slug: "arcadia-sofa",
-    name: "Arcadia Sofa",
-    type: "Modular sofa",
-    price: "$11,900",
-    hero:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1900&q=88",
-    image:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1300&q=86",
-    detail:
-      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1300&q=86",
-    gallery: [
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=86"
-    ],
-    material: "Belgian linen, feather blend, kiln-dried ash",
-    dimensions: "118 in W x 39 in D x 30 in H",
-    lead: "A modular seating system with tailored proportions, feather-soft comfort, and architectural seams that hold the form with precision.",
-    palette: ["Bone linen", "Ash", "Oxide piping"],
-    edition: "Configurable by module"
-  },
-  {
-    slug: "stretto-console",
-    name: "Stretto Console",
-    type: "Entry console",
-    price: "$8,450",
-    hero:
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1900&q=88",
-    image:
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1300&q=86",
-    detail:
-      "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1300&q=86",
-    gallery: [
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1200&q=86",
-      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1200&q=86"
-    ],
-    material: "Ebonized oak, travertine shelf, leather-lined drawers",
-    dimensions: "72 in W x 16 in D x 32 in H",
-    lead: "A narrow console designed as an architectural threshold, with concealed drawers and a travertine shelf that appears to float.",
-    palette: ["Ebonized oak", "Travertine", "Chestnut leather"],
-    edition: "Bespoke dimensions available"
-  }
-];
-
 export const processSteps = [
   {
     number: "01",
@@ -246,23 +155,23 @@ const genericRooms = [
 ];
 
 const packageTiers = (base) => [
-  { id: "standard", label: "Standard", price: `EGP ${Math.round(base * 0.66).toLocaleString()}` },
-  { id: "tech", label: "Tech", price: `EGP ${Math.round(base * 1.15).toLocaleString()}` }
+  { id: "standard", label: "Essential", price: `EGP ${Math.round(base * 0.66).toLocaleString()}` },
+  { id: "tech", label: "Signature", price: `EGP ${Math.round(base * 1.15).toLocaleString()}` }
 ];
 
 const packageTiersNoTech = (base) => [
-  { id: "standard", label: "Standard", price: `EGP ${Math.round(base * 0.66).toLocaleString()}` }
+  { id: "standard", label: "Essential", price: `EGP ${Math.round(base * 0.66).toLocaleString()}` }
 ];
 
 const sharedAddOns = [
-  "Appliances — for units that don't already have them, so owners pay only for what's missing",
-  "Smart door lock — self check-in, so guests arrive on their own time and you never hand over a key",
-  "Coffee machine — a small touch that shows up again and again in five star reviews",
-  "Outdoor setup — turns an unused balcony, roof, or garden into a photographed, bookable feature",
-  "Extra sleeping capacity — a sofa bed or added bed unlocks larger groups and a higher nightly rate",
-  "Smart TV upgrade — a larger screen with the streaming guests expect, straight out of the box",
-  "Faster WiFi — strong signal in every room, the one thing a remote worker checks before booking",
-  "Premium styling layer — the extra art, texture, and detail that make the hero photo stop the scroll"
+  "Appliances, from 35,000 EGP: for units that don't already have them, so owners pay only for what's missing",
+  "Smart door lock, 4,500 EGP: self check-in, so guests arrive on their own time and you never hand over a key",
+  "Coffee machine, 4,500 EGP: a small touch that shows up again and again in five star reviews",
+  "Outdoor setup, from 22,000 EGP: turns an unused balcony, roof, or garden into a photographed, bookable feature",
+  "Extra sleeping capacity: a sofa bed or added bed unlocks larger groups and a higher nightly rate",
+  "Smart TV upgrade, from 15,000 EGP per TV: a larger screen with the streaming guests expect, straight out of the box",
+  "Faster WiFi, mesh upgrade, 3,500 EGP: strong signal in every room, the one thing a remote worker checks before booking",
+  "Premium styling layer, 15,000 EGP: the extra art, texture, and detail that make the hero photo stop the scroll"
 ];
 
 export const collections = [
@@ -273,6 +182,11 @@ export const collections = [
     text: "For the international traveler here to see the city, dropping their bags between the sights, the museums, and a night out. Set up for apartments in the neighborhoods guests actually want to book.",
     image: urbanLiving1,
     packages: packageTiersNoTech(424621),
+    bedroomPricing: {
+      "Studio / 1 Bedroom": 289250,
+      "2 Bedroom": 369750,
+      "3 Bedroom": 428250
+    },
     styles: [],
     bedroomOptions: ["Studio / 1 Bedroom", "2 Bedroom", "3 Bedroom"],
     addOns: sharedAddOns,
@@ -285,6 +199,11 @@ export const collections = [
     text: "For families, couples, and friend groups on an escape to the coast, who want it to feel like a holiday the second they walk in. Set up for chalets, apartments, and villas by the sea.",
     image: shoreLiving1,
     packages: packageTiersNoTech(398500),
+    bedroomPricing: {
+      "1 Bedroom": 249750,
+      "2 Bedroom": 312950,
+      "3 Bedroom": 384250
+    },
     styles: [],
     bedroomOptions: ["1 Bedroom", "2 Bedroom", "3 Bedroom", "4+ Bedroom"],
     addOns: sharedAddOns,
