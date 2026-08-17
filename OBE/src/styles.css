@@ -12890,8 +12890,8 @@ p {
   left: auto !important;
   bottom: auto !important;
   width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 3 / 2 !important;
+  /* Height is set inline by CollectionDetail.jsx to match the info panel's real height plus an equal gap on every side. */
+  height: clamp(500px, 55vw, 850px);
   min-height: 0;
   margin: 0;
   border-radius: 24px !important;
@@ -12919,9 +12919,9 @@ p {
 
 .collection-page--featured .collection-detail--featured .collection-detail__content {
   position: absolute !important;
-  top: calc(var(--header-height) + clamp(1.4rem, 2.6vw, 2.2rem) + 1.75rem) !important;
-  bottom: calc(clamp(1rem, 2vw, 1.75rem) + 1.75rem) !important;
-  right: calc(var(--page-gutter) + 1.75rem) !important;
+  top: calc(var(--header-height) + clamp(1.4rem, 2.6vw, 2.2rem) + var(--panel-gap, 1.75rem)) !important;
+  bottom: auto !important;
+  right: calc(var(--page-gutter) + var(--panel-gap, 1.75rem)) !important;
   left: auto !important;
   transform: none !important;
   z-index: 2;

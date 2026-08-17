@@ -30,6 +30,12 @@ const furnitureBenefits = [
 
 const featuredSlugs = ["urban", "shore"];
 
+function parseUpgradePrice(label) {
+  const match = label.match(/,\s*(?:from\s*)?([\d,]+)\s*EGP/i);
+  if (!match) return 0;
+  return parseInt(match[1].replace(/,/g, ""), 10) || 0;
+}
+
 function UpgradesMultiSelect({ options, selected, onChange }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef(null);
@@ -97,6 +103,8 @@ export function CollectionDetail() {
   const [requestOpen, setRequestOpen] = useState(false);
   const [selectedBedroom, setSelectedBedroom] = useState(collection?.bedroomOptions?.[0]);
   const [selectedUpgrades, setSelectedUpgrades] = useState([]);
+  const mediaRef = useRef(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     if (slug) {
@@ -110,6 +118,29 @@ export function CollectionDetail() {
   useEffect(() => {
     setSelectedBedroom(collection?.bedroomOptions?.[0]);
     setSelectedUpgrades([]);
+  }, [slug]);
+
+  useEffect(() => {
+    if (!featuredSlugs.includes(slug)) return undefined;
+    const mediaEl = mediaRef.current;
+    const contentEl = contentRef.current;
+    if (!mediaEl || !contentEl) return undefined;
+
+    const applyHeight = () => {
+      const gapPx = parseFloat(getComputedStyle(document.documentElement).fontSize) * 1.75;
+      mediaEl.style.height = `${contentEl.offsetHeight + gapPx * 2}px`;
+    };
+
+    applyHeight();
+    const observer = new ResizeObserver(applyHeight);
+    observer.observe(contentEl);
+    window.addEventListener("resize", applyHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", applyHeight);
+      mediaEl.style.height = "";
+    };
   }, [slug]);
 
   useEffect(() => {
@@ -132,9 +163,13 @@ export function CollectionDetail() {
   const isFeatured = featuredSlugs.includes(slug);
   const pkg = collection.packages[activePackage];
   const bedroomPrice = collection.bedroomPricing?.[selectedBedroom];
-  const displayedPrice = collection.bedroomPricing
-    ? (bedroomPrice ? `EGP ${bedroomPrice.toLocaleString()}` : "Contact us for pricing")
-    : pkg.price;
+  const upgradesTotal = selectedUpgrades.reduce((sum, option) => sum + parseUpgradePrice(option), 0);
+  const basePriceNumber = collection.bedroomPricing
+    ? bedroomPrice
+    : parseInt((pkg.price || "").replace(/[^\d]/g, ""), 10) || null;
+  const displayedPrice = basePriceNumber
+    ? `EGP ${(basePriceNumber + upgradesTotal).toLocaleString()}`
+    : (collection.bedroomPricing ? "Contact us for pricing" : pkg.price);
   const roomPackages = collection.rooms || [];
   const room = roomPackages[activeRoom] || roomPackages[0];
   const roomImages = room?.images?.length ? room.images : [collection.image];
@@ -179,11 +214,11 @@ export function CollectionDetail() {
     <main className={`page collection-page${isFeatured ? " collection-page--featured" : ""}`} ref={pageRef}>
       {/* 1. Hero image + title block */}
       <section className={`collection-detail${isFeatured ? " collection-detail--featured" : ""}`}>
-        <figure className="collection-detail__media" data-image-reveal>
+        <figure className="collection-detail__media" data-image-reveal ref={mediaRef}>
           <img src={collection.image} alt={`${collection.name} furnished living room`} />
         </figure>
 
-        <div className="collection-detail__content">
+        <div className="collection-detail__content" ref={contentRef}>
           <Link className="back-link" to="/collections" data-cursor="Back">
             <ArrowLeft size={18} aria-hidden="true" />
             Collections
