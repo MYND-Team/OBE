@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    { "source": "/collections/urban", "destination": "/collections/urban/index.html" },
+    { "source": "/collections/shore", "destination": "/collections/shore/index.html" },
+    { "source": "/collections", "destination": "/collections/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

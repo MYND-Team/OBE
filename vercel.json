@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "installCommand": "npm install --prefix OBE",
+  "buildCommand": "npm run --prefix OBE build",
+  "outputDirectory": "OBE/dist",
+  "framework": null,
+  "rewrites": [
+    { "source": "/collections/urban", "destination": "/collections/urban/index.html" },
+    { "source": "/collections/shore", "destination": "/collections/shore/index.html" },
+    { "source": "/collections", "destination": "/collections/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+OBE/node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+OBE/dist/
+build/
+.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+static-server.log
+static-server.err.log
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Backup & scratch files
+_orig_restore/
+tmp-*.png
+screenshots/
+
+# Raw, unprocessed render assets (not used by the app, too large for git)
+furniture/
+OBE/src/assets/_backup_originals/
+OBE/src/assets/_backup_icons/
