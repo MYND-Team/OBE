@@ -12681,7 +12681,7 @@ p {
 }
 
 .pkg-modal__img-overlay--top .pkg-modal__logo {
-  width: clamp(150px, 14vw, 200px) !important;
+  width: clamp(64px, 9vw, 110px) !important;
   height: auto !important;
   max-width: none !important;
   object-fit: contain;
