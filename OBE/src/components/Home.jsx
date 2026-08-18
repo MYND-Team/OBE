@@ -584,8 +584,7 @@ export function Home() {
                 <img
                   className="collection-choice__image"
                   src={collection.image}
-                  alt=""
-                  aria-hidden="true"
+                  alt={`${collection.name} furnished short term rental interior`}
                 />
                 <span className="collection-choice__index">0{index + 1}</span>
 

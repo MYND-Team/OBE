@@ -30,7 +30,7 @@ export function CollectionsPage() {
         {visibleCollections.map((collection, index) => (
           <article className="cl-band" key={collection.slug} data-reveal>
             <Link className="cl-band__media" to={`/collections/${collection.slug}`} data-cursor="Explore">
-              <img src={collection.image} alt={collection.name} loading="lazy" />
+              <img src={collection.image} alt={`${collection.name} collection, furnished short term rental interior`} loading="lazy" />
               <span className="cl-band__index">{String(index + 1).padStart(2, "0")}</span>
             </Link>
             <div className="cl-band__info">

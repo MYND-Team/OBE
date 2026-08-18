@@ -7,6 +7,7 @@ import { Home } from "./components/Home.jsx";
 import { Loader } from "./components/Loader.jsx";
 import { CollectionDetail } from "./components/CollectionDetail.jsx";
 import { CollectionsPage } from "./components/CollectionsPage.jsx";
+import { NotFound } from "./components/NotFound.jsx";
 import { useLenis } from "./hooks/useLenis.js";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<CollectionsPage />} />
         <Route path="/collections/:slug" element={<CollectionDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <a
