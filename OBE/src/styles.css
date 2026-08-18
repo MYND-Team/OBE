@@ -1250,18 +1250,10 @@ body[data-page-handle="shore"] header::before,
 }
 
 .section-word--strategy {
-  position: relative !important;
-  display: block !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
   text-align: center;
   width: 100%;
   color: rgba(116, 111, 79, 0.18);
   font-size: clamp(5rem, 15vw, 20rem);
-  padding: clamp(6rem, 10vw, 12rem) 0;
 }
 
 .strategy__heading {
@@ -4316,6 +4308,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .craft__steps {
+    gap: 0.6rem !important;
+  }
+
   .site-header .header-cta.button--consult {
     min-height: 42px;
     padding: 0 0.45rem 0 0.9rem;
@@ -4991,7 +4987,17 @@ p {
 @media (max-width: 900px) {
   .craft-step {
     grid-template-columns: 58px 1fr;
-    row-gap: 0.55rem;
+    row-gap: 0.4rem;
+  }
+
+  .craft-step span {
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+
+  .craft-step h3 {
+    grid-column: 2;
+    align-self: end;
   }
 
   .craft-step p {
@@ -6639,6 +6645,20 @@ p {
 @media (max-width: 900px) {
   .footer__grid {
     grid-template-columns: 1fr 1fr;
+    column-gap: 1.8rem;
+    row-gap: 1.8rem;
+  }
+
+  .footer__grid > .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer nav {
+    justify-self: start;
+  }
+
+  .footer__social {
+    justify-self: end;
   }
 
   .footer__base {
@@ -10617,11 +10637,11 @@ p {
   width: 100% !important;
   max-width: 100% !important;
   overflow: hidden !important;
-  white-space: normal !important;
+  white-space: nowrap !important;
   text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  font-size: clamp(4rem, 11vw, 13rem) !important;
+  font-size: clamp(2.6rem, 11vw, 13rem) !important;
   line-height: 1.1 !important;
   transform: none !important;
   transform-origin: center center !important;
@@ -11448,6 +11468,52 @@ p {
   }
 }
 
+/* Mobile: show one collection card at a time, arrows below the card instead of overlaid on it. */
+@media (max-width: 860px) {
+  .page--home .collections__slider .collection-choice[data-position="next"] {
+    display: none !important;
+  }
+
+  .page--home .collections__slider {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+  }
+
+  .page--home .collections__slider-controls {
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    pointer-events: auto !important;
+  }
+
+  .page--home .collections__slider-controls button,
+  .page--home .collections__slider-controls button:first-child,
+  .page--home .collections__slider-controls button:last-child {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 56px !important;
+    height: 56px !important;
+    background: var(--sage-deep) !important;
+    border: none !important;
+    color: var(--chalk) !important;
+    box-shadow: 0 12px 28px rgba(51, 55, 33, 0.28) !important;
+  }
+
+  .page--home .collections__slider-controls button:hover,
+  .page--home .collections__slider-controls button:first-child:hover,
+  .page--home .collections__slider-controls button:last-child:hover {
+    background: var(--sage-dark) !important;
+    transform: scale(1.06) !important;
+  }
+}
+
 /* Final footer logo placement: span copyright-to-email, remove upper divider, center vertically. */
 .footer {
   padding-top: clamp(2.2rem, 3vw, 3rem) !important;
@@ -11514,15 +11580,19 @@ p {
 
 @media (max-width: 900px) {
   .footer__grid>.footer__brand {
-    min-height: 180px !important;
+    min-height: auto !important;
   }
 
   .footer .brand--footer {
     position: relative !important;
     top: auto !important;
-    width: min(100%, 420px) !important;
-    height: 140px !important;
+    width: min(45%, 180px) !important;
+    height: 56px !important;
     transform: none !important;
+  }
+
+  .footer__base {
+    margin-top: 1.2rem !important;
   }
 }
 
@@ -12597,7 +12667,7 @@ p {
 @media (max-width: 680px) {
   .pkg-modal__panel {
     grid-template-columns: 1fr;
-    grid-template-rows: 120px 1fr;
+    grid-template-rows: 160px 1fr;
     height: 90vh;
     width: 96vw;
   }
@@ -13052,12 +13122,23 @@ p {
   border-radius: 26px;
 }
 
+/* ============================================================
+   Featured collection detail (Urban/Shore) — mobile, built as its
+   own layout rather than a shrunk desktop card: image up top,
+   content flows below it in normal page padding, nothing overlaps.
+   ============================================================ */
 @media (max-width: 900px) {
   .collection-page--featured .collection-detail--featured {
     display: block !important;
+    position: relative !important;
     min-height: 0 !important;
-    padding: 0 !important;
+    padding: 0 var(--page-gutter) !important;
+    margin-top: calc(var(--header-height) + 1.5rem) !important;
     overflow: visible !important;
+  }
+
+  .collection-page--featured .collection-detail--featured::after {
+    display: none;
   }
 
   .collection-page--featured .collection-detail--featured .collection-detail__media {
@@ -13067,23 +13148,86 @@ p {
     bottom: auto !important;
     left: auto !important;
     width: 100% !important;
-    height: clamp(340px, 62vw, 520px) !important;
-    border-radius: 20px !important;
-  }
-
-  .collection-page--featured .collection-detail--featured::after {
-    display: none;
+    height: 78vw !important;
+    min-height: 260px !important;
+    max-height: 400px !important;
+    border-radius: 18px !important;
+    overflow: hidden;
   }
 
   .collection-page--featured .collection-detail--featured .collection-detail__content {
-    position: absolute !important;
-    inset: clamp(1rem, 4vw, 1.6rem) !important;
+    position: static !important;
+    display: block !important;
     transform: none !important;
+    margin: 1.5rem 0 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    overflow: visible !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__content .back-link {
+    position: absolute !important;
+    top: 1rem !important;
+    left: calc(var(--page-gutter) + 1rem) !important;
+    z-index: 3;
     margin: 0 !important;
-    width: auto;
-    max-width: none;
-    height: auto;
-    max-height: none;
+    padding: 0.4rem 0.85rem 0.4rem 0.65rem !important;
+    background: rgba(255, 248, 232, 0.92) !important;
+    border-radius: 999px !important;
+    color: var(--ink) !important;
+    font-size: 0.78rem !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__content .section-label {
+    margin: 0 0 0.5rem !important;
+    color: var(--oxide) !important;
+    font-size: 0.85rem !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__content h1 {
+    margin: 0 0 0.75rem !important;
+    font-size: clamp(2rem, 9vw, 2.5rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__desc {
+    margin: 0 0 1.5rem !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    opacity: 0.8;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__package-inner {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 1.5rem 0 0 !important;
+    border-top: 1px solid rgba(32, 33, 21, 0.12) !important;
+    gap: 1rem !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__price {
+    font-size: 1.7rem !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__select select,
+  .collection-page--featured .collection-detail--featured .collection-detail__multiselect-trigger {
+    padding: 0.9rem 3rem 0.9rem 1rem !important;
+    min-height: 0 !important;
+    font-size: 0.95rem !important;
+  }
+
+  .collection-page--featured .collection-detail--featured .collection-detail__cta {
+    margin-top: 0.4rem;
+    padding: 1rem 1.6rem !important;
+    font-size: 0.95rem !important;
   }
 }
 
@@ -13202,6 +13346,37 @@ p {
     flex: 0 0 100% !important;
     scroll-snap-align: start !important;
     min-height: clamp(300px, 62vw, 360px) !important;
+  }
+
+  .mistakes__swipe-hint {
+    display: flex !important;
+  }
+}
+
+.mistakes__swipe-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  color: rgba(32, 33, 21, 0.55);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mistakes__swipe-hint svg {
+  animation: swipeHintNudge 1.4s ease-in-out infinite;
+}
+
+@keyframes swipeHintNudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
   }
 }
 

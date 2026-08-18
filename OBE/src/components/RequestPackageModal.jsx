@@ -55,11 +55,13 @@ export function RequestPackageModal({ open, onClose, collectionName, bedroomLabe
     };
 
     document.body.style.overflow = "hidden";
+    document.body.classList.add("menu-open");
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       clearTimeout(t);
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [open, onClose]);

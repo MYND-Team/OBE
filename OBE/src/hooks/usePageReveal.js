@@ -70,7 +70,29 @@ export function usePageReveal() {
 
     ScrollTrigger.refresh();
 
-    return () => ctx.revert();
+    const images = scope.current.querySelectorAll("img");
+    let pending = 0;
+    const onImageSettle = () => {
+      pending -= 1;
+      if (pending <= 0) {
+        ScrollTrigger.refresh();
+      }
+    };
+    images.forEach((img) => {
+      if (!img.complete) {
+        pending += 1;
+        img.addEventListener("load", onImageSettle, { once: true });
+        img.addEventListener("error", onImageSettle, { once: true });
+      }
+    });
+
+    return () => {
+      images.forEach((img) => {
+        img.removeEventListener("load", onImageSettle);
+        img.removeEventListener("error", onImageSettle);
+      });
+      ctx.revert();
+    };
   }, [location.pathname]);
 
   return scope;
