@@ -4,14 +4,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": null,
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.obespaces.com" }],
-      "destination": "https://obespaces.com/$1",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     { "source": "/collections/urban", "destination": "/collections/urban/index.html" },
     { "source": "/collections/shore", "destination": "/collections/shore/index.html" },
