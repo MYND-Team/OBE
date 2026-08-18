@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowDown,
-  ArrowRight,
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
@@ -551,10 +550,6 @@ export function Home() {
             </article>
           ))}
         </div>
-        <p className="mistakes__swipe-hint" aria-hidden="true">
-          Swipe to see more
-          <ArrowRight size={16} aria-hidden="true" />
-        </p>
       </section>
       <section className="collections section" id="collections">
         <div className="collections__editorial" data-reveal>
