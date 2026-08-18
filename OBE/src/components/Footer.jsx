@@ -16,18 +16,12 @@ export function Footer() {
           <a href="/collections">Collections</a>
           <a href="/#contact">Contact Us</a>
         </nav>
-        <nav className="footer__social" aria-label="Social">
-          <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://pinterest.com" target="_blank" rel="noreferrer">Pinterest</a>
-        </nav>
       </div>
       <div className="footer__base">
         <div className="footer__base-left">
           <p>&copy; {year} OBÉ. All rights reserved.</p>
           <a href="mailto:contact@obespaces.com">contact@obespaces.com</a>
         </div>
-        <a href="#contact">Privacy Policy</a>
       </div>
       <img className="footer__wordmark" src={logoMark} alt="" aria-hidden="true" />
     </footer>
