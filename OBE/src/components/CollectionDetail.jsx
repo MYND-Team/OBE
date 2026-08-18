@@ -218,7 +218,7 @@ export function CollectionDetail() {
           <img src={collection.image} alt={`${collection.name} furnished living room`} />
         </figure>
 
-        <div className="collection-detail__content" ref={contentRef}>
+        <div className="collection-detail__content" ref={contentRef} data-lenis-prevent>
           <Link className="back-link" to="/collections" data-cursor="Back">
             <ArrowLeft size={18} aria-hidden="true" />
             Collections

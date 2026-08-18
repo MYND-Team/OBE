@@ -11020,6 +11020,7 @@ p {
 
 .room-detail-box p {
   margin: 0 0 1.25rem 0;
+  min-height: calc(1.48 * 4 * clamp(0.85rem, 0.9vw, 0.95rem));
   color: #7E7A70;
   font-family: var(--sans);
   font-size: clamp(0.85rem, 0.9vw, 0.95rem);
@@ -11029,7 +11030,7 @@ p {
 .room-detail-box ul {
   display: grid;
   gap: 0.55rem;
-  margin: auto 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }

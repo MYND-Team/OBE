@@ -4,6 +4,8 @@ import madeToPerform2 from "./assets/made-to-perform-2.jpeg";
 import urbanHero from "./assets/urban-hero.jpg";
 import urbanLiving1 from "./assets/urban-living-1.jpg";
 import urbanLiving2 from "./assets/urban-living-2.jpg";
+import urbanLiving3 from "./assets/urban-living-3.jpg";
+import urbanLiving4 from "./assets/urban-living-4.jpg";
 import urbanBedroom1 from "./assets/urban-bedroom-1.jpg";
 import urbanBedroom2 from "./assets/urban-bedroom-2.jpg";
 import urbanBedroom2a from "./assets/urban-bedroom2-1.jpg";
@@ -62,7 +64,7 @@ const urbanRooms = [
   {
     id: "living-dining",
     label: "Living and Dining",
-    images: [urbanLiving1, urbanLiving2],
+    images: [urbanLiving1, urbanLiving2, urbanLiving3, urbanLiving4],
     description: "An open lounge and dining setup built for comfort, good light, and a strong first photo, with a compact work corner for the guest mixing a trip with a little work.",
     details: [
       "Three seater sofa, armchair, pouf, and coffee table",
@@ -83,7 +85,7 @@ const urbanRooms = [
   },
   {
     id: "guest-bedroom",
-    label: "Second Bedroom",
+    label: "Guest Bedroom",
     images: [urbanBedroom2a],
     description: "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
     details: [
@@ -168,7 +170,6 @@ const sharedAddOns = [
   "Smart door lock, 4,500 EGP: self check-in, so guests arrive on their own time and you never hand over a key",
   "Coffee machine, 4,500 EGP: a small touch that shows up again and again in five star reviews",
   "Outdoor setup, from 22,000 EGP: turns an unused balcony, roof, or garden into a photographed, bookable feature",
-  "Extra sleeping capacity: a sofa bed or added bed unlocks larger groups and a higher nightly rate",
   "Smart TV upgrade, from 15,000 EGP per TV: a larger screen with the streaming guests expect, straight out of the box",
   "Faster WiFi, mesh upgrade, 3,500 EGP: strong signal in every room, the one thing a remote worker checks before booking",
   "Premium styling layer, 15,000 EGP: the extra art, texture, and detail that make the hero photo stop the scroll"
@@ -188,7 +189,7 @@ export const collections = [
       "3 Bedroom": 428250
     },
     styles: [],
-    bedroomOptions: ["Studio / 1 Bedroom", "2 Bedroom", "3 Bedroom"],
+    bedroomOptions: ["Studio / 1 Bedroom", "2 Bedroom", "3 Bedroom", "4+ Bedroom"],
     addOns: sharedAddOns,
     rooms: urbanRooms
   },

@@ -81,21 +81,21 @@ const routes = [
   {
     outFile: "collections/index.html",
     canonical: "https://obespaces.com/collections",
-    title: "Short Term Rental Furnishing Packages | OBÉ Spaces",
+    title: homeTitle,
     description:
       "Browse OBÉ Spaces furnishing packages for short term rental property staging in Cairo, built around the guest your listing should win, delivered in 30 days."
   },
   {
     outFile: "collections/urban/index.html",
     canonical: "https://obespaces.com/collections/urban",
-    title: "Urban Collection, Short Term Rental Furnishing New Cairo | OBÉ Spaces",
+    title: homeTitle,
     description:
       "The Urban collection furnishes short term rental apartments in New Cairo for the city explorer guest, delivered guest ready in 30 days."
   },
   {
     outFile: "collections/shore/index.html",
     canonical: "https://obespaces.com/collections/shore",
-    title: "Shore Collection, Furnish Short Term Rental Egypt | OBÉ Spaces",
+    title: homeTitle,
     description:
       "The Shore collection furnishes coastal short term rental chalets and apartments for the getaway guest, delivered guest ready in 30 days."
   }
