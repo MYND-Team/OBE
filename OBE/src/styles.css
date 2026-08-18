@@ -13199,7 +13199,7 @@ p {
   }
 
   .mistake-card {
-    flex: 0 0 78% !important;
+    flex: 0 0 100% !important;
     scroll-snap-align: start !important;
     min-height: clamp(300px, 62vw, 360px) !important;
   }
