@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { LogoMark } from "./LogoMark.jsx";
 import { Button } from "./Button.jsx";
 import { EstimateModal } from "./EstimateModal.jsx";
@@ -107,27 +107,37 @@ export function Header() {
 
       <div className={`mobile-menu ${open ? "mobile-menu--open" : ""}`} aria-hidden={!open}>
         <div className="mobile-menu__inner">
-          {navItems.map((item) => (
-            item.label === "Contact Us" ? (
-              <a key={item.label} href={item.href} onClick={handleNavClick(item)}>
-                {item.label}
-              </a>
-            ) : (
-              <Link key={item.label} to={item.href} onClick={handleNavClick(item)}>
-                {item.label}
-              </Link>
-            )
-          ))}
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
+          <nav className="mobile-menu__nav" aria-label="Mobile primary">
+            {navItems.map((item, index) => {
+              const number = String(index + 1).padStart(2, "0");
+              const content = (
+                <>
+                  <span className="mobile-menu__link-index">{number}</span>
+                  <span className="mobile-menu__link-label">{item.label}</span>
+                </>
+              );
+              return item.label === "Contact Us" ? (
+                <a key={item.label} className="mobile-menu__link" href={item.href} onClick={handleNavClick(item)}>
+                  {content}
+                </a>
+              ) : (
+                <Link key={item.label} className="mobile-menu__link" to={item.href} onClick={handleNavClick(item)}>
+                  {content}
+                </Link>
+              );
+            })}
+          </nav>
+          <button
+            type="button"
+            className="mobile-menu__cta"
+            onClick={() => {
               close();
               setContactOpen(true);
             }}
           >
-            Get Your Free Estimate
-          </a>
+            <span>Get Your Free Estimate</span>
+            <ArrowUpRight size={20} aria-hidden="true" />
+          </button>
         </div>
       </div>
       <EstimateModal open={contactOpen} onClose={() => setContactOpen(false)} />
