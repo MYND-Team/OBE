@@ -74,27 +74,27 @@ const homeDescription =
 const routes = [
   {
     outFile: "index.html",
-    canonical: "https://obespaces.com/",
+    canonical: "https://www.obespaces.com/",
     title: homeTitle,
     description: homeDescription
   },
   {
     outFile: "collections/index.html",
-    canonical: "https://obespaces.com/collections",
+    canonical: "https://www.obespaces.com/collections",
     title: homeTitle,
     description:
       "Browse OBÉ Spaces furnishing packages for short term rental property staging in Cairo, built around the guest your listing should win, delivered in 30 days."
   },
   {
     outFile: "collections/urban/index.html",
-    canonical: "https://obespaces.com/collections/urban",
+    canonical: "https://www.obespaces.com/collections/urban",
     title: homeTitle,
     description:
       "The Urban collection furnishes short term rental apartments in New Cairo for the city explorer guest, delivered guest ready in 30 days."
   },
   {
     outFile: "collections/shore/index.html",
-    canonical: "https://obespaces.com/collections/shore",
+    canonical: "https://www.obespaces.com/collections/shore",
     title: homeTitle,
     description:
       "The Shore collection furnishes coastal short term rental chalets and apartments for the getaway guest, delivered guest ready in 30 days."
@@ -113,8 +113,8 @@ for (const route of routes) {
   if (route.description !== homeDescription) {
     html = html.replaceAll(`content="${homeDescription}"`, `content="${route.description}"`);
   }
-  html = html.replaceAll('href="https://obespaces.com/"', `href="${route.canonical}"`);
-  html = html.replaceAll('content="https://obespaces.com/"', `content="${route.canonical}"`);
+  html = html.replaceAll('href="https://www.obespaces.com/"', `href="${route.canonical}"`);
+  html = html.replaceAll('content="https://www.obespaces.com/"', `content="${route.canonical}"`);
 
   const outPath = path.join(dist, route.outFile);
   await mkdir(path.dirname(outPath), { recursive: true });
