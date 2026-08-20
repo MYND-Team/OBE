@@ -9,6 +9,7 @@ dist/
 OBE/dist/
 build/
 .vercel/
+OBE/.ssr-tmp/
 
 # Logs
 *.log

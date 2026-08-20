@@ -1,5 +1,6 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useIsomorphicLayoutEffect } from "../hooks/useIsomorphicLayoutEffect.js";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -130,7 +131,7 @@ export function Home() {
     );
   };
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
