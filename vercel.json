@@ -5,6 +5,17 @@
   "buildCommand": "npm run --prefix OBE build",
   "outputDirectory": "OBE/dist",
   "framework": null,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/collections/urban", "destination": "/collections/urban/index.html" },
     { "source": "/collections/shore", "destination": "/collections/shore/index.html" },

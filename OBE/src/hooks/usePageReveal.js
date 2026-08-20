@@ -1,13 +1,14 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 
 export function usePageReveal() {
   const scope = useRef(null);
   const location = useLocation();
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (window.__lenis) {
       window.__lenis.scrollTo(0, { immediate: true });
     } else {

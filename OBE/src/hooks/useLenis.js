@@ -20,6 +20,21 @@ export function useLenis() {
     lenis.on("scroll", ScrollTrigger.update);
     window.__lenis = lenis;
 
+    // Native scrollbar-track dragging fights Lenis's own interpolation, which
+    // reads as a stutter/glitch. Pause Lenis while the user is dragging the
+    // scrollbar thumb so the browser's native scroll takes over directly.
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const onPointerDown = (event) => {
+      if (scrollbarWidth > 0 && event.clientX >= document.documentElement.clientWidth) {
+        lenis.stop();
+      }
+    };
+    const onPointerUp = () => {
+      lenis.start();
+    };
+    window.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointerup", onPointerUp);
+
     let frame;
     const raf = (time) => {
       // Pause Lenis when a modal/menu is open so only the modal scrolls
@@ -33,6 +48,8 @@ export function useLenis() {
 
     return () => {
       cancelAnimationFrame(frame);
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointerup", onPointerUp);
       lenis.destroy();
       if (window.__lenis === lenis) window.__lenis = undefined;
     };
