@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://obespaces.com/sitemap.xml
+Sitemap: https://www.obespaces.com/sitemap.xml
