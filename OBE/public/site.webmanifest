@@ -2,7 +2,7 @@
   "name": "OBÉ Spaces",
   "short_name": "OBÉ Spaces",
   "icons": [
-    { "src": "/favicon.png", "sizes": "500x500", "type": "image/png" }
+    { "src": "/favicon-v2.png", "sizes": "512x512", "type": "image/png" }
   ],
   "theme_color": "#746f4f",
   "background_color": "#fbf0df",
