@@ -5723,6 +5723,8 @@ p {
 
 .hero__switch-idle {
   position: relative;
+  display: inline-block;
+  line-height: 1;
 }
 
 .hero__switch-strike {
@@ -5730,7 +5732,7 @@ p {
   left: -.08em;
   right: -.08em;
   top: 50%;
-  margin-top: -.075em;
+  margin-top: -.58em;
   height: .15em;
   border-radius: 999px;
   background: #746f4f;
@@ -7530,9 +7532,7 @@ p {
 .hero__switch-strike {
   left: -0.04em;
   right: -0.04em;
-  top: 0.42em;
   height: 0.11em;
-  margin-top: -0.055em;
   border-radius: 999px;
   background: var(--sage);
 }
@@ -7924,9 +7924,7 @@ p {
 }
 
 .hero__switch-strike {
-  top: 0.24em;
   height: 0.11em;
-  margin-top: -8px;
 }
 
 @media (max-width: 900px) {
