@@ -54,14 +54,23 @@ const cssPath = entryMeta.cssBundle
   : null;
 
 const template = await readFile(path.join(root, "index.html"), "utf8");
-const tags = [
-  cssPath ? `    <link rel="stylesheet" href="${cssPath}" />` : "",
-  `    <script type="module" src="${jsPath}"></script>`
-]
-  .filter(Boolean)
-  .join("\n");
 
-const baseHtml = template.replace('    <script type="module" src="/src/main.jsx"></script>', tags);
+// The CSS must land in <head> (not at the end of <body>, where the old
+// placeholder script tag lived) so it's render-blocking before any of the
+// pre-rendered body content paints. Leaving it at the end of body let the
+// browser paint the entire unstyled page first, then snap into styled once
+// the parser finally reached a late <link rel="stylesheet">.
+let baseHtml = template.replace(
+  '    <script type="module" src="/src/main.jsx"></script>',
+  `    <script type="module" src="${jsPath}"></script>`
+);
+
+if (cssPath) {
+  baseHtml = baseHtml.replace(
+    '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+    `    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <link rel="stylesheet" href="${cssPath}" />`
+  );
+}
 
 // Static per-route metadata. The React app still handles all client-side
 // navigation; these are only pre-rendered <head> shells so crawlers and link
