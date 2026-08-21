@@ -13,9 +13,13 @@ await rm(dist, { recursive: true, force: true });
 await mkdir(assets, { recursive: true });
 
 const template = await readFile(path.join(root, "index.html"), "utf8");
-const html = template.replace(
+let html = template.replace(
   '    <script type="module" src="/src/main.jsx"></script>',
-  '    <link rel="stylesheet" href="/assets/main.css" />\n    <script type="module" src="/assets/main.js"></script>'
+  '    <script type="module" src="/assets/main.js"></script>'
+);
+html = html.replace(
+  '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+  '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <link rel="stylesheet" href="/assets/main.css" />'
 );
 
 await writeFile(path.join(dist, "index.html"), html);
