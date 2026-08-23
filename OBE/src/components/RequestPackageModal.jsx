@@ -21,6 +21,11 @@ const timelineOptions = [
   "Just exploring",
 ];
 
+// Upgrade labels are "Name, price EGP: description" — the sheet only wants the name.
+function upgradeName(label) {
+  return label.split(/,\s*(?:from\s*)?[\d,]+\s*EGP.*$/i)[0].trim();
+}
+
 // Map collection slug/name → Apps Script sheet key
 function resolveSheetKey(collectionName) {
   const name = (collectionName || "").toLowerCase();
@@ -105,7 +110,7 @@ export function RequestPackageModal({ open, onClose, collectionName, bedroomLabe
           form.notes?.value || "",
           bedroomLabel || "",
           price || "",
-          upgrades.join(", "),
+          upgrades.map(upgradeName).join(", "),
         ],
       });
     } catch (_) {
