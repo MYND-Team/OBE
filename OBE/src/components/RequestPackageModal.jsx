@@ -94,8 +94,8 @@ export function RequestPackageModal({ open, onClose, collectionName, bedroomLabe
           "Property Stage",
           "Timeline",
           "Notes",
-          "Bedrooms",
           "Quoted Price",
+          "Bedrooms",
           "Upgrades",
         ],
         row: [
@@ -108,8 +108,8 @@ export function RequestPackageModal({ open, onClose, collectionName, bedroomLabe
           form.property_stage.value,
           form.timeline.value,
           form.notes?.value || "",
-          bedroomLabel || "",
           price || "",
+          bedroomLabel || "",
           upgrades.map(upgradeName).join(", "),
         ],
       });
