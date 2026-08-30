@@ -668,7 +668,7 @@ export function Home() {
           <p className="section-label">The Path to Revenue</p>
           <h2>From Empty To Booked</h2>
           <p>You hand it over once. We take it from empty to earning.</p>
-          <Button href="/#contact" variant="light">
+          <Button onClick={() => window.dispatchEvent(new Event("obe:open-contact"))} variant="light">
             Get Your Free Estimate
           </Button>
         </div>
