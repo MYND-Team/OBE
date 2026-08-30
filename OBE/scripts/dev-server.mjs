@@ -1,6 +1,6 @@
 import * as esbuild from "esbuild";
 import { createReadStream } from "node:fs";
-import { mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
 
@@ -11,6 +11,7 @@ const port = Number(process.env.PORT || 5173);
 
 await rm(dist, { recursive: true, force: true });
 await mkdir(assets, { recursive: true });
+await cp(path.join(root, "public"), dist, { recursive: true });
 
 const template = await readFile(path.join(root, "index.html"), "utf8");
 let html = template.replace(
