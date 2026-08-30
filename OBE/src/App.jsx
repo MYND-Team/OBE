@@ -8,13 +8,23 @@ import { Loader } from "./components/Loader.jsx";
 import { CollectionDetail } from "./components/CollectionDetail.jsx";
 import { CollectionsPage } from "./components/CollectionsPage.jsx";
 import { NotFound } from "./components/NotFound.jsx";
+import { AdminPage } from "./components/AdminPage.jsx";
 import { useLenis } from "./hooks/useLenis.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const location = useLocation();
-  useLenis();
+  const isAdmin = location.pathname.startsWith("/admin");
+  useLenis({ disabled: isAdmin });
+
+  if (isAdmin) {
+    return (
+      <Routes>
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
+    );
+  }
 
   return (
     <>

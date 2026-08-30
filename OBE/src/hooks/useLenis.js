@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function useLenis() {
+export function useLenis({ disabled = false } = {}) {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (disabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return undefined;
     }
 
@@ -53,6 +53,6 @@ export function useLenis() {
       lenis.destroy();
       if (window.__lenis === lenis) window.__lenis = undefined;
     };
-  }, []);
+  }, [disabled]);
 }
 
