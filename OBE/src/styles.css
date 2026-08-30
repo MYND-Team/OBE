@@ -5534,7 +5534,13 @@ p {
 }
 
 .hero__switch-earn {
-  opacity: 0;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 1px);
+  filter: blur(0px);
+  opacity: 1;
+  visibility: inherit;
 }
 
 .hero__title--metrics {
