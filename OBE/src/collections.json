@@ -6,7 +6,11 @@
     "text": "For the international traveler here to see the city, dropping their bags between the sights, the museums, and a night out. Set up for apartments in the neighborhoods guests actually want to book.",
     "image": "/collections/urban/cover.jpg",
     "packages": [
-      { "id": "standard", "label": "Essential", "price": "EGP 280,250" }
+      {
+        "id": "standard",
+        "label": "Essential",
+        "price": "EGP 280,250"
+      }
     ],
     "bedroomPricing": {
       "Studio / 1 Bedroom": 289250,
@@ -14,7 +18,12 @@
       "3 Bedroom": 428250
     },
     "styles": [],
-    "bedroomOptions": ["Studio / 1 Bedroom", "2 Bedroom", "3 Bedroom", "4+ Bedroom"],
+    "bedroomOptions": [
+      "Studio / 1 Bedroom",
+      "2 Bedroom",
+      "3 Bedroom",
+      "4+ Bedroom"
+    ],
     "addOns": [
       "Appliances, from 35,000 EGP: for units that don't already have them, so owners pay only for what's missing",
       "Smart door lock, 4,500 EGP: self check-in, so guests arrive on their own time and you never hand over a key",
@@ -58,7 +67,9 @@
       {
         "id": "guest-bedroom",
         "label": "Guest Bedroom",
-        "images": ["/collections/urban/guest-bedroom-1.jpg"],
+        "images": [
+          "/collections/urban/guest-bedroom-1.jpg"
+        ],
         "description": "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
         "details": [
           "Guest bed configuration",
@@ -75,7 +86,11 @@
     "text": "For families, couples, and friend groups on an escape to the coast, who want it to feel like a holiday the second they walk in. Set up for chalets, apartments, and villas by the sea.",
     "image": "/collections/shore/cover.jpg",
     "packages": [
-      { "id": "standard", "label": "Essential", "price": "EGP 263,010" }
+      {
+        "id": "standard",
+        "label": "Essential",
+        "price": "EGP 263,010"
+      }
     ],
     "bedroomPricing": {
       "1 Bedroom": 249750,
@@ -83,7 +98,12 @@
       "3 Bedroom": 384250
     },
     "styles": [],
-    "bedroomOptions": ["1 Bedroom", "2 Bedroom", "3 Bedroom", "4+ Bedroom"],
+    "bedroomOptions": [
+      "1 Bedroom",
+      "2 Bedroom",
+      "3 Bedroom",
+      "4+ Bedroom"
+    ],
     "addOns": [
       "Appliances, from 35,000 EGP: for units that don't already have them, so owners pay only for what's missing",
       "Smart door lock, 4,500 EGP: self check-in, so guests arrive on their own time and you never hand over a key",
@@ -102,70 +122,37 @@
           "/collections/shore/living-dining-2.jpg"
         ],
         "description": "A guest-ready lounge and dining setup built around comfort, flow, and five-star first impressions.",
-        "details": ["Sofa and accent seating", "Dining table and chairs", "Coffee tables, lighting, and decor"]
-      },
-      {
-        "id": "master-bedroom",
-        "label": "Master Bedroom",
-        "images": ["/collections/shore/master-bedroom-1.jpg"],
-        "description": "A calmer primary suite with the essentials guests notice first: sleep quality, storage, and finish.",
-        "details": ["Bed frame, mattress, and linens", "Nightstands and layered lighting", "Wardrobe accents and soft styling"]
-      },
-      {
-        "id": "guest-bedroom",
-        "label": "Guest Bedroom",
-        "images": ["/collections/shore/guest-bedroom-1.jpg"],
-        "description": "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
-        "details": ["Guest bed configuration", "Compact storage and side tables", "Durable textiles and finishing pieces"]
-      }
-    ]
-  },
-  {
-    "slug": "haven",
-    "name": "Haven",
-    "tagline": "For The Family and Group",
-    "text": "Room for everyone.",
-    "image": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1500&q=86",
-    "packages": [
-      { "id": "standard", "label": "Essential", "price": "EGP 338,118" },
-      { "id": "tech", "label": "Signature", "price": "EGP 589,145" }
-    ],
-    "styles": [
-      { "id": "warm", "label": "Warm", "swatch": "#ad8a5f" },
-      { "id": "neutral", "label": "Neutral", "swatch": "#e5ebd8" }
-    ],
-    "bedroomOptions": ["3 Bedroom", "4 Bedroom", "5+ Bedroom"],
-    "addOns": ["Bunk configurations", "Extra bedding sets", "Kid-safe furnishings"],
-    "rooms": [
-      {
-        "id": "living-dining",
-        "label": "Living & Dining Room",
-        "images": [
-          "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1800&q=86",
-          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1700&q=86"
-        ],
-        "description": "A guest-ready lounge and dining setup built around comfort, flow, and five-star first impressions.",
-        "details": ["Sofa and accent seating", "Dining table and chairs", "Coffee tables, lighting, and decor"]
+        "details": [
+          "Sofa and accent seating",
+          "Dining table and chairs",
+          "Coffee tables, lighting, and decor"
+        ]
       },
       {
         "id": "master-bedroom",
         "label": "Master Bedroom",
         "images": [
-          "https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?auto=format&fit=crop&w=1300&q=86",
-          "https://images.unsplash.com/photo-1540638349517-3abd5afc5847?auto=format&fit=crop&w=1300&q=86"
+          "/collections/shore/master-bedroom-1.jpg"
         ],
         "description": "A calmer primary suite with the essentials guests notice first: sleep quality, storage, and finish.",
-        "details": ["Bed frame, mattress, and linens", "Nightstands and layered lighting", "Wardrobe accents and soft styling"]
+        "details": [
+          "Bed frame, mattress, and linens",
+          "Nightstands and layered lighting",
+          "Wardrobe accents and soft styling"
+        ]
       },
       {
         "id": "guest-bedroom",
         "label": "Guest Bedroom",
         "images": [
-          "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=1500&q=86",
-          "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=1300&q=86"
+          "/collections/shore/guest-bedroom-1.jpg"
         ],
         "description": "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
-        "details": ["Guest bed configuration", "Compact storage and side tables", "Durable textiles and finishing pieces"]
+        "details": [
+          "Guest bed configuration",
+          "Compact storage and side tables",
+          "Durable textiles and finishing pieces"
+        ]
       }
     ]
   },
@@ -176,15 +163,39 @@
     "text": "Built to work from, not just stay in.",
     "image": "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=1500&q=86",
     "packages": [
-      { "id": "standard", "label": "Essential", "price": "EGP 238,392" },
-      { "id": "tech", "label": "Signature", "price": "EGP 415,380" }
+      {
+        "id": "standard",
+        "label": "Essential",
+        "price": "EGP 238,392"
+      },
+      {
+        "id": "tech",
+        "label": "Signature",
+        "price": "EGP 415,380"
+      }
     ],
     "styles": [
-      { "id": "minimal", "label": "Minimal", "swatch": "#333721" },
-      { "id": "warm", "label": "Warm", "swatch": "#746f4f" }
+      {
+        "id": "minimal",
+        "label": "Minimal",
+        "swatch": "#333721"
+      },
+      {
+        "id": "warm",
+        "label": "Warm",
+        "swatch": "#746f4f"
+      }
     ],
-    "bedroomOptions": ["Studio", "1 Bedroom", "2 Bedroom"],
-    "addOns": ["Dedicated workspace setup", "High-speed router", "Ergonomic seating"],
+    "bedroomOptions": [
+      "Studio",
+      "1 Bedroom",
+      "2 Bedroom"
+    ],
+    "addOns": [
+      "Dedicated workspace setup",
+      "High-speed router",
+      "Ergonomic seating"
+    ],
     "rooms": [
       {
         "id": "living-dining",
@@ -194,7 +205,11 @@
           "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1700&q=86"
         ],
         "description": "A guest-ready lounge and dining setup built around comfort, flow, and five-star first impressions.",
-        "details": ["Sofa and accent seating", "Dining table and chairs", "Coffee tables, lighting, and decor"]
+        "details": [
+          "Sofa and accent seating",
+          "Dining table and chairs",
+          "Coffee tables, lighting, and decor"
+        ]
       },
       {
         "id": "master-bedroom",
@@ -204,7 +219,11 @@
           "https://images.unsplash.com/photo-1540638349517-3abd5afc5847?auto=format&fit=crop&w=1300&q=86"
         ],
         "description": "A calmer primary suite with the essentials guests notice first: sleep quality, storage, and finish.",
-        "details": ["Bed frame, mattress, and linens", "Nightstands and layered lighting", "Wardrobe accents and soft styling"]
+        "details": [
+          "Bed frame, mattress, and linens",
+          "Nightstands and layered lighting",
+          "Wardrobe accents and soft styling"
+        ]
       },
       {
         "id": "guest-bedroom",
@@ -214,7 +233,11 @@
           "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=1300&q=86"
         ],
         "description": "A flexible room package for friends, kids, or extra occupancy without making the space feel secondary.",
-        "details": ["Guest bed configuration", "Compact storage and side tables", "Durable textiles and finishing pieces"]
+        "details": [
+          "Guest bed configuration",
+          "Compact storage and side tables",
+          "Durable textiles and finishing pieces"
+        ]
       }
     ]
   }
