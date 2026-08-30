@@ -620,7 +620,7 @@ export function Home() {
       <section className="strategy section">
         <div className="strategy__heading" data-reveal>
           <p className="section-label">THE OBÉ DIFFERENCE</p>
-          <h2>A short term rental engineered to earn at its full potential.</h2>
+          <h2>A short term rental built to earn at its full potential.</h2>
         </div>
         <div className="strategy__body">
           <p data-reveal>
