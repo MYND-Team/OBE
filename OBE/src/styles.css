@@ -5533,7 +5533,7 @@ p {
   width: max-content;
 }
 
-.hero__switch-earn {
+.hero__switchline .hero__switch-earn {
   translate: none;
   rotate: none;
   scale: none;
