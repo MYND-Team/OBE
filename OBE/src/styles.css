@@ -5307,6 +5307,7 @@ p {
 @media (max-width: 760px) {
   .hero__content {
     align-self: end;
+    padding-bottom: clamp(5rem, 18vw, 8rem);
   }
 
   .hero__switchline {
