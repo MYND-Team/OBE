@@ -226,7 +226,6 @@ export function EstimateModal({ open, onClose }) {
               <button className="contact-modal__submit" type="submit" disabled={loading}>
                 {loading ? "Sending…" : "Get My Free Estimate"}
               </button>
-              <p className="contact-modal__secondary">Book a call.</p>
               <p className="contact-modal__trust">No cost. No obligation. A real projection, not a sales call.</p>
             </form>
           </>
