@@ -23,13 +23,17 @@ export default async function handler(req, res) {
       return;
     }
 
-    const slug = sanitizeSegment(req.body?.slug);
+    const bucket = req.body?.bucket === "site" ? "site" : "collections";
     const filename = sanitizeFilename(req.body?.filename);
     const dataUrl = req.body?.dataUrl;
 
-    if (!slug) {
-      res.status(400).json({ ok: false, error: "Missing or invalid slug" });
-      return;
+    let slug = "";
+    if (bucket === "collections") {
+      slug = sanitizeSegment(req.body?.slug);
+      if (!slug) {
+        res.status(400).json({ ok: false, error: "Missing or invalid slug" });
+        return;
+      }
     }
     if (!filename) {
       res.status(400).json({ ok: false, error: "Filename must end in .jpg, .jpeg, .png, or .webp" });
@@ -47,11 +51,12 @@ export default async function handler(req, res) {
       return;
     }
 
-    const repoPath = `OBE/public/collections/${slug}/${filename}`;
+    const publicPath = bucket === "site" ? `site/${filename}` : `collections/${slug}/${filename}`;
+    const repoPath = `OBE/public/${publicPath}`;
     const existing = await getFile(repoPath);
-    await putFile(repoPath, buffer, `Admin: upload image ${slug}/${filename}`, existing?.sha);
+    await putFile(repoPath, buffer, `Admin: upload image ${publicPath}`, existing?.sha);
 
-    res.status(200).json({ ok: true, path: `/collections/${slug}/${filename}` });
+    res.status(200).json({ ok: true, path: `/${publicPath}` });
   } catch (error) {
     res.status(500).json({ ok: false, error: error.message });
   }

@@ -1,6 +1,7 @@
 const REPO = "MYND-Team/OBE";
 const BRANCH = "main";
 export const COLLECTIONS_PATH = "OBE/src/collections.json";
+export const SITE_CONTENT_PATH = "OBE/src/site-content.json";
 
 function authHeaders() {
   const token = process.env.GITHUB_TOKEN;
