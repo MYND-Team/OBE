@@ -10,49 +10,23 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Button } from "./Button.jsx";
-import {
-  images,
-  processSteps,
-  collections as guestCollections,
-} from "../data.js";
+import { collections as guestCollections } from "../data.js";
+import siteContent from "../site-content.json";
 import airbnbLogo from "../assets/logos/airbnb.svg";
 import bookingLogo from "../assets/logos/bookingdotcom.svg";
 import airdnaLogo from "../assets/logos/airdna.svg";
 import airbticsLogo from "../assets/logos/airbtics.webp";
 import smoobuLogo from "../assets/logos/smoobu.svg";
-import guessworkIcon from "../assets/guesswork-icon.png";
-import icon2 from "../assets/icon2.png";
-import icon3 from "../assets/icon3.png";
 import icon4 from "../assets/icon4.png";
 import icon5 from "../assets/icon5.png";
 import { usePageReveal } from "../hooks/usePageReveal.js";
 
-const costlyMistakes = [
-  {
-    title: "Guesswork At Every Turn",
-    text: "Selecting furniture based on personal taste, not guest data.",
-    icon: guessworkIcon,
-    variant: "cream",
-  },
-  {
-    title: "Months Of Chaos",
-    text: "Losing 3-6 months of potential revenue while going through the hassle of sourcing and staging.",
-    icon: icon2,
-    variant: "sage",
-  },
-  {
-    title: "Poor Reviews",
-    text: "Below 4.7 stars, the algorithm buries you. The small things owners skip are the exact things that win five stars or quietly kill the listing.",
-    icon: icon3,
-    variant: "oat",
-  },
-  {
-    title: "Lower Nightly Rates",
-    text: "The result is a property that earns less than it should.",
-    icon: icon5,
-    variant: "butter",
-  },
-];
+const mistakeVariants = ["cream", "sage", "oat", "butter"];
+const costlyMistakes = siteContent.home.mistakes.items.map((item, index) => ({
+  ...item,
+  variant: mistakeVariants[index % mistakeVariants.length],
+}));
+const processSteps = siteContent.home.craft.steps;
 
 const dataSources = [
   { name: "Airbnb", logo: airbnbLogo },
@@ -405,22 +379,22 @@ export function Home() {
       <section className="hero" ref={heroRef}>
         <div className="hero__image" data-cursor="Strategy">
           <img
-            src={images.hero}
+            src={siteContent.home.hero.image}
             alt="A fully furnished short term rental living room, staged and ready for guests"
           />
         </div>
         <div className="hero__content">
           <p
             className="hero__switchline hero__switchline--intro"
-            aria-label="Spaces that sit idle become earn"
+            aria-label={`${siteContent.home.hero.switchPrefix} that sit idle become ${siteContent.home.hero.switchEarn}`}
           >
-            <span className="hero__switch-prefix">Spaces That</span>
+            <span className="hero__switch-prefix">{siteContent.home.hero.switchPrefix}</span>
             <span className="hero__switch-slot">
               <span className="hero__switch-idle">
-                SIT IDLE
+                {siteContent.home.hero.switchIdle}
                 <span className="hero__switch-strike" aria-hidden="true" />
               </span>
-              <span className="hero__switch-earn">Earn.</span>
+              <span className="hero__switch-earn">{siteContent.home.hero.switchEarn}</span>
             </span>
           </p>
 
@@ -448,7 +422,7 @@ export function Home() {
             </span>
           </h1>
           <div className="hero__actions">
-            <Button to="/collections">View collections</Button>
+            <Button to="/collections">{siteContent.home.hero.actionsLabel}</Button>
           </div>
         </div>
         <a
@@ -461,7 +435,7 @@ export function Home() {
       </section>
       <section className="trust-strip" data-reveal>
         <div className="trust-strip__inner">
-          <p className="trust-strip__label">Built on data from</p>
+          <p className="trust-strip__label">{siteContent.home.trustStrip.label}</p>
           <div
             className="trust-strip__logos"
             aria-label="Built on data from Airbnb, Booking.com, Rabbu, AirDNA, AirROI, Airbtics, PriceLabs, and Smoobu."
@@ -481,22 +455,18 @@ export function Home() {
       <section className="intro section" id="intro">
         <div className="intro__story">
           <div className="intro__text" data-reveal>
-            <p className="section-label">DATA BEATS TASTE</p>
+            <p className="section-label">{siteContent.home.intro.label}</p>
             <h2>
-              <span>Made To</span>
-              <span>Perform</span>
+              <span>{siteContent.home.intro.titleLine1}</span>
+              <span>{siteContent.home.intro.titleLine2}</span>
             </h2>
             <p className="intro__subcopy">
-              We are not decorators. We are your revenue partners.
+              {siteContent.home.intro.subcopy}
             </p>
           </div>
           <div className="intro__copy" data-reveal>
             <p>
-              In the same building, one unit earns triple another. Same
-              location. Same size. The difference is the setup, and the setup is
-              a choice. Most owners leave that to taste and guesswork. OBÉ
-              treats it as what it is, a performance decision, made once and
-              made right, from data instead of opinion.
+              {siteContent.home.intro.body}
             </p>
           </div>
           <div className="intro__media-stack" data-reveal>
@@ -505,7 +475,7 @@ export function Home() {
               data-image-reveal
             >
               <img
-                src={images.madeToPerform1}
+                src={siteContent.home.intro.image1}
                 alt="A neutral toned living room set up for short term rental guests"
               />
             </figure>
@@ -514,7 +484,7 @@ export function Home() {
               data-image-reveal
             >
               <img
-                src={images.madeToPerform2}
+                src={siteContent.home.intro.image2}
                 alt="A warm toned bedroom furnished and styled for a short term rental listing"
               />
             </figure>
@@ -527,14 +497,14 @@ export function Home() {
 
         <figure className="intro-photo">
           <img
-            src={images.madeToPerform1}
+            src={siteContent.home.intro.image1}
             alt="A completed short term rental furniture setup with seating and warm lighting"
           />
         </figure>
       </section>
       <section className="mistakes section" id="mistakes">
         <div className="mistakes__heading" data-reveal>
-          <h2>Costly Mistakes</h2>
+          <h2>{siteContent.home.mistakes.heading}</h2>
         </div>
         <div className="mistakes__grid">
           {costlyMistakes.map((item) => (
@@ -544,7 +514,7 @@ export function Home() {
               data-cursor="Avoid"
             >
               <div className="mistake-card__icon" aria-hidden="true">
-                <img src={item.icon} alt="" />
+                <img src={item.image} alt="" />
               </div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -554,11 +524,10 @@ export function Home() {
       </section>
       <section className="collections section" id="collections">
         <div className="collections__editorial" data-reveal>
-          <p className="section-label">The Collections</p>
-          <h2>Made For Your Ideal Guest</h2>
+          <p className="section-label">{siteContent.home.collectionsSection.label}</p>
+          <h2>{siteContent.home.collectionsSection.heading}</h2>
           <p className="collections__intro-copy">
-            Two collections. Each designed around a specific guest, and the
-            exact things that make that guest leave five stars.
+            {siteContent.home.collectionsSection.intro}
           </p>
         </div>
         <div className="collections__duo collections__slider" data-reveal>
@@ -619,40 +588,24 @@ export function Home() {
       </section>
       <section className="strategy section">
         <div className="strategy__heading" data-reveal>
-          <p className="section-label">THE OBÉ DIFFERENCE</p>
-          <h2>A short term rental built to earn at its full potential.</h2>
+          <p className="section-label">{siteContent.home.strategy.label}</p>
+          <h2>{siteContent.home.strategy.heading}</h2>
         </div>
         <div className="strategy__body">
           <p data-reveal>
-            That's why we created OBÉ. A product standard built from STR
-            performance data where every decision has one job: get you more
-            booking at a higher rate.
+            {siteContent.home.strategy.body}
           </p>
           <div className="strategy__statement" data-reveal>
             <div className="strategy__points">
-              <p>
-                <strong>You Don't Guess.</strong> The decisions that decide
-                performance are already made, from data. From the sofa till the
-                cutlery, you skip the guesswork completely.
-              </p>
-              <p>
-                <strong>You Don't Wait.</strong> 30 days from signature to a
-                listing ready for guests. Guaranteed, or we rebate ten percent
-                of our fee.
-              </p>
-              <p>
-                <strong>You Don't Coordinate.</strong> One point of contact
-                handles every vendor, delivery, and detail. Zero hassle on your
-                end.
-              </p>
-              <p>
-                <strong>You Don't Manage Us.</strong> We furnish to a standard
-                and step back. No conflict over how your property runs.
-              </p>
+              {siteContent.home.strategy.points.map((point) => (
+                <p key={point.strong}>
+                  <strong>{point.strong}</strong> {point.text}
+                </p>
+              ))}
             </div>
             <aside>
-              <span>From empty to live in</span>
-              <strong>30 days</strong>
+              <span>{siteContent.home.strategy.asideLabel}</span>
+              <strong>{siteContent.home.strategy.asideValue}</strong>
             </aside>
           </div>
         </div>
@@ -665,11 +618,11 @@ export function Home() {
       </section>
       <section className="craft section" id="craft">
         <div className="craft__sticky" data-reveal>
-          <p className="section-label">The Path to Revenue</p>
-          <h2>From Empty To Booked</h2>
-          <p>You hand it over once. We take it from empty to earning.</p>
+          <p className="section-label">{siteContent.home.craft.label}</p>
+          <h2>{siteContent.home.craft.heading}</h2>
+          <p>{siteContent.home.craft.sub}</p>
           <Button onClick={() => window.dispatchEvent(new Event("obe:open-contact"))} variant="light">
-            Get Your Free Estimate
+            {siteContent.home.craft.ctaLabel}
           </Button>
         </div>
         <div className="craft__line" aria-hidden="true">

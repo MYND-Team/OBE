@@ -1,29 +1,31 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CalendarDays, Handshake, Target } from "lucide-react";
 import { collections } from "../data.js";
+import siteContent from "../site-content.json";
 import { usePageReveal } from "../hooks/usePageReveal.js";
 
 const visibleCollections = collections.filter((collection) => ["urban", "shore"].includes(collection.slug));
 
-const reasons = [
-  { icon: Target, title: "Built for guests, not you", eyebrow: "Guest-first standard", text: "Built for what guests want, not your taste." },
-  { icon: CalendarDays, title: "Empty to live in 30 days", eyebrow: "30-day launch", text: "Delivered, staged, shot. Guaranteed, in 30 days." },
-  { icon: Handshake, title: "You do nothing", eyebrow: "One point of contact", text: "One point of contact, every vendor handled by our team." }
-];
+const reasonIcons = [Target, CalendarDays, Handshake];
+const reasons = siteContent.collectionsPage.why.reasons.map((reason, index) => ({
+  ...reason,
+  icon: reasonIcons[index % reasonIcons.length],
+}));
 
 export function CollectionsPage() {
   const pageRef = usePageReveal();
+  const { heroHeading, heroGold, heroSub, why } = siteContent.collectionsPage;
 
   return (
     <main className="page collections-page" ref={pageRef}>
       <section className="cl-hero" data-reveal>
         <p className="section-label">The Collections</p>
         <h1>
-          Built for the ideal guest.
+          {heroHeading}
           <br />
-          <span className="cl-hero__gold">Higher rates, better reviews.</span>
+          <span className="cl-hero__gold">{heroGold}</span>
         </h1>
-        <p className="cl-hero__sub">Every collection is furnished for exactly who your property should win.</p>
+        <p className="cl-hero__sub">{heroSub}</p>
       </section>
 
       <section className="cl-bands" aria-label="Collections">
@@ -47,9 +49,9 @@ export function CollectionsPage() {
 
       <section className="cl-why" id="why-choose">
         <div className="cl-why__head" data-reveal>
-          <p className="section-label">The OBÉ Difference</p>
-          <h2>Why Choose Us</h2>
-          <p className="cl-why__lead">A standard built to remove the expensive parts of guessing, waiting, coordinating, and managing.</p>
+          <p className="section-label">{why.label}</p>
+          <h2>{why.heading}</h2>
+          <p className="cl-why__lead">{why.lead}</p>
         </div>
         <div className="cl-why__row" data-reveal>
           {reasons.map(({ icon: Icon, title, eyebrow, text }) => (

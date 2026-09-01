@@ -1,0 +1,109 @@
+{
+  "header": {
+    "navItems": [
+      { "label": "About Us", "href": "/#intro" },
+      { "label": "Collections", "href": "/collections" },
+      { "label": "Contact Us", "href": "/#contact" }
+    ],
+    "ctaLabel": "Get Your Free Estimate"
+  },
+  "home": {
+    "hero": {
+      "switchPrefix": "Spaces That",
+      "switchIdle": "SIT IDLE",
+      "switchEarn": "Earn.",
+      "actionsLabel": "View collections",
+      "image": "/site/hero.jpg"
+    },
+    "trustStrip": {
+      "label": "Built on data from"
+    },
+    "intro": {
+      "label": "DATA BEATS TASTE",
+      "titleLine1": "Made To",
+      "titleLine2": "Perform",
+      "subcopy": "We are not decorators. We are your revenue partners.",
+      "body": "In the same building, one unit earns triple another. Same location. Same size. The difference is the setup, and the setup is a choice. Most owners leave that to taste and guesswork. OBÉ treats it as what it is, a performance decision, made once and made right, from data instead of opinion.",
+      "image1": "/site/intro-1.jpeg",
+      "image2": "/site/intro-2.jpeg"
+    },
+    "mistakes": {
+      "heading": "Costly Mistakes",
+      "items": [
+        {
+          "title": "Guesswork At Every Turn",
+          "text": "Selecting furniture based on personal taste, not guest data.",
+          "image": "/site/mistake-1.png"
+        },
+        {
+          "title": "Months Of Chaos",
+          "text": "Losing 3-6 months of potential revenue while going through the hassle of sourcing and staging.",
+          "image": "/site/mistake-2.png"
+        },
+        {
+          "title": "Poor Reviews",
+          "text": "Below 4.7 stars, the algorithm buries you. The small things owners skip are the exact things that win five stars or quietly kill the listing.",
+          "image": "/site/mistake-3.png"
+        },
+        {
+          "title": "Lower Nightly Rates",
+          "text": "The result is a property that earns less than it should.",
+          "image": "/site/mistake-4.png"
+        }
+      ]
+    },
+    "collectionsSection": {
+      "label": "The Collections",
+      "heading": "Made For Your Ideal Guest",
+      "intro": "Two collections. Each designed around a specific guest, and the exact things that make that guest leave five stars."
+    },
+    "strategy": {
+      "label": "THE OBÉ DIFFERENCE",
+      "heading": "A short term rental built to earn at its full potential.",
+      "body": "That's why we created OBÉ. A product standard built from STR performance data where every decision has one job: get you more booking at a higher rate.",
+      "points": [
+        { "strong": "You Don't Guess.", "text": "The decisions that decide performance are already made, from data. From the sofa till the cutlery, you skip the guesswork completely." },
+        { "strong": "You Don't Wait.", "text": "30 days from signature to a listing ready for guests. Guaranteed, or we rebate ten percent of our fee." },
+        { "strong": "You Don't Coordinate.", "text": "One point of contact handles every vendor, delivery, and detail. Zero hassle on your end." },
+        { "strong": "You Don't Manage Us.", "text": "We furnish to a standard and step back. No conflict over how your property runs." }
+      ],
+      "asideLabel": "From empty to live in",
+      "asideValue": "30 days"
+    },
+    "craft": {
+      "label": "The Path to Revenue",
+      "heading": "From Empty To Booked",
+      "sub": "You hand it over once. We take it from empty to earning.",
+      "ctaLabel": "Get Your Free Estimate",
+      "steps": [
+        { "number": "01", "title": "Assess", "text": "We assess the property, the location, and the guest it should win." },
+        { "number": "02", "title": "Match", "text": "We match it to the collection and guest that earns the most." },
+        { "number": "03", "title": "Install", "text": "Sourcing, delivery, assembly, styling. Handled for you." },
+        { "number": "04", "title": "Photography And Go Live", "text": "Shot to perform in search. Live in 30 days." }
+      ]
+    }
+  },
+  "footer": {
+    "email": "contact@obespaces.com",
+    "social": [
+      { "label": "Instagram", "href": "https://instagram.com" },
+      { "label": "LinkedIn", "href": "https://linkedin.com" },
+      { "label": "TikTok", "href": "https://tiktok.com" }
+    ]
+  },
+  "collectionsPage": {
+    "heroHeading": "Built for the ideal guest.",
+    "heroGold": "Higher rates, better reviews.",
+    "heroSub": "Every collection is furnished for exactly who your property should win.",
+    "why": {
+      "label": "The OBÉ Difference",
+      "heading": "Why Choose Us",
+      "lead": "A standard built to remove the expensive parts of guessing, waiting, coordinating, and managing.",
+      "reasons": [
+        { "eyebrow": "Guest-first standard", "title": "Built for guests, not you", "text": "Built for what guests want, not your taste." },
+        { "eyebrow": "30-day launch", "title": "Empty to live in 30 days", "text": "Delivered, staged, shot. Guaranteed, in 30 days." },
+        { "eyebrow": "One point of contact", "title": "You do nothing", "text": "One point of contact, every vendor handled by our team." }
+      ]
+    }
+  }
+}

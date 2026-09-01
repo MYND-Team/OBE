@@ -4,12 +4,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { LogoMark } from "./LogoMark.jsx";
 import { Button } from "./Button.jsx";
 import { EstimateModal } from "./EstimateModal.jsx";
+import siteContent from "../site-content.json";
 
-const navItems = [
-  { label: "About Us", href: "/#intro" },
-  { label: "Collections", href: "/collections" },
-  { label: "Contact Us", href: "/#contact" }
-];
+const { navItems, ctaLabel } = siteContent.header;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,7 +40,7 @@ export function Header() {
   };
 
   const handleNavClick = (item) => (event) => {
-    if (item.label === "Contact Us") {
+    if (item.href === "/#contact") {
       event.preventDefault();
       close();
       setContactOpen(true);
@@ -78,7 +75,7 @@ export function Header() {
 
       <nav className="nav" aria-label="Primary">
         {navItems.map((item) => (
-          item.label === "Contact Us" ? (
+          item.href === "/#contact" ? (
             <a key={item.label} href={item.href} onClick={handleNavClick(item)} data-cursor={item.label}>
               {item.label}
             </a>
@@ -92,7 +89,7 @@ export function Header() {
 
       <div className="header-actions">
         <Button onClick={openContact} variant="consult" className="header-cta">
-          Get Your Free Estimate
+          {ctaLabel}
         </Button>
         <button
           className="menu-toggle"
@@ -116,7 +113,7 @@ export function Header() {
                   <span className="mobile-menu__link-label">{item.label}</span>
                 </>
               );
-              return item.label === "Contact Us" ? (
+              return item.href === "/#contact" ? (
                 <a key={item.label} className="mobile-menu__link" href={item.href} onClick={handleNavClick(item)}>
                   {content}
                 </a>
@@ -135,7 +132,7 @@ export function Header() {
               setContactOpen(true);
             }}
           >
-            <span>Get Your Free Estimate</span>
+            <span>{ctaLabel}</span>
             <ArrowUpRight size={20} aria-hidden="true" />
           </button>
         </div>
