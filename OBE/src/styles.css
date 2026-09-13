@@ -6021,8 +6021,8 @@ p {
   }
 
   .intro__story {
-    width: min(1530px, calc(100vw - (var(--page-gutter) * 2)));
-    max-width: 1530px;
+    width: 100%;
+    max-width: none;
     grid-template-columns: 360px 520px 360px;
     column-gap: 0;
     justify-content: space-between;
@@ -10198,8 +10198,9 @@ p {
 }
 
 .strategy__body {
-  max-width: 1380px;
   gap: clamp(2rem, 3.8vw, 3.8rem);
+  width: 100%;
+  max-width: none;
   margin-top: clamp(1rem, 1.8vw, 1.8rem);
 }
 
@@ -10492,8 +10493,8 @@ p {
 
 /* Align collections heading with the two-card grid and make key section labels black. */
 .page--home .collections__editorial {
-  width: calc(100vw - (var(--page-gutter) * 2)) !important;
-  max-width: 1530px !important;
+  width: 100% !important;
+  max-width: none !important;
   margin-left: auto !important;
   margin-right: auto !important;
   padding-left: 0 !important;
@@ -11420,9 +11421,9 @@ p {
   }
 }
 
-/* Nudge collections carousel left and split arrows to true left/right controls. */
+/* Keep the carousel on the section's content edge at every breakpoint. */
 .page--home .collections__slider {
-  margin-left: calc(var(--page-gutter) - clamp(1.2rem, 2.2vw, 2.8rem)) !important;
+  margin-left: 0 !important;
   margin-right: auto !important;
 }
 
