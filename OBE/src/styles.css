@@ -6184,8 +6184,9 @@ p {
 .mistakes__heading {
   display: block;
   width: 100%;
-  max-width: 1530px;
-  margin: 0 auto clamp(1.35rem, 2.4vw, 2.35rem);
+  /* Match the cards' full section width, including when browser zoom widens the viewport. */
+  max-width: none;
+  margin: 0 0 clamp(1.35rem, 2.4vw, 2.35rem);
 }
 
 .mistakes__heading h2 {
