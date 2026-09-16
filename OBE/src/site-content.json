@@ -62,10 +62,9 @@
       "heading": "A short term rental built to earn at its full potential.",
       "body": "That's why we created OBÉ. A product standard built from STR performance data where every decision has one job: get you more booking at a higher rate.",
       "points": [
-        { "strong": "You Don't Guess.", "text": "The decisions that decide performance are already made, from data. From the sofa till the cutlery, you skip the guesswork completely." },
-        { "strong": "You Don't Wait.", "text": "30 days from signature to a listing ready for guests. Guaranteed, or we rebate ten percent of our fee." },
-        { "strong": "You Don't Coordinate.", "text": "One point of contact handles every vendor, delivery, and detail. Zero hassle on your end." },
-        { "strong": "You Don't Manage Us.", "text": "We furnish to a standard and step back. No conflict over how your property runs." }
+        { "strong": "You Don't Guess.", "text": "From the sofa to the cutlery, every detail is chosen around your market and the guest you want to attract." },
+        { "strong": "You Don't Wait.", "text": "30 days from signed agreement to guest-ready." },
+        { "strong": "You Don't Coordinate.", "text": "Vendors, deliveries, installation, styling, and photography. We handle it all. One point of contact, from start to finish." }
       ],
       "asideLabel": "From empty to live in",
       "asideValue": "30 days"
