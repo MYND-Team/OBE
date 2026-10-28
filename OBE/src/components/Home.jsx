@@ -106,44 +106,62 @@ export function Home() {
   };
 
   useIsomorphicLayoutEffect(() => {
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduce) {
-      heroRef.current?.classList.remove("hero__switchline--intro");
-      gsap.set(
-        heroRef.current?.querySelectorAll(
-          ".hero__switch-idle, .hero__switch-strike",
-        ),
-        { autoAlpha: 0 },
-      );
-      gsap.set(heroRef.current?.querySelector(".hero__actions"), {
-        autoAlpha: 1,
-        y: 0,
-        pointerEvents: "auto",
-      });
-      return undefined;
-    }
-
-    const ctx = gsap.context(() => {
-      const setBackground = (scene, immediate = false) => {
+    // Rebuild the animation when the OS/browser motion preference changes.
+    const media = gsap.matchMedia();
+    media.add({ reduce: "(prefers-reduced-motion: reduce)", motion: "(prefers-reduced-motion: no-preference)" }, (context) => {
+      const reduce = context.conditions.reduce;
+      context.add("setBackground", (scene, immediate = false) => {
         gsap.to(pageRef.current, {
           "--home-bg": scene.bg,
           "--home-bg-2": scene.bg2,
           "--home-accent": scene.accent,
           "--home-line": scene.line,
-          duration: immediate ? 0 : 0.8,
+          duration: immediate || reduce ? 0 : 0.8,
           ease: "power2.out",
           overwrite: "auto",
         });
         gsap.to(document.documentElement, {
           "--fab-bg": scene.fabBg || "#746f4f",
-          duration: immediate ? 0 : 0.8,
+          duration: immediate || reduce ? 0 : 0.8,
           ease: "power2.out",
           overwrite: "auto",
         });
+      });
+      // Resolve one scene from the current position instead of letting overlapping
+      // enter/back callbacks compete during quick scrolls and layout refreshes.
+      const scenes = backgroundScenes.map((scene) => ({
+        ...scene, element: pageRef.current.querySelector(scene.selector),
+      })).filter((scene) => scene.element);
+      let activeScene;
+      const updateBackground = (immediate = false) => {
+        const scene = scenes.reduce((current, candidate) =>
+          candidate.element.getBoundingClientRect().top <= window.innerHeight * 0.5
+            ? candidate : current, scenes[0]);
+        if (scene !== activeScene || immediate) {
+          activeScene = scene;
+          context.setBackground(scene, immediate);
+        }
       };
-      setBackground(backgroundScenes[0], true);
+      ScrollTrigger.create({
+        trigger: pageRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: () => updateBackground(),
+        onRefresh: () => updateBackground(true),
+      });
+      updateBackground(true);
+
+      if (reduce) {
+        gsap.set(heroRef.current.querySelectorAll(
+          ".hero__switch-prefix, .hero__switch-earn, .hero__title--metrics, .hero__actions"
+        ), { autoAlpha: 1, x: 0, y: 0, scale: 1, filter: "none" });
+        gsap.set(heroRef.current.querySelectorAll(
+          ".hero__switch-idle, .hero__switch-strike"
+        ), { autoAlpha: 0 });
+        gsap.set(heroRef.current.querySelector(".hero__actions"), { pointerEvents: "auto" });
+        gsap.set(heroRef.current.querySelector(".hero__switchline"), { scale: 1 });
+        return;
+      }
 
       const switchline = heroRef.current?.querySelector(".hero__switchline");
       const prefix = heroRef.current?.querySelector(".hero__switch-prefix");
@@ -179,7 +197,7 @@ export function Home() {
       gsap.set(metricsTitle, { display: "none", autoAlpha: 0 });
       gsap.set(heroActions, { autoAlpha: 0, y: 15, pointerEvents: "none" });
 
-      const revealTitle = () => {
+      context.add("revealTitle", () => {
         gsap.set(metricsTitle, { display: "grid", autoAlpha: 1 });
         if (metricsLines.length > 0) {
           gsap.fromTo(
@@ -226,17 +244,23 @@ export function Home() {
             delay: 0.5,
           });
         }
-      };
+      });
 
-      gsap.delayedCall(2.4, () => {
+      context.add("finishHero", () => {
+        gsap.to(switchline, {
+          scale: 1,
+          delay: 0.3,
+          duration: 0.7,
+          ease: "power2.inOut",
+          onComplete: () => context.revealTitle(),
+        });
+      });
+      gsap.set(switchline, { transition: "none" });
+
+      context.add("playHero", () => {
         gsap
           .timeline({
-            onComplete: () => {
-              gsap.delayedCall(0.3, () => {
-                switchline?.classList.remove("hero__switchline--intro");
-                gsap.delayedCall(0.7, revealTitle);
-              });
-            },
+            onComplete: () => context.finishHero(),
           })
           .to(
             prefix,
@@ -285,17 +309,7 @@ export function Home() {
           );
       });
 
-      backgroundScenes.forEach((scene) => {
-        const trigger = document.querySelector(scene.selector);
-        if (!trigger) return;
-        ScrollTrigger.create({
-          trigger,
-          start: "top 58%",
-          end: "bottom 42%",
-          onEnter: () => setBackground(scene),
-          onEnterBack: () => setBackground(scene),
-        });
-      });
+      gsap.delayedCall(2.4, () => context.playHero());
 
       if (heroRef.current?.querySelector(".hero__image")) {
         gsap.from(".hero__image", {
@@ -368,7 +382,7 @@ export function Home() {
     }, pageRef);
 
     return () => {
-      ctx.revert();
+      media.revert();
       document.documentElement.style.setProperty("--fab-bg", "#746f4f");
     };
   }, [pageRef]);

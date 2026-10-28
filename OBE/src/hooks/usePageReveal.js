@@ -24,7 +24,8 @@ export function usePageReveal() {
       gsap.fromTo(
         scope.current,
         { autoAlpha: 0, y: 18 },
-        { autoAlpha: 1, y: 0, duration: 0.85, ease: "power3.out" }
+        // A retained transform makes the fixed home background scroll with main.
+        { autoAlpha: 1, y: 0, duration: 0.85, ease: "power3.out", clearProps: "transform" }
       );
 
       gsap.utils.toArray("[data-reveal]").forEach((element) => {
