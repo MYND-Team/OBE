@@ -282,6 +282,22 @@ function RoomEditor({ room, slug, onChange, onUploading }) {
         value={room.label || ""}
         onChange={(event) => update({ label: event.target.value })}
       />
+      <label style={styles.label}>Card description</label>
+      <textarea
+        style={{ ...styles.input, minHeight: 75, resize: "vertical" }}
+        value={room.description || ""}
+        onChange={(event) => update({ description: event.target.value })}
+        placeholder="Describe this room package"
+      />
+      <label style={styles.label}>Card bullet points (one per line)</label>
+      <textarea
+        style={{ ...styles.input, minHeight: 100, resize: "vertical" }}
+        value={(room.details || []).join("\n")}
+        onChange={(event) => update({
+          details: event.target.value.split("\n").filter((detail) => detail.trim()),
+        })}
+        placeholder={"Add one detail per line\nFurniture and essentials\nFinishing touches"}
+      />
       <label style={styles.label}>Images ({room.images?.length || 0})</label>
       <div style={styles.imageRow}>
         {(room.images || []).map((img) => (
